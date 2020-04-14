@@ -1,3 +1,10 @@
+<img src="https://img.shields.io/github/languages/code-size/master-diet/master-diet-frontend?style=for-the-badge"> <img src="https://img.shields.io/github/repo-size/master-diet/master-diet-frontend?color=purple&style=for-the-badge"> 
+<img src="https://img.shields.io/github/languages/count/master-diet/master-diet-frontend?color=green&style=for-the-badge"> 
+<img src="https://img.shields.io/github/languages/top/master-diet/master-diet-frontend?color=orange&style=for-the-badge">
+<img src="https://img.shields.io/github/last-commit/master-diet/master-diet-frontend?color=darkgreen&style=for-the-badge">
+<img src="https://img.shields.io/github/issues/master-diet/master-diet-frontend?&style=for-the-badge">
+<img src="https://img.shields.io/github/issues-pr/master-diet/master-diet-frontend?style=for-the-badge">
+
 ### Build & Run
 
 ##### You can choose whether to run frontend-app using docker or just standard run.
