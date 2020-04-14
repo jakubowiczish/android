@@ -9,11 +9,13 @@
 
 ##### You can choose whether to run frontend-app using docker or just standard run.
 
-[SUGGESTED - DO NOT USE DOCKER FOR NOW]
+##### [SUGGESTED - DO NOT USE DOCKER FOR NOW]
 
 ```bash
 npm start
 ```
+
+##### OR
 
 ```bash
 docker-compose up --build
@@ -21,12 +23,14 @@ docker-compose up --build
 
 ### Test
 
-*IF* Regular build
+##### Regular build
 ```
 http://localhost:3000
 ```
 
-*ELSE IF* Docker build
+##### OR 
+
+##### Docker build
 ```
 http://localhost:3001
 ```
