@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Home.css';
 
 class Home extends Component {
@@ -8,20 +8,20 @@ class Home extends Component {
                 <div className="container">
                     <div className="graf-bg-container">
                         <div className="graf-layout">
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
-                            <div className="graf-circle"></div>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
+                            <div className="graf-circle"/>
                         </div>
                     </div>
-                    <h1 className="home-title">Spring Boot React OAuth2 Social Login Demo</h1>
+                    <h1 className="home-title">Master Diet</h1>
                 </div>
             </div>
         )

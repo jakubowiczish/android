@@ -9,8 +9,8 @@
 .home-title {
     font-size: 25px;
     font-weight: 400;
-    color: rgba(0,0,0,0.70);
-    margin-top: 50px; 
+    color: rgba(0, 0, 0, 0.70);
+    margin-top: 50px;
 }
 
 .graf-bg-container {
@@ -32,7 +32,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateY(1000deg) rotateX(1000deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateY(1000deg) rotateX(1000deg) rotate(0deg);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -44,7 +44,7 @@
 @keyframes scaleOne {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateY(180deg) rotateX(90deg) rotate(1000deg);
+        transform: translate(-50%, -50%) rotateY(180deg) rotateX(90deg) rotate(1000deg);
         opacity: 0
     }
 }
@@ -53,7 +53,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(135deg) rotateY(135deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateX(135deg) rotateY(135deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -66,7 +66,7 @@
 @keyframes scaleTwo {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateX(135deg) rotateY(135deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateX(135deg) rotateY(135deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -75,7 +75,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(45deg) rotateY(45deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -88,7 +88,7 @@
 @keyframes scaleThree {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateX(45deg) rotateY(45deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -97,7 +97,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(45deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateX(45deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -110,7 +110,7 @@
 @keyframes scaleFour {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateX(45deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateX(45deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -119,7 +119,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(135deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateX(135deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -132,7 +132,7 @@
 @keyframes scaleFive {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateX(135deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateX(135deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -141,7 +141,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(100deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateX(100deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -154,7 +154,7 @@
 @keyframes scaleSix {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateX(100deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateX(100deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -163,7 +163,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateY(-105deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateY(-105deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -176,7 +176,7 @@
 @keyframes scaleSeven {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateY(-105deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateY(-105deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -185,7 +185,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateY(45deg) rotateX(45deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateY(45deg) rotateX(45deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -198,7 +198,7 @@
 @keyframes scaleEight {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateY(45deg) rotateX(45deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateY(45deg) rotateX(45deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -207,7 +207,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateY(135deg) rotateX(135deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateY(135deg) rotateX(135deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -220,7 +220,7 @@
 @keyframes scaleNine {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateY(135deg) rotateX(135deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateY(135deg) rotateX(135deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -229,7 +229,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateY(113deg) rotateX(115deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateY(113deg) rotateX(115deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -242,7 +242,7 @@
 @keyframes scaleTen {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateY(113deg) rotateX(115deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateY(113deg) rotateX(115deg) rotate(1turn);
         opacity: 0
     }
 }
@@ -251,7 +251,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(-45deg) rotateY(-45deg) rotate(0deg);
+    transform: translate(-50%, -50%) rotateX(-45deg) rotateY(-45deg) rotate(0deg);
     width: 310px;
     height: 310px;
     border-radius: 50%;
@@ -264,7 +264,7 @@
 @keyframes scaleEleven {
     to {
         border-radius: 50%;
-        transform: translate(-50%,-50%) rotateX(-45deg) rotateY(-45deg) rotate(1turn);
+        transform: translate(-50%, -50%) rotateX(-45deg) rotateY(-45deg) rotate(1turn);
         opacity: 0
     }
 }
