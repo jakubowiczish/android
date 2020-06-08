@@ -19,17 +19,17 @@ class Start extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedActivityLevel: {active: "BMR", goal: "LOSE"},
+            selected: {active: "BMR", goal: "LOSE"},
             goal: "LOSE",
             gender: "MALE"
         }
     }
 
     handleSelectedActivity = selection => {
-        this.setState({selectedActivityLevel: {active: selection,goal:this.state.selectedActivityLevel.goal}});
+        this.setState({selected: {active: selection, goal: this.state.selected.goal}});
     };
     handleSelectedGoal = selection => {
-        this.setState({selectedActivityLevel: {active:this.state.selectedActivityLevel.active,goal: selection}});
+        this.setState({selected: {active: this.state.selected.active, goal: selection}});
     };
 
 
@@ -49,10 +49,10 @@ class Start extends Component {
                         <h1 className="start-title">Fill up starter form!</h1>
                         <StartForm handleSelectedActivity={this.handleSelectedActivity}
                                    handleSelectedGoal={this.handleSelectedGoal}
-                                   selectedActivityLevel={this.state.selectedActivityLevel}/>
+                                   selected={this.state.selected}/>
                     </div>
                 </div>
-                <ActivityBox className={"parent_div_1"} selectedActivityLevel={this.state.selectedActivityLevel}/>
+                <ActivityBox className={"parent_div_1"} selected={this.state.selected}/>
             </div>
         );
     }
@@ -197,7 +197,7 @@ class StartForm extends Component {
                             <Field as="select"
                                    name="activityLevel"
                                    className="form-control"
-                                   value={this.props.selectedActivityLevel.active}
+                                   value={this.props.selected.active}
                                    onChange={e => {
                                        this.props.handleSelectedActivity(e.target.value);
                                    }}
@@ -216,7 +216,7 @@ class StartForm extends Component {
                                    name="goal"
                                    placeholder="Choose goal"
                                    className="form-control"
-                                   value={this.props.selectedActivityLevel.goal}
+                                   value={this.props.selected.goal}
                                    onChange={e => {
                                        this.props.handleSelectedGoal(e.target.value);
                                    }}
@@ -226,7 +226,6 @@ class StartForm extends Component {
                                 <option value="LOSE">Weight lose</option>
                             </Field>
                         </div>
-
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"
@@ -255,21 +254,21 @@ class ActivityBox extends React.Component {
 
 
     render() {
-        const {selectedActivityLevel} = this.props;
-        if (selectedActivityLevel.active === undefined) {
-            selectedActivityLevel.active = 'BMR';
+        const {selected} = this.props;
+        if (selected.active === undefined) {
+            selected.active = 'BMR';
         }
 
-        if (selectedActivityLevel.goal === undefined) {
-            selectedActivityLevel.goal = 'LOSE';
+        if (selected.goal === undefined) {
+            selected.goal = 'LOSE';
         }
         let imageActive;
         let imageGoal;
         let activeDescription;
         let goalDescription;
-        let header = "Activity level: " + this.parseActivityLevel(selectedActivityLevel.active);
-        let headerGoal = "Goal: " + this.parseHeader(selectedActivityLevel.goal);
-        switch (selectedActivityLevel.active) {
+        let header = "Activity level: " + this.parseActivityLevel(selected.active);
+        let headerGoal = "Goal: " + this.parseHeader(selected.goal);
+        switch (selected.active) {
             case "BMR":
                 imageActive = bmr;
                 activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.';
@@ -297,11 +296,8 @@ class ActivityBox extends React.Component {
             default:
                 imageActive = bmr;
                 activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.';
-
-
         }
-
-        switch (selectedActivityLevel.goal) {
+        switch (selected.goal) {
             case "LOSE":
                 imageGoal = lose;
                 goalDescription = "To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit."
@@ -317,12 +313,11 @@ class ActivityBox extends React.Component {
             default:
                 imageGoal = lose;
                 goalDescription = "To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit."
-
         }
 
 
         return (
-            <div className="start-container ">
+            <div className="start-container">
                 <div className="start-content child_div_1">
                     <h2 className="start-title">{header}</h2>
                     <img src={imageActive} height={300} alt={"picture describing activity level"}/>
