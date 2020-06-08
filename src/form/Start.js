@@ -26,10 +26,10 @@ class Start extends Component {
     }
 
     handleSelectedActivity = selection => {
-        this.setState({selectedActivityLevel: {active: selection}});
+        this.setState({selectedActivityLevel: {active: selection,goal:this.state.selectedActivityLevel.goal}});
     };
     handleSelectedGoal = selection => {
-        this.setState({selectedActivityLevel: {goal: selection}});
+        this.setState({selectedActivityLevel: {active:this.state.selectedActivityLevel.active,goal: selection}});
     };
 
 
@@ -252,11 +252,10 @@ class ActivityBox extends React.Component {
         }
         return this.parseHeader(level)
     };
-    
+
 
     render() {
         const {selectedActivityLevel} = this.props;
-
         if (selectedActivityLevel.active === undefined) {
             selectedActivityLevel.active = 'BMR';
         }
@@ -266,44 +265,59 @@ class ActivityBox extends React.Component {
         }
         let imageActive;
         let imageGoal;
+        let activeDescription;
+        let goalDescription;
         let header = "Activity level: " + this.parseActivityLevel(selectedActivityLevel.active);
         let headerGoal = "Goal: " + this.parseHeader(selectedActivityLevel.goal);
         switch (selectedActivityLevel.active) {
             case "BMR":
                 imageActive = bmr;
+                activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.';
                 break;
             case "SEDENTARY":
                 imageActive = sedentary;
+                activeDescription = "You don't like to be in a hurry :) If you have sedentary work or your favorite exercise is reaching the remote this level is for you.";
                 break;
             case "LIGHT":
                 imageActive = light;
+                activeDescription = "If you exercise 1-3 times per week and prefer light workouts this is your level.";
                 break;
             case "MODERATE":
                 imageActive = moderate;
+                activeDescription = "You are very active person. Exercise 4-5 times per week aren't scary for you.";
                 break;
             case "ACTIVE":
                 imageActive = active;
+                activeDescription = "Gym veterans.You like very intense trainings or you do your daily exercise.";
                 break;
             case "VERY_ACTIVE":
                 imageActive = veryActive;
+                activeDescription = "Level for fit lovers and physical workers. If you could you would sleep in the gym.";
                 break;
             default:
                 imageActive = bmr;
+                activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.';
+
 
         }
 
-        switch (selectedActivityLevel.goal){
+        switch (selectedActivityLevel.goal) {
             case "LOSE":
                 imageGoal = lose;
+                goalDescription = "To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit."
                 break;
             case "STAY":
                 imageGoal = stay;
+                goalDescription = "To maintain your weight we calculate exactly how much calories do you need to consume during the day"
                 break;
             case "GAIN":
                 imageGoal = gain;
+                goalDescription = "To gain wight we have to add 100-300 calories to your basic caloric level.The calorific increase allowed to build additional muscle mass"
                 break;
             default:
                 imageGoal = lose;
+                goalDescription = "To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit."
+
         }
 
 
@@ -312,8 +326,10 @@ class ActivityBox extends React.Component {
                 <div className="start-content child_div_1">
                     <h2 className="start-title">{header}</h2>
                     <img src={imageActive} height={300} alt={"picture describing activity level"}/>
+                    <p className={"field"}>{activeDescription}</p>
                     <h2 className="start-title">{headerGoal}</h2>
                     <img src={imageGoal} height={150} alt={"picture describing goal"}/>
+                    <p>{goalDescription}</p>
                 </div>
             </div>)
     }
