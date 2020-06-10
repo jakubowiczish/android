@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import {Redirect} from "react-router";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import './Start.css';
-import bmr from '../img/activities/BMR.jpg'
-import sedentary from '../img/activities/SEDENTARY.jpg';
-import light from '../img/activities/LIGHT.jpg';
-import moderate from '../img/activities/MODERATE.jpg';
-import active from '../img/activities/ACTIVE.jpg';
-import veryActive from '../img/activities/VERY_ACTIVE.jpg';
+import bmrActiveImg from '../img/activities/bmr-active-img.jpg'
+import sedentaryActiveImg from '../img/activities/sedentary-active-img.jpg';
+import lightActiveImg from '../img/activities/light-active-img.jpg';
+import moderateActiveImg from '../img/activities/moderate-active-img.jpg';
+import activeActiveImg from '../img/activities/active-active-img.jpg';
+import veryActiveActiveImg from '../img/activities/very_active-active-img.jpg';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment'
-import gain from '../img/activities/Gain.jpg'
-import lose from '../img/activities/Lose.jpg'
-import stay from '../img/activities/Stay.jpg'
+import gainGoalImg from '../img/activities/gain-active-img.jpg'
+import loseGoalImg from '../img/activities/lose-goal-img.jpg'
+import stayGoalImg from '../img/activities/stay-goal-img.jpg'
 
 class Start extends Component {
     constructor(props) {
@@ -270,48 +270,48 @@ class ActivityBox extends React.Component {
         let headerGoal = "Goal: " + this.parseHeader(selected.goal);
         switch (selected.active) {
             case "BMR":
-                imageActive = bmr;
+                imageActive = bmrActiveImg;
                 activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.';
                 break;
             case "SEDENTARY":
-                imageActive = sedentary;
+                imageActive = sedentaryActiveImg;
                 activeDescription = "You don't like to be in a hurry :) If you have sedentary work or your favorite exercise is reaching the remote this level is for you.";
                 break;
             case "LIGHT":
-                imageActive = light;
+                imageActive = lightActiveImg;
                 activeDescription = "If you exercise 1-3 times per week and prefer light workouts this is your level.";
                 break;
             case "MODERATE":
-                imageActive = moderate;
+                imageActive = moderateActiveImg;
                 activeDescription = "You are very active person. Exercise 4-5 times per week aren't scary for you.";
                 break;
             case "ACTIVE":
-                imageActive = active;
+                imageActive = activeActiveImg;
                 activeDescription = "Gym veterans.You like very intense trainings or you do your daily exercise.";
                 break;
             case "VERY_ACTIVE":
-                imageActive = veryActive;
+                imageActive = veryActiveActiveImg;
                 activeDescription = "Level for fit lovers and physical workers. If you could you would sleep in the gym.";
                 break;
             default:
-                imageActive = bmr;
+                imageActive = bmrActiveImg;
                 activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.';
         }
         switch (selected.goal) {
             case "LOSE":
-                imageGoal = lose;
+                imageGoal = loseGoalImg;
                 goalDescription = "To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit."
                 break;
             case "STAY":
-                imageGoal = stay;
+                imageGoal = stayGoalImg;
                 goalDescription = "To maintain your weight we calculate exactly how much calories do you need to consume during the day"
                 break;
             case "GAIN":
-                imageGoal = gain;
+                imageGoal = gainGoalImg;
                 goalDescription = "To gain wight we have to add 100-300 calories to your basic caloric level.The calorific increase allowed to build additional muscle mass"
                 break;
             default:
-                imageGoal = lose;
+                imageGoal = loseGoalImg;
                 goalDescription = "To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit."
         }
 
