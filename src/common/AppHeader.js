@@ -29,6 +29,9 @@ class AppHeader extends Component {
                                     <li>
                                         <NavLink to="/signup">Signup</NavLink>
                                     </li>
+                                    <li>
+                                        <NavLink to="/startForm">Start Form</NavLink>
+                                    </li>
                                 </ul>
                             )}
                         </nav>
