@@ -88,9 +88,11 @@ class App extends Component {
               path='/signup'
               render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}
             />
-            <Route
+            <PrivateRoute
               path='/startForm'
-              render={(props) => <Start authenticated={this.state.authenticated} {...props} />}
+              authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={Start}
             />
             <Route path='/oauth2/redirect' component={OAuth2RedirectHandler}/>
             <Route component={NotFound}/>

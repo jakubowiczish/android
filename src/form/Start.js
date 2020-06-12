@@ -14,9 +14,13 @@ import moment from 'moment'
 import gainGoalImg from '../img/activities/gain-active-img.jpg'
 import loseGoalImg from '../img/activities/lose-goal-img.jpg'
 import stayGoalImg from '../img/activities/stay-goal-img.jpg'
+import {createPlan} from "../util/APIUtils";
+import Alert from 'react-s-alert'
+
 
 class Start extends Component {
     constructor(props) {
+
         super(props);
         this.state = {
             selected: {active: "BMR", goal: "LOSE"},
@@ -49,6 +53,7 @@ class Start extends Component {
                         <h1 className="start-title">Fill up starter form!</h1>
                         <StartForm handleSelectedActivity={this.handleSelectedActivity}
                                    handleSelectedGoal={this.handleSelectedGoal}
+                                   currentUser={this.props.currentUser}
                                    selected={this.state.selected}/>
                     </div>
                 </div>
@@ -62,6 +67,31 @@ class StartForm extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+
+     marks = [
+        {
+            value: 0,
+            label: '0°C',
+        },
+        {
+            value: 20,
+            label: '20°C',
+        },
+        {
+            value: 37,
+            label: '37°C',
+        },
+        {
+            value: 100,
+            label: '100°C',
+        },
+    ];
+
+     valuetext(value) {
+        return `${value}°C`;
     }
 
     state = {
@@ -81,16 +111,25 @@ class StartForm extends Component {
         });
     };
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const form = event.target;
-        const data = new FormData(form);
-        fetch('/api/form-submit-url', {
-            method: 'POST',
-            body: data,
-        });
+    handleSubmit(values) {
+        values.userId = this.props.currentUser.id;
+        console.log(this.props.currentUser.id)
+        createPlan(values)
+            .then(response => {
+                Alert.success('You\'re successfully created your first diet plan')
+            }).catch(error => {
+            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+        })
     }
 
+    getFormattedDate(date) {
+        const year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString();
+        month = month.length > 1 ? month : '0' + month;
+        let day = date.getDate().toString();
+        day = day.length > 1 ? day : '0' + day;
+        return day + '/' + month + '/' + year;
+    }
 
     render() {
         const heightTest = /^[4-9][0-9]$|^1[0-9][0-9]$|^2[0-4][0-9]$|^250$/i;
@@ -122,10 +161,10 @@ class StartForm extends Component {
                     return errors;
                 }}
                 onSubmit={(values, {setSubmitting}) => {
-                    alert("Form is validated! Submitting the form...");
-                    setSubmitting(false);
-                    values.birthDate = this.state.startDate;
-                    console.log(values)
+                    values.birthDate = this.getFormattedDate(this.state.startDate);
+                    values.fatPreferencesPercentage =
+                    this.handleSubmit(values)
+                    setSubmitting(false)
                 }}
             >
                 {({touched, errors, isSubmitting}) => (
@@ -226,6 +265,7 @@ class StartForm extends Component {
                                 <option value="LOSE">Weight lose</option>
                             </Field>
                         </div>
+
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"
@@ -320,10 +360,10 @@ class ActivityBox extends React.Component {
             <div className="start-container">
                 <div className="start-content child_div_1">
                     <h2 className="start-title">{header}</h2>
-                    <img src={imageActive} height={300} alt={"picture describing activity level"}/>
+                    <img src={imageActive} height={300} alt={"describing activity level"}/>
                     <p className={"field"}>{activeDescription}</p>
                     <h2 className="start-title">{headerGoal}</h2>
-                    <img src={imageGoal} height={150} alt={"picture describing goal"}/>
+                    <img src={imageGoal} height={150} alt={"describing goal"}/>
                     <p>{goalDescription}</p>
                 </div>
             </div>)

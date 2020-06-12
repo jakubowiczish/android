@@ -18,6 +18,9 @@ class AppHeader extends Component {
                     <NavLink to='/profile'>Profile</NavLink>
                   </li>
                   <li>
+                    <NavLink to='/startForm'>Start Form</NavLink>
+                  </li>
+                  <li>
                     <a onClick={this.props.onLogout}>Logout</a>
                   </li>
                 </ul>
@@ -29,9 +32,7 @@ class AppHeader extends Component {
                   <li>
                     <NavLink to='/signup'>Signup</NavLink>
                   </li>
-                  <li>
-                    <NavLink to='/startForm'>Start Form</NavLink>
-                  </li>
+
                 </ul>
               )}
             </nav>

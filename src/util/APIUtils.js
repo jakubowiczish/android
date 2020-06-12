@@ -49,3 +49,11 @@ export function signup (signupRequest) {
     body: JSON.stringify(signupRequest)
   })
 }
+
+export function createPlan (userPlanRequest) {
+  return request({
+    url: API_BASE_URL + '/plan',
+    method: 'POST',
+    body: JSON.stringify(userPlanRequest)
+  })
+}
