@@ -5,14 +5,26 @@
 <img src="https://img.shields.io/github/issues/master-diet/master-diet-frontend?&style=for-the-badge">
 <img src="https://img.shields.io/github/issues-pr/master-diet/master-diet-frontend?style=for-the-badge">
 
+### Run checkstyle
+
+Using standardjs:
+
+```
+standard
+```
+
+For fixes:
+
+```
+standard --fix
+```
+
 ### Test
 
-##### Regular build
 ```
 http://localhost:3000
 ```
 
-##### OR 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
