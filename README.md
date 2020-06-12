@@ -5,35 +5,26 @@
 <img src="https://img.shields.io/github/issues/master-diet/master-diet-frontend?&style=for-the-badge">
 <img src="https://img.shields.io/github/issues-pr/master-diet/master-diet-frontend?style=for-the-badge">
 
-### Build & Run
+### Run checkstyle
 
-##### You can choose whether to run frontend-app using docker or just standard run.
+Using standardjs:
 
-##### [SUGGESTED - DO NOT USE DOCKER FOR NOW]
-
-```bash
-npm start
+```
+standard
 ```
 
-##### OR
+For fixes:
 
-```bash
-docker-compose up --build
+```
+standard --fix
 ```
 
 ### Test
 
-##### Regular build
 ```
 http://localhost:3000
 ```
 
-##### OR 
-
-##### Docker build
-```
-http://localhost:3001
-```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
