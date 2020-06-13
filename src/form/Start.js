@@ -14,9 +14,12 @@ import moment from 'moment'
 import gainGoalImg from '../img/activities/gain-active-img.jpg'
 import loseGoalImg from '../img/activities/lose-goal-img.jpg'
 import stayGoalImg from '../img/activities/stay-goal-img.jpg'
+import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
+import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
 import {createPlan} from "../util/APIUtils";
 import Alert from 'react-s-alert'
-
+import RubberSlider from '@shwilliam/react-rubber-slider'
+import '@shwilliam/react-rubber-slider/dist/styles.css'
 
 class Start extends Component {
     constructor(props) {
@@ -70,34 +73,11 @@ class StartForm extends Component {
     }
 
 
-
-     marks = [
-        {
-            value: 0,
-            label: '0°C',
-        },
-        {
-            value: 20,
-            label: '20°C',
-        },
-        {
-            value: 37,
-            label: '37°C',
-        },
-        {
-            value: 100,
-            label: '100°C',
-        },
-    ];
-
-     valuetext(value) {
-        return `${value}°C`;
-    }
-
     state = {
         startDate: new Date("01/01/1990"),
         goal: "LOSE",
-        gender: "MALE"
+        gender: "MALE",
+        slider: 50
     };
 
     handleChange = date => {
@@ -110,15 +90,25 @@ class StartForm extends Component {
             gender: data
         });
     };
+    PROM = 1000
+    MIN = 0.2
+    handleSlider = data => {
+        const fatPercentage = data / this.PROM + this.MIN
+        this.setState({
+            slider: fatPercentage
+        })
+    }
 
-    handleSubmit(values) {
+    handleSubmit(values, setSubmitting) {
         values.userId = this.props.currentUser.id;
-        console.log(this.props.currentUser.id)
+        values.fatPreferencesPercentage = this.state.slider
         createPlan(values)
             .then(response => {
                 Alert.success('You\'re successfully created your first diet plan')
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+        }).finally(response => {
+            setSubmitting(false)
         })
     }
 
@@ -162,9 +152,8 @@ class StartForm extends Component {
                 }}
                 onSubmit={(values, {setSubmitting}) => {
                     values.birthDate = this.getFormattedDate(this.state.startDate);
-                    values.fatPreferencesPercentage =
-                    this.handleSubmit(values)
-                    setSubmitting(false)
+                    values.fatPreferencesPercentage = this.state.slider;
+                    this.handleSubmit(values, setSubmitting)
                 }}
             >
                 {({touched, errors, isSubmitting}) => (
@@ -265,7 +254,21 @@ class StartForm extends Component {
                                 <option value="LOSE">Weight lose</option>
                             </Field>
                         </div>
-
+                        <div className={"form-group field"}>
+                            <label htmlFor="slider">Which food do you prefer to eat more?</label>
+                        </div>
+                        <div className={"row "}>
+                            <div className={"column"}>
+                                <img src={carbohydratesPercentageImag} width={100} alt={"Carbohydrates"}/>
+                            </div>
+                            <div className={"column"}>
+                                <RubberSlider width={140} value={this.state.slider} onChange={
+                                    this.handleSlider}/>
+                            </div>
+                            <div className={"column"}>
+                                <img src={fatPercentageImag} width={100} alt={"Fats"}/>
+                            </div>
+                        </div>
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"

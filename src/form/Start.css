@@ -66,10 +66,10 @@ img {
 }
 .child_div_1 {
     width: 600px;
-    height: 800px;
+    height: 900px;
 }
 .child_div_2 {
-    height: 800px;
+    height: 900px;
 }
 .container  {
     text-align: center;
@@ -80,13 +80,28 @@ img {
 .dateContainer {
     width: 430px;
 }
+
 .block {
     display: inline-block;
     width: 143px;
 }
+
 .pad {
     padding-right: 20px;
 }
-.container2  {
+
+.container2 {
     text-align: center;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
 }
