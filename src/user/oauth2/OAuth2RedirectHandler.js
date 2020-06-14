@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { ACCESS_TOKEN } from '../../constants'
-import { Redirect } from 'react-router-dom'
+import React, {Component} from 'react'
+import {ACCESS_TOKEN} from '../../constants'
+import {Redirect} from 'react-router-dom'
 
 class OAuth2RedirectHandler extends Component {
-  getUrlParameter (name) {
+  getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
 

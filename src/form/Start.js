@@ -14,9 +14,16 @@ import moment from 'moment'
 import gainGoalImg from '../img/activities/gain-active-img.jpg'
 import loseGoalImg from '../img/activities/lose-goal-img.jpg'
 import stayGoalImg from '../img/activities/stay-goal-img.jpg'
+import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
+import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
+import {createPlan} from "../util/APIUtils";
+import Alert from 'react-s-alert'
+import RubberSlider from '@shwilliam/react-rubber-slider'
+import '@shwilliam/react-rubber-slider/dist/styles.css'
 
 class Start extends Component {
     constructor(props) {
+
         super(props);
         this.state = {
             selected: {active: "BMR", goal: "LOSE"},
@@ -49,6 +56,7 @@ class Start extends Component {
                         <h1 className="start-title">Fill up starter form!</h1>
                         <StartForm handleSelectedActivity={this.handleSelectedActivity}
                                    handleSelectedGoal={this.handleSelectedGoal}
+                                   currentUser={this.props.currentUser}
                                    selected={this.state.selected}/>
                     </div>
                 </div>
@@ -64,10 +72,12 @@ class StartForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
     state = {
         startDate: new Date("01/01/1990"),
         goal: "LOSE",
-        gender: "MALE"
+        gender: "MALE",
+        slider: 50
     };
 
     handleChange = date => {
@@ -80,17 +90,40 @@ class StartForm extends Component {
             gender: data
         });
     };
-
-    handleSubmit(event) {
-        event.preventDefault();
-        const form = event.target;
-        const data = new FormData(form);
-        fetch('/api/form-submit-url', {
-            method: 'POST',
-            body: data,
-        });
+    PROM = 1000
+    MIN = 0.2
+    handleSlider = data => {
+        const fatPercentage = data / this.PROM + this.MIN
+        this.setState({
+            slider: fatPercentage
+        })
     }
 
+    handleSubmit(values, setSubmitting) {
+        values.userId = this.props.currentUser.id;
+        values.fatPreferencesPercentage = this.state.slider
+        createPlan(values)
+            .then(response => {
+                Alert.success('You\'re successfully created your first diet plan')
+            }).catch(error => {
+            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+        }).finally(response => {
+            setSubmitting(false)
+        })
+    }
+
+    checkPartOfDate(partOfDate) {
+        return partOfDate.length > 1 ? partOfDate : '0' + partOfDate;
+    }
+
+    getFormattedDate(date) {
+        const year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString();
+        month = this.checkPartOfDate(month);
+        let day = date.getDate().toString();
+        day = this.checkPartOfDate(day)
+        return day + '/' + month + '/' + year;
+    }
 
     render() {
         const heightTest = /^[4-9][0-9]$|^1[0-9][0-9]$|^2[0-4][0-9]$|^250$/i;
@@ -122,10 +155,9 @@ class StartForm extends Component {
                     return errors;
                 }}
                 onSubmit={(values, {setSubmitting}) => {
-                    alert("Form is validated! Submitting the form...");
-                    setSubmitting(false);
-                    values.birthDate = this.state.startDate;
-                    console.log(values)
+                    values.birthDate = this.getFormattedDate(this.state.startDate);
+                    values.fatPreferencesPercentage = this.state.slider;
+                    this.handleSubmit(values, setSubmitting)
                 }}
             >
                 {({touched, errors, isSubmitting}) => (
@@ -226,6 +258,21 @@ class StartForm extends Component {
                                 <option value="LOSE">Weight lose</option>
                             </Field>
                         </div>
+                        <div className={"form-group field"}>
+                            <label htmlFor="slider">Which food do you prefer to eat more?</label>
+                        </div>
+                        <div className={"row "}>
+                            <div className={"column"}>
+                                <img src={carbohydratesPercentageImag} width={100} alt={"Carbohydrates"}/>
+                            </div>
+                            <div className={"column"}>
+                                <RubberSlider width={140} value={this.state.slider} onChange={
+                                    this.handleSlider}/>
+                            </div>
+                            <div className={"column"}>
+                                <img src={fatPercentageImag} width={100} alt={"Fats"}/>
+                            </div>
+                        </div>
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"
@@ -320,10 +367,10 @@ class ActivityBox extends React.Component {
             <div className="start-container">
                 <div className="start-content child_div_1">
                     <h2 className="start-title">{header}</h2>
-                    <img src={imageActive} height={300} alt={"picture describing activity level"}/>
+                    <img src={imageActive} height={300} alt={"describing activity level"}/>
                     <p className={"field"}>{activeDescription}</p>
                     <h2 className="start-title">{headerGoal}</h2>
-                    <img src={imageGoal} height={150} alt={"picture describing goal"}/>
+                    <img src={imageGoal} height={150} alt={"describing goal"}/>
                     <p>{goalDescription}</p>
                 </div>
             </div>)

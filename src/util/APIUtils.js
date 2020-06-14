@@ -1,4 +1,4 @@
-import { API_BASE_URL, ACCESS_TOKEN } from '../constants'
+import {ACCESS_TOKEN, API_BASE_URL} from '../constants'
 
 const request = (options) => {
   const headers = new Headers({
@@ -47,5 +47,13 @@ export function signup (signupRequest) {
     url: API_BASE_URL + '/auth/signup',
     method: 'POST',
     body: JSON.stringify(signupRequest)
+  })
+}
+
+export function createPlan (userPlanRequest) {
+  return request({
+    url: API_BASE_URL + '/plan',
+    method: 'POST',
+    body: JSON.stringify(userPlanRequest)
   })
 }
