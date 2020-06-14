@@ -76,23 +76,23 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home}/>
             <PrivateRoute
-              path='/profile' authenticated={this.state.authenticated}
-              currentUser={this.state.currentUser}
-              component={Profile}
+                path='/profile' authenticated={this.state.authenticated}
+                currentUser={this.state.currentUser}
+                component={Profile}
             />
             <Route
               path='/login'
               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}
             />
             <Route
-              path='/signup'
-              render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}
+                path='/signup'
+                render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}
             />
             <PrivateRoute
-              path='/startForm'
-              authenticated={this.state.authenticated}
-              currentUser={this.state.currentUser}
-              component={Start}
+                path='/startForm'
+                authenticated={this.state.authenticated}
+                currentUser={this.state.currentUser}
+                component={Start}
             />
             <Route path='/oauth2/redirect' component={OAuth2RedirectHandler}/>
             <Route component={NotFound}/>

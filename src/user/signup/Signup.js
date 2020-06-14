@@ -23,31 +23,31 @@ class Signup extends Component {
             <div className='signup-container'>
                 <div className='signup-content'>
                     <h1 className='signup-title'>Signup with Master Diet</h1>
-          <SocialSignup/>
-          <div className='or-separator'>
-            <span className='or-text'>OR</span>
-          </div>
-          <SignupForm {...this.props} />
-          <span className='login-link'>Already have an account? <Link to='/login'>Login!</Link></span>
-        </div>
-      </div>
-    )
-  }
+                    <SocialSignup/>
+                    <div className='or-separator'>
+                        <span className='or-text'>OR</span>
+                    </div>
+                    <SignupForm {...this.props} />
+                    <span className='login-link'>Already have an account? <Link to='/login'>Login!</Link></span>
+                </div>
+            </div>
+        )
+    }
 }
 
 class SocialSignup extends Component {
   render () {
     return (
       <div className='social-signup'>
-        <a className='btn btn-block social-btn google' href={GOOGLE_AUTH_URL}>
-          <img src={googleLogo} alt='Google'/> Sign up with Google
-        </a>
-        <a className='btn btn-block social-btn facebook' href={FACEBOOK_AUTH_URL}>
-          <img src={fbLogo} alt='Facebook'/> Sign up with Facebook
-        </a>
-        <a className='btn btn-block social-btn github' href={GITHUB_AUTH_URL}>
-          <img src={githubLogo} alt='Github'/> Sign up with Github
-        </a>
+          <a className='btn btn-block social-btn google' href={GOOGLE_AUTH_URL}>
+              <img src={googleLogo} alt='Google'/> Sign up with Google
+          </a>
+          <a className='btn btn-block social-btn facebook' href={FACEBOOK_AUTH_URL}>
+              <img src={fbLogo} alt='Facebook'/> Sign up with Facebook
+          </a>
+          <a className='btn btn-block social-btn github' href={GITHUB_AUTH_URL}>
+              <img src={githubLogo} alt='Github'/> Sign up with Github
+          </a>
       </div>
     )
   }
@@ -85,7 +85,7 @@ class SignupForm extends Component {
         Alert.success('You\'re successfully registered. Please login to continue!')
         this.props.history.push('/login')
       }).catch(error => {
-      Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+        Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
     })
   }
 

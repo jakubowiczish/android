@@ -1,4 +1,4 @@
-import { API_BASE_URL, ACCESS_TOKEN } from '../constants'
+import {ACCESS_TOKEN, API_BASE_URL} from '../constants'
 
 const request = (options) => {
   const headers = new Headers({
