@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>final_template</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>    <nav id="mainNav" class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="#">Logo place</a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="#">Diary</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Achievements</a></li>
+                    <li><a href="#">Stats</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+<div id="page1"class= "parallax top_background">
+     
+    <section class="intro">
+       
+          <div class="title__div">
+               
+        <div class="intro__align">
+         
+            <h1 class="intro__align__title animated__h1">Start you journey</h1>
+            <h2 class="intro__align__sub-title animated">Fill up a form</h2>
+            </div>
+            
+          </div>  
+                  
+    </section>
+    
+</div>
+<div class="tab">
+
+</div>
+<div  class="parallax bottom_background">
+</div>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+    <script>
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
