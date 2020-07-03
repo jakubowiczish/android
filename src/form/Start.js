@@ -20,6 +20,7 @@ import { createPlan } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import RubberSlider from '@shwilliam/react-rubber-slider'
 import '@shwilliam/react-rubber-slider/dist/styles.css'
+import { heightRegex, weightRegex } from '../constants/ValidationConstants'
 
 class Start extends Component {
   constructor (props) {
@@ -125,8 +126,6 @@ class StartForm extends Component {
   }
 
   render () {
-    const heightTest = /^[4-9][0-9]$|^1[0-9][0-9]$|^2[0-4][0-9]$|^250$/i
-    const weightTest = /^[3-9][0-9]$|^[1-2][0-9][0-9]$|^300$/i
     const minDate = new Date('01/01/1950')
     const maxDate = new Date(moment(new Date()).subtract(16, 'years').format('DD/MM/YYYY'))
     return (
@@ -143,12 +142,12 @@ class StartForm extends Component {
           let errors = {}
           if (values.height === '') {
             errors.height = 'Height required'
-          } else if (!heightTest.test(values.height)) {
+          } else if (!heightRegex.test(values.height)) {
             errors.height = 'Invalid height - Correct value form 40cm - 250cm'
           }
           if (values.weight === '') {
             errors.weight = 'Weight required'
-          } else if (!weightTest.test(values.weight)) {
+          } else if (!weightRegex.test(values.weight)) {
             errors.weight = 'Invalid weight - Correct value form 30kg - 300kg'
           }
           return errors

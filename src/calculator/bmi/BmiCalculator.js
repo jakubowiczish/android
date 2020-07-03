@@ -3,23 +3,20 @@ import { Redirect } from 'react-router'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { calculateBMI } from '../../util/APIUtils'
 import Alert from 'react-s-alert'
-import bmrActiveImg from '../../img/activities/bmr-active-img.jpg'
-import sedentaryActiveImg from '../../img/activities/sedentary-active-img.jpg'
-import lightActiveImg from '../../img/activities/light-active-img.jpg'
-import moderateActiveImg from '../../img/activities/moderate-active-img.jpg'
-import activeActiveImg from '../../img/activities/active-active-img.jpg'
-import veryActiveActiveImg from '../../img/activities/very_active-active-img.jpg'
-import loseGoalImg from '../../img/activities/lose-goal-img.jpg'
-import stayGoalImg from '../../img/activities/stay-goal-img.jpg'
-import gainGoalImg from '../../img/activities/gain-active-img.jpg'
+import bmiLevelsImg from '../../img/bmi/bmi_levels.jpg'
+import { heightRegex, weightRegex } from '../../constants/ValidationConstants'
 
 class BmiCalculator extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      weightRange: ''
+      bmi: ''
     }
+  }
+
+  handleShowingBmiLevel = bmiParameter => {
+    this.setState({ bmi: bmiParameter })
   }
 
   render () {
@@ -39,10 +36,11 @@ class BmiCalculator extends Component {
             <h1 className='start-title'>Fill up following fields to check your BMI!</h1>
             <BmiCalculatorForm
               currentUser={this.props.currentUser}
-              selected={this.state.selected}
+              handleShowingBmiLevel={this.handleShowingBmiLevel}
             />
           </div>
         </div>
+        <WeightRangeBox className={'parent_div_1'} bmi={this.state.bmi}/>
       </div>
     )
   }
@@ -55,8 +53,9 @@ class BmiCalculatorForm extends Component {
 
   handleSubmit (values, setSubmitting) {
     calculateBMI(values)
-      .then(() => {
+      .then(res => {
         Alert.success('Successful calculation of BMI')
+        this.props.handleShowingBmiLevel(res.bmi)
       }).catch(() => {
       Alert.error('Something went wrong with calculating your BMI')
     }).finally(() => {
@@ -65,9 +64,6 @@ class BmiCalculatorForm extends Component {
   }
 
   render () {
-    const heightTest = /^[4-9][0-9]$|^1[0-9][0-9]$|^2[0-4][0-9]$|^250$/i
-    const weightTest = /^[3-9][0-9]$|^[1-2][0-9][0-9]$|^300$/i
-
     return (
       <Formik
         initialValues={{
@@ -78,12 +74,12 @@ class BmiCalculatorForm extends Component {
           const errors = {}
           if (values.height === '') {
             errors.height = 'Height required'
-          } else if (!heightTest.test(values.height)) {
+          } else if (!heightRegex.test(values.height)) {
             errors.height = 'Invalid height - Correct value form 40cm - 250cm'
           }
           if (values.weight === '') {
             errors.weight = 'Weight required'
-          } else if (!weightTest.test(values.weight)) {
+          } else if (!weightRegex.test(values.weight)) {
             errors.weight = 'Invalid weight - Correct value form 30kg - 300kg'
           }
           return errors
@@ -143,76 +139,14 @@ class BmiCalculatorForm extends Component {
 class WeightRangeBox extends Component {
 
   render () {
-    const { selected } = this.props
-    if (selected.active === undefined) {
-      selected.active = 'BMR'
-    }
-
-    if (selected.goal === undefined) {
-      selected.goal = 'LOSE'
-    }
-    let imageActive
-    let imageGoal
-    let activeDescription
-    let goalDescription
-    let header = 'Activity level: ' + this.parseActivityLevel(selected.active)
-    let headerGoal = 'Goal: ' + this.parseHeader(selected.goal)
-    switch (selected.active) {
-      case 'BMR':
-        imageActive = bmrActiveImg
-        activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.'
-        break
-      case 'SEDENTARY':
-        imageActive = sedentaryActiveImg
-        activeDescription = 'You don\'t like to be in a hurry :) If you have sedentary work or your favorite exercise is reaching the remote this level is for you.'
-        break
-      case 'LIGHT':
-        imageActive = lightActiveImg
-        activeDescription = 'If you exercise 1-3 times per week and prefer light workouts this is your level.'
-        break
-      case 'MODERATE':
-        imageActive = moderateActiveImg
-        activeDescription = 'You are very active person. Exercise 4-5 times per week aren\'t scary for you.'
-        break
-      case 'ACTIVE':
-        imageActive = activeActiveImg
-        activeDescription = 'Gym veterans.You like very intense trainings or you do your daily exercise.'
-        break
-      case 'VERY_ACTIVE':
-        imageActive = veryActiveActiveImg
-        activeDescription = 'Level for fit lovers and physical workers. If you could you would sleep in the gym.'
-        break
-      default:
-        imageActive = bmrActiveImg
-        activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.'
-    }
-    switch (selected.goal) {
-      case 'LOSE':
-        imageGoal = loseGoalImg
-        goalDescription = 'To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit.'
-        break
-      case 'STAY':
-        imageGoal = stayGoalImg
-        goalDescription = 'To maintain your weight we calculate exactly how much calories do you need to consume during the day'
-        break
-      case 'GAIN':
-        imageGoal = gainGoalImg
-        goalDescription = 'To gain wight we have to add 100-300 calories to your basic caloric level.The calorific increase allowed to build additional muscle mass'
-        break
-      default:
-        imageGoal = loseGoalImg
-        goalDescription = 'To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit.'
-    }
+    const bmi = this.props.bmi
 
     return (
       <div className="start-container">
         <div className="start-content child_div_1">
-          <h2 className="start-title">{header}</h2>
-          <img src={imageActive} height={300} alt={'describing activity level'}/>
-          <p className={'field'}>{activeDescription}</p>
-          <h2 className="start-title">{headerGoal}</h2>
-          <img src={imageGoal} height={150} alt={'describing goal'}/>
-          <p>{goalDescription}</p>
+          <h2 className="start-title">BMI</h2>
+          <img src={bmiLevelsImg} height={300} alt={'BMI Image'}/>
+          <p>Calculated BMI: {bmi}</p>
         </div>
       </div>)
   }
