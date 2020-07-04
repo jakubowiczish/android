@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import {Redirect} from "react-router";
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import './Start.css';
+import React, { Component } from 'react'
+import { Redirect } from 'react-router'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import './Start.css'
 import bmrActiveImg from '../img/activities/bmr-active-img.jpg'
-import sedentaryActiveImg from '../img/activities/sedentary-active-img.jpg';
-import lightActiveImg from '../img/activities/light-active-img.jpg';
-import moderateActiveImg from '../img/activities/moderate-active-img.jpg';
-import activeActiveImg from '../img/activities/active-active-img.jpg';
-import veryActiveActiveImg from '../img/activities/very_active-active-img.jpg';
-import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
+import sedentaryActiveImg from '../img/activities/sedentary-active-img.jpg'
+import lightActiveImg from '../img/activities/light-active-img.jpg'
+import moderateActiveImg from '../img/activities/moderate-active-img.jpg'
+import activeActiveImg from '../img/activities/active-active-img.jpg'
+import veryActiveActiveImg from '../img/activities/very_active-active-img.jpg'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import gainGoalImg from '../img/activities/gain-active-img.jpg'
 import loseGoalImg from '../img/activities/lose-goal-img.jpg'
 import stayGoalImg from '../img/activities/stay-goal-img.jpg'
 import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
 import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
-import {createPlan} from "../util/APIUtils";
+import { createPlan } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import RubberSlider from '@shwilliam/react-rubber-slider'
 import '@shwilliam/react-rubber-slider/dist/styles.css'

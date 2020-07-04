@@ -57,3 +57,10 @@ export function createPlan (userPlanRequest) {
     body: JSON.stringify(userPlanRequest)
   })
 }
+
+export function searchProducts (searchTerm, pageIndex, perPage) {
+  return request({
+    url: API_BASE_URL + '/product-browser?searchTerm=' + searchTerm + '&pageIndex=' + pageIndex + '&perPage=' + perPage,
+    method: 'GET'
+  })
+}
