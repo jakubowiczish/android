@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import AppHeader from '../common/AppHeader'
@@ -17,7 +18,6 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import './App.css'
 import Start from '../form/Start'
 import ProductBrowser from '../productBrowser/ProductBrowser'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends Component {
   constructor (props) {

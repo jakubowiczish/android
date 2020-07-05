@@ -1,10 +1,10 @@
-.search-container {
+.browser-container {
     float: left;
     width: 50%;
-    height: 900px;
+    height: 880px;
     min-width: 400px;
     margin-left: 5%;
-    margin-top: 2%;
+    margin-top: 1%;
     padding: 40px;
     background-color: black;
 }
@@ -34,4 +34,12 @@
 
 #search-button {
     color: white;
+}
+
+.search-container {
+    height: 90%;
+}
+
+.pagination-container {
+    margin-top: 45px;
 }

@@ -27,17 +27,79 @@ class ProductBrowser extends Component {
 
   handleSearchButtonClick () {
     const searchTerm = this.state.searchTerm
-    const pageIndex = this.state.pageIndex > 0 ? this.state.pageIndex : 1
     const perPage = 5
-    searchProducts(searchTerm, pageIndex, perPage).then(
+    searchProducts(searchTerm, 1, perPage).then(
       response => {
         this.setState({
           searchTerm: searchTerm,
           products: response.products,
-          pageIndex: pageIndex,
+          pageIndex: 1,
           maxPageNumber: response.maximumPageNumber
         })
       }
+    )
+  }
+
+  createPagination () {
+    const paginationElements = []
+    if (this.state.maxPageNumber <= 9) {
+      for (let pageIndex = 1; pageIndex <= this.state.maxPageNumber; pageIndex++) {
+        paginationElements.push(
+          <Pagination.Item
+            key={pageIndex} active={pageIndex === this.state.pageIndex}
+            onClick={() => this.changePage(pageIndex)}
+          >
+            {pageIndex}
+          </Pagination.Item>
+        )
+      }
+    } else {
+      paginationElements.push(
+        <Pagination.First
+          key='first'
+          disabled={this.state.pageIndex === 1}
+          onClick={() => this.changePage(1)}
+        />
+      )
+      paginationElements.push(
+        <Pagination.Prev
+          key='previous'
+          disabled={this.state.pageIndex === 1}
+          onClick={() => this.changePage(this.state.pageIndex - 1)}
+        />
+      )
+      const startIndex = Math.min(this.state.maxPageNumber - 4, Math.max(1, this.state.pageIndex - 2))
+      const endIndex = startIndex + 4
+      for (let pageIndex = startIndex; pageIndex <= endIndex; pageIndex++) {
+        paginationElements.push(
+          <Pagination.Item
+            key={pageIndex} active={pageIndex === this.state.pageIndex}
+            onClick={() => this.changePage(pageIndex)}
+          >
+            {pageIndex}
+          </Pagination.Item>
+        )
+      }
+      paginationElements.push(
+        <Pagination.Next
+          key='next'
+          disabled={this.state.pageIndex === this.state.maxPageNumber}
+          onClick={() => this.changePage(this.state.pageIndex + 1)}
+        />
+      )
+      paginationElements.push(
+        <Pagination.Last
+          key='last'
+          disabled={this.state.pageIndex === this.state.maxPageNumber}
+          onClick={() => this.changePage(this.state.maxPageNumber)}
+        />
+      )
+    }
+    return (
+      <div className='pagination-container'>
+        <Pagination>{paginationElements}</Pagination>
+        <br />
+      </div>
     )
   }
 
@@ -51,23 +113,8 @@ class ProductBrowser extends Component {
         calories={product.calories}
       />)
 
-    const paginationElements = []
-    for (let pageNumber = 1; pageNumber <= this.state.maxPageNumber; pageNumber++) {
-      paginationElements.push(
-        <Pagination.Item key={pageNumber} active={pageNumber === this.state.pageIndex} onClick={() => this.changePage(pageNumber)}>
-          {pageNumber}
-        </Pagination.Item>
-      )
-    }
-    const pagination = (
-      <div>
-        <Pagination>{paginationElements}</Pagination>
-        <br />
-      </div>
-    )
-
     return (
-      <div>
+      <div className='browser-container'>
         <div className='search-container'>
           <div id='search-label'>Search for products</div>
           <InputGroup className='search-term'>
@@ -91,12 +138,12 @@ class ProductBrowser extends Component {
           <div>
             {productList}
           </div>
-          {
-            this.state.pageIndex > 0 && this.state.maxPageNumber > 0
-              ? pagination
-              : ''
-          }
         </div>
+        {
+          this.state.pageIndex > 0 && this.state.maxPageNumber > 1
+            ? this.createPagination()
+            : ''
+        }
       </div>
     )
   }
@@ -125,7 +172,7 @@ class ProductItem extends Component {
         <br />
         {`${this.props.defaultValue}${this.props.unit}`}
         <br />
-        {this.props.calories}
+        {this.props.calories}kcal
       </div>
     )
   }

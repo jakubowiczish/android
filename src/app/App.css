@@ -5,3 +5,22 @@
 .s-alert-close::before, .s-alert-close::after {
     width: 2px;
 }
+
+.page-item.active .page-link {
+    color: white;
+    background-color: #343a40;
+    border-color: #22252a;
+}
+
+.page-link, .page-link:hover {
+    color: black;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li {
+    display: block;
+}
