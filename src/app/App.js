@@ -16,7 +16,7 @@ import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import './App.css'
 import Start from '../form/Start'
-import BmiCalculator from '../calculator/bmi/BmiCalculator'
+import BMICalculator from '../calculator/bmi/BMICalculator'
 
 class App extends Component {
   constructor (props) {
@@ -100,7 +100,7 @@ class App extends Component {
               path='/bmiCalculator'
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
-              component={BmiCalculator}
+              component={BMICalculator}
             />
             <Route path='/oauth2/redirect' component={OAuth2RedirectHandler} />
             <Route component={NotFound} />

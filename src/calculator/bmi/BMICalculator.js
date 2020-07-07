@@ -6,17 +6,17 @@ import Alert from 'react-s-alert'
 import bmiLevelsImg from '../../img/bmi/bmi_levels.jpg'
 import { heightRegex, weightRegex } from '../../constants/ValidationConstants'
 
-class BmiCalculator extends Component {
+class BMICalculator extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      bmi: ''
+      userBMI: ''
     }
   }
 
   handleShowingBmiLevel = bmiParameter => {
-    this.setState({ bmi: bmiParameter })
+    this.setState({ userBMI: bmiParameter })
   }
 
   render () {
@@ -34,19 +34,19 @@ class BmiCalculator extends Component {
         <div className='start-container parent_div_1'>
           <div className='start-content child_div_2'>
             <h1 className='start-title'>Fill up following fields to check your BMI!</h1>
-            <BmiCalculatorForm
+            <BMICalculatorForm
               currentUser={this.props.currentUser}
               handleShowingBmiLevel={this.handleShowingBmiLevel}
             />
           </div>
         </div>
-        <WeightRangeBox className={'parent_div_1'} bmi={this.state.bmi}/>
+        <WeightRangeBox className={'parent_div_1'} userBMI={this.state.userBMI}/>
       </div>
     )
   }
 }
 
-class BmiCalculatorForm extends Component {
+class BMICalculatorForm extends Component {
   constructor (props) {
     super(props)
   }
@@ -55,7 +55,7 @@ class BmiCalculatorForm extends Component {
     calculateBMI(values)
       .then(res => {
         Alert.success('Successful calculation of BMI')
-        this.props.handleShowingBmiLevel(res.bmi)
+        this.props.handleShowingBmiLevel(res.userBMI)
       }).catch(() => {
       Alert.error('Something went wrong with calculating your BMI')
     }).finally(() => {
@@ -139,17 +139,17 @@ class BmiCalculatorForm extends Component {
 class WeightRangeBox extends Component {
 
   render () {
-    const bmi = this.props.bmi
+    const userBMI = this.props.userBMI
 
     return (
       <div className="start-container">
         <div className="start-content child_div_1">
           <h2 className="start-title">BMI</h2>
           <img src={bmiLevelsImg} height={300} alt={'BMI Image'}/>
-          <p>Calculated BMI: {bmi}</p>
+          <p>Calculated BMI: {userBMI}</p>
         </div>
       </div>)
   }
 }
 
-export default BmiCalculator
+export default BMICalculator
