@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN, API_BASE_URL} from '../constants'
+import { ACCESS_TOKEN, API_BASE_URL } from '../constants'
 
 const request = (options) => {
   const headers = new Headers({
@@ -55,5 +55,13 @@ export function createPlan (userPlanRequest) {
     url: API_BASE_URL + '/plan',
     method: 'POST',
     body: JSON.stringify(userPlanRequest)
+  })
+}
+
+export function calculateBMI (calculateBMIRequest) {
+  return request({
+    url: API_BASE_URL + '/calculator/BMI',
+    method: 'POST',
+    body: JSON.stringify(calculateBMIRequest)
   })
 }
