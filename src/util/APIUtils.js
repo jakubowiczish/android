@@ -65,3 +65,17 @@ export function calculateBMI (calculateBMIRequest) {
     body: JSON.stringify(calculateBMIRequest)
   })
 }
+
+export function searchProducts (searchTerm, pageIndex, perPage) {
+  return request({
+    url: API_BASE_URL + '/product-browser?searchTerm=' + searchTerm + '&pageIndex=' + pageIndex + '&perPage=' + perPage,
+    method: 'GET'
+  })
+}
+
+export function getRecentProducts (pageIndex, perPage) {
+  return request({
+    url: API_BASE_URL + '/product-browser/recent-products?pageIndex=' + pageIndex + '&perPage=' + perPage,
+    method: 'GET'
+  })
+}

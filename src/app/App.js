@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import AppHeader from '../common/AppHeader'
@@ -17,6 +18,7 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import './App.css'
 import Start from '../form/Start'
 import BMICalculator from '../calculator/bmi/BMICalculator'
+import ProductBrowser from '../productBrowser/ProductBrowser'
 
 class App extends Component {
   constructor (props) {
@@ -81,6 +83,11 @@ class App extends Component {
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={Profile}
+            />
+            <PrivateRoute
+              path='/productBrowser' authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={ProductBrowser}
             />
             <Route
               path='/login'
