@@ -27,6 +27,9 @@ class AppHeader extends Component {
                     <NavLink to='/bmiCalculator'>BMI Calculator</NavLink>
                   </li>
                   <li>
+                    <NavLink to='/diary'>Diary</NavLink>
+                  </li>
+                  <li>
                     <a onClick={this.props.onLogout}>Logout</a>
                   </li>
                 </ul>
