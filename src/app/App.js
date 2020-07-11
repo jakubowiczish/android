@@ -17,6 +17,7 @@ import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import './App.css'
 import Start from '../form/Start'
+import BMICalculator from '../calculator/bmi/BMICalculator'
 import ProductBrowser from '../productBrowser/ProductBrowser'
 
 class App extends Component {
@@ -78,7 +79,8 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <PrivateRoute
-              path='/profile' authenticated={this.state.authenticated}
+              path='/profile'
+              authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={Profile}
             />
@@ -100,6 +102,12 @@ class App extends Component {
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={Start}
+            />
+            <PrivateRoute
+              path='/bmiCalculator'
+              authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={BMICalculator}
             />
             <Route path='/oauth2/redirect' component={OAuth2RedirectHandler} />
             <Route component={NotFound} />

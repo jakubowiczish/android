@@ -58,6 +58,14 @@ export function createPlan (userPlanRequest) {
   })
 }
 
+export function calculateBMI (calculateBMIRequest) {
+  return request({
+    url: API_BASE_URL + '/calculator/BMI',
+    method: 'POST',
+    body: JSON.stringify(calculateBMIRequest)
+  })
+}
+
 export function searchProducts (searchTerm, pageIndex, perPage) {
   return request({
     url: API_BASE_URL + '/product-browser?searchTerm=' + searchTerm + '&pageIndex=' + pageIndex + '&perPage=' + perPage,
