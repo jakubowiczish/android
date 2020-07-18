@@ -10,7 +10,7 @@ class Diary extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      tableData: [],
+      tableData: '',
       date: new Date()
     }
   }
@@ -33,26 +33,64 @@ class Diary extends Component {
     const dateString = moment(date).format('YYYY-MM-DD')
 
     getRecentProductsForDate(dateString)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        this.setState({ tableData: res })
+      })
   }
 
   render () {
     const columns = [
       {
-        name: 'Title',
-        selector: 'title',
+        name: 'mealType',
+        selector: 'mealType',
         sortable: true,
       },
       {
-        name: 'Director',
-        selector: 'director',
+        name: 'mealTime',
+        selector: 'mealTime',
         sortable: true,
       },
       {
-        name: 'Year',
-        selector: 'year',
+        name: 'amount',
+        selector: 'amount',
         sortable: true,
       },
+      {
+        name: 'portion',
+        selector: 'portion',
+        sortable: true,
+      },
+      {
+        name: 'mealUnit',
+        selector: 'mealUnit',
+        sortable: true,
+      },
+      {
+        name: 'productName',
+        selector: 'productName',
+        sortable: true,
+      },
+      {
+        name: 'caloriesEaten',
+        selector: 'caloriesEaten',
+        sortable: true,
+      },
+      {
+        name: 'proteinsEaten',
+        selector: 'proteinsEaten',
+        sortable: true,
+      },
+      {
+        name: 'fatEaten',
+        selector: 'fatEaten',
+        sortable: true,
+      },
+      {
+        name: 'carbohydratesEaten',
+        selector: 'carbohydratesEaten',
+        sortable: true,
+      }
     ]
 
     return (
@@ -68,7 +106,7 @@ class Diary extends Component {
           <DataTable
             title="Diary"
             columns={columns}
-            data={this.state.tableData}
+            data={this.state.tableData.recentProducts}
             defaultSortField="title"
           />
 
