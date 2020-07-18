@@ -14,7 +14,9 @@
     "moment": "^2.26.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
+    "react-data-table-component": "^6.9.7",
     "react-datepicker": "^3.0.0",
+    "react-datetime-picker": "^3.0.2",
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.20",
     "react-router": "^5.2.0",
@@ -22,7 +24,8 @@
     "react-s-alert": "^1.4.1",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.4.1",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
