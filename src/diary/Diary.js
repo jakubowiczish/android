@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { addRecentProduct, getRecentProductsForDate } from '../util/APIUtils'
-import { Card } from 'react-bootstrap'
 import DataTable from 'react-data-table-component'
 import Button from 'react-bootstrap/Button'
 import DatePicker from 'react-datepicker/es'
 import moment from 'moment'
+import './Diary.css'
+import Alert from 'react-s-alert'
+import { Card } from '@material-ui/core'
 
 class Diary extends Component {
   constructor (props) {
@@ -13,6 +15,62 @@ class Diary extends Component {
       tableData: '',
       date: new Date()
     }
+  }
+
+  getColumnsForDiaryTable = () => {
+    return [
+      {
+        name: 'Meal Type',
+        selector: 'mealType',
+        sortable: true,
+      },
+      {
+        name: 'Meal Time',
+        selector: 'mealTime',
+        sortable: true,
+        wrap: true,
+      },
+      {
+        name: 'Amount of portions',
+        selector: 'amount',
+        sortable: true,
+      },
+      {
+        name: 'Portion',
+        selector: 'portion',
+        sortable: true,
+      },
+      {
+        name: 'Meal unit',
+        selector: 'mealUnit',
+        sortable: true,
+      },
+      {
+        name: 'Product name',
+        selector: 'productName',
+        sortable: true,
+      },
+      {
+        name: 'Calories',
+        selector: 'caloriesEaten',
+        sortable: true,
+      },
+      {
+        name: 'Proteins',
+        selector: 'proteinsEaten',
+        sortable: true,
+      },
+      {
+        name: 'Fat',
+        selector: 'fatEaten',
+        sortable: true,
+      },
+      {
+        name: 'Carbohydrates',
+        selector: 'carbohydratesEaten',
+        sortable: true,
+      }
+    ]
   }
 
   handleAddRecentProduct = () => {
@@ -26,7 +84,10 @@ class Diary extends Component {
     }
 
     addRecentProduct(request)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        Alert.success('Product has been successfully added to diary')
+      })
   }
 
   handleGetRecentProductsByDate = (date) => {
@@ -40,60 +101,9 @@ class Diary extends Component {
   }
 
   render () {
-    const columns = [
-      {
-        name: 'mealType',
-        selector: 'mealType',
-        sortable: true,
-      },
-      {
-        name: 'mealTime',
-        selector: 'mealTime',
-        sortable: true,
-      },
-      {
-        name: 'amount',
-        selector: 'amount',
-        sortable: true,
-      },
-      {
-        name: 'portion',
-        selector: 'portion',
-        sortable: true,
-      },
-      {
-        name: 'mealUnit',
-        selector: 'mealUnit',
-        sortable: true,
-      },
-      {
-        name: 'productName',
-        selector: 'productName',
-        sortable: true,
-      },
-      {
-        name: 'caloriesEaten',
-        selector: 'caloriesEaten',
-        sortable: true,
-      },
-      {
-        name: 'proteinsEaten',
-        selector: 'proteinsEaten',
-        sortable: true,
-      },
-      {
-        name: 'fatEaten',
-        selector: 'fatEaten',
-        sortable: true,
-      },
-      {
-        name: 'carbohydratesEaten',
-        selector: 'carbohydratesEaten',
-        sortable: true,
-      }
-    ]
-
     return (
+      // <div className="diary-container">
+      //   <div className="diary-content child_div_1">
       <div>
         <Card>
           <DatePicker
@@ -104,19 +114,28 @@ class Diary extends Component {
               this.handleGetRecentProductsByDate(date)
             }}/>
           <DataTable
-            title="Diary"
-            columns={columns}
+            columns={this.getColumnsForDiaryTable()}
             data={this.state.tableData.recentProducts}
             defaultSortField="title"
+            wrap
+            highlightOnHover
+            pointerOnHover
+            pagination
+            selectableRows
           />
 
           <Button
-            onClick={this.handleGetRecentProductsByDate}
-          />
+            variant="primary"
+            onClick={this.handleAddRecentProduct}>
+            Add new diary entry
+          </Button>
+
         </Card>
-
-
       </div>
+
+
+      //   </div>
+      // </div>
     )
   }
 }
