@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { addRecentProduct, getRecentProductsForDate } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 import Button from 'react-bootstrap/Button'
@@ -7,17 +7,18 @@ import moment from 'moment'
 import './Diary.css'
 import Alert from 'react-s-alert'
 import { Card } from '@material-ui/core'
+import AddDiaryEntryModal from './AddDiaryEntryModal'
 
-class Diary extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      tableData: '',
-      date: new Date()
-    }
-  }
+function Diary (props) {
 
-  getColumnsForDiaryTable = () => {
+  const [tableData, setTableData] = useState('')
+  const [date, setDate] = useState(new Date())
+
+  const [open, setOpen] = useState(false)
+  const closeModal = () => setOpen(false)
+  const openModal = () => setOpen(true)
+
+  function getColumnsForDiaryTable () {
     return [
       {
         name: 'Meal Type',
@@ -73,71 +74,58 @@ class Diary extends Component {
     ]
   }
 
-  handleAddRecentProduct = () => {
-    const request = {
-      'mealType': 'BREAKFAST',
-      'mealTime': '2020-07-14T19:20',
-      'amount': '2.00',
-      'portion': '1.00',
-      'portionUnit': 'g',
-      'productId': 1
-    }
 
-    addRecentProduct(request)
-      .then(res => {
-        console.log(res)
-        Alert.success('Product has been successfully added to diary')
-      })
-  }
 
-  handleGetRecentProductsByDate = (date) => {
+  function handleGetRecentProductsByDate (date) {
     const dateString = moment(date).format('YYYY-MM-DD')
 
     getRecentProductsForDate(dateString)
       .then(res => {
         console.log(res)
-        this.setState({ tableData: res })
+        setTableData(res)
       })
   }
 
-  render () {
-    return (
-      // <div className="diary-container">
-      //   <div className="diary-content child_div_1">
+  return (
+    // <div className="diary-container">
+    //   <div className="diary-content child_div_1">
+    <div>
+      <Card>
+        <DatePicker
+          dateFormat="yyyy-MM-dd"
+          selected={date}
+          onChange={date => {
+            setDate(date)
+            handleGetRecentProductsByDate(date)
+          }}/>
+        <DataTable
+          columns={getColumnsForDiaryTable()}
+          data={tableData.recentProducts}
+          defaultSortField="title"
+          wrap
+          highlightOnHover
+          pointerOnHover
+          pagination
+          selectableRows
+        />
+      </Card>
+
       <div>
-        <Card>
-          <DatePicker
-            dateFormat="yyyy-MM-dd"
-            selected={this.state.date}
-            onChange={date => {
-              this.setState({ date: date })
-              this.handleGetRecentProductsByDate(date)
-            }}/>
-          <DataTable
-            columns={this.getColumnsForDiaryTable()}
-            data={this.state.tableData.recentProducts}
-            defaultSortField="title"
-            wrap
-            highlightOnHover
-            pointerOnHover
-            pagination
-            selectableRows
-          />
+        <Button variant="primary" onClick={openModal}>
+          Add product to diary
+        </Button>
 
-          <Button
-            variant="primary"
-            onClick={this.handleAddRecentProduct}>
-            Add new diary entry
-          </Button>
-
-        </Card>
+        <AddDiaryEntryModal
+          show={open}
+          onHide={closeModal}/>
       </div>
+    </div>
 
 
-      //   </div>
-      // </div>
-    )
-  }
+    //   </div>
+    // </div>
+  )
+
 }
 
 export default Diary
