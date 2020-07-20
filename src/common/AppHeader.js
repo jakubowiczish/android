@@ -24,6 +24,9 @@ class AppHeader extends Component {
                     <NavLink to='/productBrowser'>Product Browser</NavLink>
                   </li>
                   <li>
+                    <NavLink to='/activityBrowser'>Activity Browser</NavLink>
+                  </li>
+                  <li>
                     <NavLink to='/bmiCalculator'>BMI Calculator</NavLink>
                   </li>
                   <li>
