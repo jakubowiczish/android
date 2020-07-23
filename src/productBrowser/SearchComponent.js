@@ -4,8 +4,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import './ProductBrowser.css'
 import { searchProducts } from '../util/APIUtils'
-import ProductItemComponent from './ProductItemComponent'
-import PaginationComponent from './PaginationComponent'
+import DataTable from 'react-data-table-component'
 
 class SearchComponent extends Component {
   constructor (props) {
@@ -14,12 +13,17 @@ class SearchComponent extends Component {
       searchTerm: '',
       products: [
       ],
-      pageIndex: 0,
-      maxPageNumber: 0
+      selectedProducts: [],
+      loading: false,
+      totalRows: 0,
+      perPage: 10
     }
     this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this)
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
-    this.handleChangePage = this.handleChangePage.bind(this)
+    this.getColumnsForSearchComponent = this.getColumnsForSearchComponent.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
+    this.handlePerRowsChange = this.handlePerRowsChange.bind(this)
   }
 
   handleSearchTermChange (newTerm) {
@@ -28,44 +32,83 @@ class SearchComponent extends Component {
 
   handleSearchButtonClick () {
     const searchTerm = this.state.searchTerm
-    const perPage = 5
+    const perPage = this.state.perPage
     searchProducts(searchTerm, 1, perPage).then(
       response => {
         this.setState({
           searchTerm: searchTerm,
           products: response.products,
-          pageIndex: 1,
-          maxPageNumber: response.maximumPageNumber
+          totalRows: response.totalProductsAmount
         })
       }
     )
   }
 
-  handleChangePage (pageIndex) {
+  async handlePageChange (page) {
+    const { perPage } = this.state
     const searchTerm = this.state.searchTerm
-    const perPage = 5
-    searchProducts(searchTerm, pageIndex, perPage).then(
+
+    this.setState({ loading: true })
+
+    searchProducts(searchTerm, page, perPage).then(
       response => {
         this.setState({
-          searchTerm: searchTerm,
           products: response.products,
-          pageIndex: pageIndex,
-          maxPageNumber: response.maximumPageNumber
+          loading: false,
+          totalRows: response.totalProductsAmount
         })
       }
     )
+  }
+
+  async handlePerRowsChange (perPage, page) {
+    this.setState({ loading: true })
+    const searchTerm = this.state.searchTerm
+
+    searchProducts(searchTerm, page, perPage).then(
+      response => {
+        this.setState({
+          products: response.products,
+          loading: false,
+          perPage: perPage,
+          totalRows: response.totalProductsAmount
+        })
+      }
+    )
+  }
+
+  getColumnsForSearchComponent () {
+    return [
+      {
+        name: 'Name',
+        selector: 'name',
+        sortable: true,
+        grow: 2
+      },
+      {
+        name: 'Default portion',
+        selector: 'defaultValue',
+        sortable: true
+      },
+      {
+        name: 'Unit',
+        selector: 'unit',
+        sortable: true
+      },
+      {
+        name: 'Calories',
+        selector: 'calories',
+        sortable: true
+      }]
+  }
+
+  handleChange () {
+    console.log(this.state.selectedProducts)
+    this.setState({ selectedRows: this.state.selectedProducts })
   }
 
   render () {
-    const productList = this.state.products.map(product =>
-      <ProductItemComponent
-        key={product.id}
-        name={product.name}
-        defaultValue={product.defaultValue}
-        unit={product.unit}
-        calories={product.calories}
-      />)
-
+    console.log(this.state.products)
     return (
       <div className='browser-container'>
         <div className='search-container'>
@@ -87,16 +130,23 @@ class SearchComponent extends Component {
               </Button>
             </InputGroup.Append>
           </InputGroup>
-          <div id='results-label'>Results</div>
-          <div>
-            {productList}
-          </div>
+
+          <DataTable
+            title='Results'
+            data={this.state.products}
+            columns={this.getColumnsForSearchComponent()}
+            onSelectedRowsChange={this.handleChange}
+            selectableRows
+            progressPending={this.state.loading}
+            pagination
+            paginationServer
+            paginationTotalRows={this.state.totalRows}
+            paginationRowsPerPageOptions={[10]}
+            onChangeRowsPerPage={this.handlePerRowsChange}
+            onChangePage={this.handlePageChange}
+          />
+
         </div>
-        <PaginationComponent
-          pageIndex={this.state.pageIndex}
-          maxPageNumber={this.state.maxPageNumber}
-          onClick={this.handleChangePage}
-        />
       </div>
     )
   }
