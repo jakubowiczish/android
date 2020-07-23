@@ -1,10 +1,6 @@
 import { Card } from '@material-ui/core'
-import IconButton from '@material-ui/core/IconButton'
-import Add from '@material-ui/icons/Add'
-import Delete from '@material-ui/icons/Delete'
-import memoize from 'memoize-one'
 import moment from 'moment'
-import { default as React, useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import DataTable from 'react-data-table-component'
 import DatePicker from 'react-datepicker/es'
@@ -13,22 +9,18 @@ import AddDiaryEntryModal from './AddDiaryEntryModal'
 import './Diary.css'
 
 class Diary extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      count: 0
-    };
+      count: 0,
+      tableData: '',
+      date: moment().valueOf(),
+      selectedRows: [],
+      open: false
+    }
   }
 
-  const [tableData, setTableData] = useState('')
-  const [date, setDate] = useState(new Date())
-  const [selectedRows, setSelectedRows] = useState([])
-  
-  const [open, setOpen] = useState(false)
-  const closeModal = () => setOpen(false)
-  const openModal = () => setOpen(true)
-
-  function getColumnsForDiaryTable () {
+  getColumnsForDiaryTable = () => {
     return [
       {
         name: 'Meal Type',
@@ -84,55 +76,55 @@ class Diary extends React.Component {
     ]
   }
 
-
-
-  function handleGetRecentProductsByDate (date) {
+  handleGetRecentProductsByDate = (date) => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
     getRecentProductsForDate(dateString)
       .then(res => {
         console.log(res)
-        setTableData(res)
+        this.setState({ tableData: res })
       })
   }
 
-  return (
-    // <div className="diary-container">
-    //   <div className="diary-content child_div_1">
-    <div>
-      <Card style={{ height: '100%' }}>
-        <DatePicker
-          dateFormat="yyyy-MM-dd"
-          selected={date}
-          onChange={date => {
-            setDate(date)
-            handleGetRecentProductsByDate(date)
-          }}/>
-        <DataTable
-          columns={getColumnsForDiaryTable()}
-          data={tableData.recentProducts}
-          defaultSortField="title"
-          wrap
-          highlightOnHover
-          pointerOnHover
-          pagination
-          selectableRows
-        />
-      </Card>
-
+  render () {
+    return (
+      // <div className="diary-container">
+      //   <div className="diary-content child_div_1">
       <div>
-        <Button variant="primary" onClick={openModal}>
-          Add product to diary
-        </Button>
+        <Card style={{ height: '100%' }}>
+          <DatePicker
+            dateFormat="yyyy-MM-dd"
+            selected={this.state.date}
+            onChange={date => {
+              this.setState({ date: date })
+              this.handleGetRecentProductsByDate(date)
+            }}/>
+          <DataTable
+            columns={this.getColumnsForDiaryTable()}
+            data={this.state.tableData.recentProducts}
+            defaultSortField="title"
+            wrap
+            highlightOnHover
+            pointerOnHover
+            pagination
+            selectableRows
+          />
+        </Card>
 
-        <AddDiaryEntryModal show={open} onHide={setOpen(false)}/>
+        <div>
+          <Button variant="primary" onClick={this.setState({ open: true })}>
+            Add product to diary
+          </Button>
+
+          <AddDiaryEntryModal show={this.state.open} onHide={this.setState({ open: false })}/>
+        </div>
       </div>
-    </div>
 
 
-    //   </div>
-    // </div>
-  )
+      //   </div>
+      // </div>
+    )
+  }
 
 }
 
