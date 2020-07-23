@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
-import { addRecentProduct, getRecentProductsForDate } from '../util/APIUtils'
-import DataTable from 'react-data-table-component'
-import Button from 'react-bootstrap/Button'
-import DatePicker from 'react-datepicker/es'
-import moment from 'moment'
-import './Diary.css'
-import Alert from 'react-s-alert'
 import { Card } from '@material-ui/core'
+import IconButton from '@material-ui/core/IconButton'
+import Add from '@material-ui/icons/Add'
+import Delete from '@material-ui/icons/Delete'
+import memoize from 'memoize-one'
+import moment from 'moment'
+import { default as React, useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import DataTable from 'react-data-table-component'
+import DatePicker from 'react-datepicker/es'
+import { getRecentProductsForDate } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
+import './Diary.css'
 
-function Diary (props) {
+class Diary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
 
   const [tableData, setTableData] = useState('')
   const [date, setDate] = useState(new Date())
-
+  const [selectedRows, setSelectedRows] = useState([])
+  
   const [open, setOpen] = useState(false)
   const closeModal = () => setOpen(false)
   const openModal = () => setOpen(true)
@@ -90,7 +100,7 @@ function Diary (props) {
     // <div className="diary-container">
     //   <div className="diary-content child_div_1">
     <div>
-      <Card>
+      <Card style={{ height: '100%' }}>
         <DatePicker
           dateFormat="yyyy-MM-dd"
           selected={date}
@@ -115,9 +125,7 @@ function Diary (props) {
           Add product to diary
         </Button>
 
-        <AddDiaryEntryModal
-          show={open}
-          onHide={closeModal}/>
+        <AddDiaryEntryModal show={open} onHide={setOpen(false)}/>
       </div>
     </div>
 

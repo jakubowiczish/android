@@ -94,3 +94,11 @@ export function getRecentProductsForDate (date) {
     method: 'GET'
   })
 }
+
+export function deleteRecentProducts (deleteRecentProductsRequest) {
+  return request({
+    url: API_BASE_URL + '/diary/delete',
+    method: 'DELETE',
+    body: JSON.stringify(deleteRecentProductsRequest)
+  })
+}
