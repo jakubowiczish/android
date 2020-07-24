@@ -21,7 +21,7 @@ class SearchComponent extends Component {
     this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this)
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
     this.getColumnsForSearchComponent = this.getColumnsForSearchComponent.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
     this.handlePerRowsChange = this.handlePerRowsChange.bind(this)
   }
@@ -38,7 +38,7 @@ class SearchComponent extends Component {
         this.setState({
           searchTerm: searchTerm,
           products: response.products,
-          totalRows: response.totalProductsAmount
+          totalRows: response.totalNumberOfProducts
         })
       }
     )
@@ -55,7 +55,7 @@ class SearchComponent extends Component {
         this.setState({
           products: response.products,
           loading: false,
-          totalRows: response.totalProductsAmount
+          totalRows: response.totalNumberOfProducts
         })
       }
     )
@@ -71,7 +71,7 @@ class SearchComponent extends Component {
           products: response.products,
           loading: false,
           perPage: perPage,
-          totalRows: response.totalProductsAmount
+          totalRows: response.totalNumberOfProducts
         })
       }
     )
@@ -83,69 +83,65 @@ class SearchComponent extends Component {
         name: 'Name',
         selector: 'name',
         sortable: true,
-        grow: 2
+        grow: 1.5
       },
       {
         name: 'Default portion',
-        selector: 'defaultValue',
-        sortable: true
-      },
-      {
-        name: 'Unit',
-        selector: 'unit',
-        sortable: true
+        selector: row => row.defaultValue + ' ' + row.unit,
+        sortable: true,
+        sortFunction: (rowA, rowB) => rowA.defaultValue - rowB.defaultValue
       },
       {
         name: 'Calories',
-        selector: 'calories',
-        sortable: true
+        selector: row => row.calories + ' kcal',
+        sortable: true,
+        sortFunction: (rowA, rowB) => rowA.calories - rowB.calories
       }]
   }
 
-  handleChange () {
-    console.log(this.state.selectedProducts)
+  handleSelectChange () {
     this.setState({ selectedRows: this.state.selectedProducts })
   }
 
   render () {
-    console.log(this.state.products)
     return (
-      <div className='browser-container'>
-        <div className='search-container'>
-          <div id='search-label'>Search for products</div>
-          <InputGroup className='search-term'>
-            <FormControl
-              id='search-term'
-              onChange={this.handleSearchTermChange}
-              placeholder='Product name'
-              aria-label='Product name'
-            />
-            <InputGroup.Append>
-              <Button
-                id='search-button'
-                variant='dark'
-                onClick={this.handleSearchButtonClick}
-              >
-                Search
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-
-          <DataTable
-            title='Results'
-            data={this.state.products}
-            columns={this.getColumnsForSearchComponent()}
-            onSelectedRowsChange={this.handleChange}
-            selectableRows
-            progressPending={this.state.loading}
-            pagination
-            paginationServer
-            paginationTotalRows={this.state.totalRows}
-            paginationRowsPerPageOptions={[10]}
-            onChangeRowsPerPage={this.handlePerRowsChange}
-            onChangePage={this.handlePageChange}
-          />
-
+      <div className='container'>
+        <div className='browser-container parent_div_1'>
+          <div className='browser-content child_div_2'>
+            <div className='search-container'>
+              <h1 className='start-title'>Search for products</h1>
+              <InputGroup className='search-term'>
+                <FormControl
+                  id='search-term'
+                  onChange={this.handleSearchTermChange}
+                  placeholder='Product name'
+                  aria-label='Product name'
+                />
+                <InputGroup.Append>
+                  <Button
+                    id='search-button'
+                    variant='dark'
+                    onClick={this.handleSearchButtonClick}
+                  >
+                    Search
+                  </Button>
+                </InputGroup.Append>
+              </InputGroup>
+              <DataTable
+                data={this.state.products}
+                columns={this.getColumnsForSearchComponent()}
+                onSelectedRowsChange={this.handleSelectChange}
+                selectableRows
+                progressPending={this.state.loading}
+                pagination
+                paginationServer
+                paginationTotalRows={this.state.totalRows}
+                paginationRowsPerPageOptions={[10]}
+                onChangeRowsPerPage={this.handlePerRowsChange}
+                onChangePage={this.handlePageChange}
+              />
+            </div>
+          </div>
         </div>
       </div>
     )
