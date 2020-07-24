@@ -20,6 +20,7 @@ import Start from '../form/Start'
 import BMICalculator from '../calculator/bmi/BMICalculator'
 import ProductBrowser from '../productBrowser/ProductBrowser'
 import ActivityBrowser from '../productBrowser/ActivityBrowser'
+import Achievements from '../achievements/Achievements'
 
 class App extends Component {
   constructor (props) {
@@ -94,6 +95,11 @@ class App extends Component {
               path='/activityBrowser' authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={ActivityBrowser}
+            />
+            <PrivateRoute
+              path='/achievements' authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={Achievements}
             />
             <Route
               path='/login'
