@@ -54,7 +54,7 @@ function AddDiaryEntryModal (props) {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
-        <Button onClick={handleDeleteRecentProduct}>Add product</Button>
+        <Button onClick={handleAddRecentProduct}>Add product</Button>
       </Modal.Footer>
     </Modal>
   )

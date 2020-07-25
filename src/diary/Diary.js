@@ -7,6 +7,82 @@ import DatePicker from 'react-datepicker/es'
 import { getRecentProductsForDate } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
 import './Diary.css'
+import { Add, Delete } from '@material-ui/icons'
+import IconButton from '@material-ui/core/IconButton'
+import memoize from 'memoize-one';
+
+const selectProps = { indeterminate: isIndeterminate => isIndeterminate }
+
+const actions = (
+  <IconButton
+    color="primary"
+  >
+    <Add/>
+  </IconButton>
+)
+
+const contextActions = memoize(deleteHandler => (
+  <IconButton
+    color="secondary"
+    onClick={deleteHandler}
+  >
+    <Delete/>
+  </IconButton>
+))
+
+const columns = memoize(() => [
+    {
+      name: 'Meal Type',
+      selector: 'mealType',
+      sortable: true,
+    },
+    {
+      name: 'Meal Time',
+      selector: 'mealTime',
+      sortable: true,
+      wrap: true,
+    },
+    {
+      name: 'Amount of portions',
+      selector: 'amount',
+      sortable: true,
+    },
+    {
+      name: 'Portion',
+      selector: 'portion',
+      sortable: true,
+    },
+    {
+      name: 'Meal unit',
+      selector: 'mealUnit',
+      sortable: true,
+    },
+    {
+      name: 'Product name',
+      selector: 'productName',
+      sortable: true,
+    },
+    {
+      name: 'Calories',
+      selector: 'caloriesEaten',
+      sortable: true,
+    },
+    {
+      name: 'Proteins',
+      selector: 'proteinsEaten',
+      sortable: true,
+    },
+    {
+      name: 'Fat',
+      selector: 'fatEaten',
+      sortable: true,
+    },
+    {
+      name: 'Carbohydrates',
+      selector: 'carbohydratesEaten',
+      sortable: true,
+    }
+  ]);
 
 class Diary extends React.Component {
   constructor (props) {
@@ -18,62 +94,6 @@ class Diary extends React.Component {
       selectedRows: [],
       open: false
     }
-  }
-
-  getColumnsForDiaryTable = () => {
-    return [
-      {
-        name: 'Meal Type',
-        selector: 'mealType',
-        sortable: true,
-      },
-      {
-        name: 'Meal Time',
-        selector: 'mealTime',
-        sortable: true,
-        wrap: true,
-      },
-      {
-        name: 'Amount of portions',
-        selector: 'amount',
-        sortable: true,
-      },
-      {
-        name: 'Portion',
-        selector: 'portion',
-        sortable: true,
-      },
-      {
-        name: 'Meal unit',
-        selector: 'mealUnit',
-        sortable: true,
-      },
-      {
-        name: 'Product name',
-        selector: 'productName',
-        sortable: true,
-      },
-      {
-        name: 'Calories',
-        selector: 'caloriesEaten',
-        sortable: true,
-      },
-      {
-        name: 'Proteins',
-        selector: 'proteinsEaten',
-        sortable: true,
-      },
-      {
-        name: 'Fat',
-        selector: 'fatEaten',
-        sortable: true,
-      },
-      {
-        name: 'Carbohydrates',
-        selector: 'carbohydratesEaten',
-        sortable: true,
-      }
-    ]
   }
 
   handleGetRecentProductsByDate = (date) => {
@@ -100,7 +120,7 @@ class Diary extends React.Component {
               this.handleGetRecentProductsByDate(date)
             }}/>
           <DataTable
-            columns={this.getColumnsForDiaryTable()}
+            columns={columns()}
             data={this.state.tableData.recentProducts}
             defaultSortField="title"
             wrap
