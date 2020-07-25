@@ -112,11 +112,11 @@ class Diary extends React.Component {
         </Card>
 
         <div>
-          <Button variant="primary" onClick={this.setState({ open: true })}>
+          <Button variant="primary" onClick={() => this.setState({ open: true })}>
             Add product to diary
           </Button>
 
-          <AddDiaryEntryModal show={this.state.open} onHide={this.setState({ open: false })}/>
+          <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
         </div>
       </div>
 
