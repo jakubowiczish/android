@@ -1,12 +1,17 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import React from 'react'
+import React, { Component } from 'react'
 import { addRecentProduct, deleteRecentProducts } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import SearchComponent from '../productBrowser/SearchComponent'
+import AddForm from './AddForm'
 
-function AddDiaryEntryModal (props) {
-  function handleAddRecentProduct () {
+class AddDiaryEntryModal extends Component {
+  constructor (props) {
+    super(props)
+  }
+
+  handleAddRecentProduct = () => {
     const request = {
       mealType: 'BREAKFAST',
       mealTime: '2020-07-14T19:20',
@@ -23,7 +28,7 @@ function AddDiaryEntryModal (props) {
       })
   }
 
-  function handleDeleteRecentProduct () {
+  handleDeleteRecentProduct = () => {
     const request = {
       recentProductsIds: [5, 6, 7, 8]
     }
@@ -35,29 +40,36 @@ function AddDiaryEntryModal (props) {
       })
   }
 
-  return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>
-          Add product to the diary
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <p>
-          <SearchComponent />
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-        <Button onClick={handleAddRecentProduct}>Add product</Button>
-      </Modal.Footer>
-    </Modal>
-  )
+  render () {
+    return (
+      <Modal
+        {...this.props}
+        size='xl'
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+        scrollable={true}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id='contained-modal-title-vcenter'>
+            Add product to the diary
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            {/*<SearchComponent/>*/}
+          </p>
+          <div>
+            <AddForm/>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.props.onHide}>Close</Button>
+          <Button onClick={this.handleAddRecentProduct}>Add product</Button>
+        </Modal.Footer>
+      </Modal>
+    )
+  }
 }
 
 export default AddDiaryEntryModal

@@ -9,7 +9,7 @@ import AddDiaryEntryModal from './AddDiaryEntryModal'
 import './Diary.css'
 import { Add, Delete } from '@material-ui/icons'
 import IconButton from '@material-ui/core/IconButton'
-import memoize from 'memoize-one';
+import memoize from 'memoize-one'
 
 const selectProps = { indeterminate: isIndeterminate => isIndeterminate }
 
@@ -31,58 +31,58 @@ const contextActions = memoize(deleteHandler => (
 ))
 
 const columns = memoize(() => [
-    {
-      name: 'Meal Type',
-      selector: 'mealType',
-      sortable: true,
-    },
-    {
-      name: 'Meal Time',
-      selector: 'mealTime',
-      sortable: true,
-      wrap: true,
-    },
-    {
-      name: 'Amount of portions',
-      selector: 'amount',
-      sortable: true,
-    },
-    {
-      name: 'Portion',
-      selector: 'portion',
-      sortable: true,
-    },
-    {
-      name: 'Meal unit',
-      selector: 'mealUnit',
-      sortable: true,
-    },
-    {
-      name: 'Product name',
-      selector: 'productName',
-      sortable: true,
-    },
-    {
-      name: 'Calories',
-      selector: 'caloriesEaten',
-      sortable: true,
-    },
-    {
-      name: 'Proteins',
-      selector: 'proteinsEaten',
-      sortable: true,
-    },
-    {
-      name: 'Fat',
-      selector: 'fatEaten',
-      sortable: true,
-    },
-    {
-      name: 'Carbohydrates',
-      selector: 'carbohydratesEaten',
-      sortable: true,
-    }
-  ]);
+  {
+    name: 'Meal Type',
+    selector: 'mealType',
+    sortable: true,
+  },
+  {
+    name: 'Meal Time',
+    selector: 'mealTime',
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: 'Amount of portions',
+    selector: 'amount',
+    sortable: true,
+  },
+  {
+    name: 'Portion',
+    selector: 'portion',
+    sortable: true,
+  },
+  {
+    name: 'Meal unit',
+    selector: 'mealUnit',
+    sortable: true,
+  },
+  {
+    name: 'Product name',
+    selector: 'productName',
+    sortable: true,
+  },
+  {
+    name: 'Calories',
+    selector: 'caloriesEaten',
+    sortable: true,
+  },
+  {
+    name: 'Proteins',
+    selector: 'proteinsEaten',
+    sortable: true,
+  },
+  {
+    name: 'Fat',
+    selector: 'fatEaten',
+    sortable: true,
+  },
+  {
+    name: 'Carbohydrates',
+    selector: 'carbohydratesEaten',
+    sortable: true,
+  }
+])
 
 class Diary extends React.Component {
   constructor (props) {
@@ -108,8 +108,6 @@ class Diary extends React.Component {
 
   render () {
     return (
-      // <div className="diary-container">
-      //   <div className="diary-content child_div_1">
       <div>
         <Card style={{ height: '100%' }}>
           <DatePicker
@@ -137,12 +135,9 @@ class Diary extends React.Component {
           </Button>
 
           <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
+
         </div>
       </div>
-
-
-      //   </div>
-      // </div>
     )
   }
 
