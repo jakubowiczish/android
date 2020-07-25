@@ -60,10 +60,10 @@ class AddForm extends React.Component {
                 }}
                 validate={values => {
                   let errors = {}
-                  if (!floatRegex.test(values.portion)) {
+                  if (values.portion === '' || !floatRegex.test(values.portion)) {
                     errors.portion = 'Invalid portion size - must be positive number'
                   }
-                  if (!floatRegex.test(values.amount)) {
+                  if (values.amount === '' || !floatRegex.test(values.amount)) {
                     errors.amount = 'Invalid amount size - must be positive number'
                   }
                   return errors
@@ -128,30 +128,30 @@ class AddForm extends React.Component {
                       />
                     </div>
                     <div className="form-group field">
-                      <label htmlFor="portion_size">Portion size</label>
+                      <label htmlFor="portion">Portion size</label>
                       <Field
                         type="text"
-                        name="portion_size"
+                        name="portion"
                         placeholder="Enter the portion size"
                         className={`form-control ${touched.portion && errors.portion ? 'is-invalid' : ''}`}
                       />
                       <ErrorMessage
                         component="div"
-                        name="portion_size"
+                        name="portion"
                         className="invalid-feedback"
                       />
                     </div>
                     <div className="form-group field">
-                      <label htmlFor="amount_of_portions">Amount of portions</label>
+                      <label htmlFor="amount">Amount of portions</label>
                       <Field
                         type="text"
-                        name="amount_of_portions"
+                        name="amount"
                         placeholder="Enter the amount of portions"
                         className={`form-control ${touched.amount && errors.amount ? 'is-invalid' : ''}`}
                       />
                       <ErrorMessage
                         component="div"
-                        name="amount_of_portions"
+                        name="amount"
                         className="invalid-feedback"
                       />
                     </div>
