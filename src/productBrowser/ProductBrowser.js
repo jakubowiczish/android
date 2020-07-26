@@ -34,7 +34,6 @@ class ProductBrowser extends Component {
     if (this.props.onSelectionChangeHandler != null) {
       this.props.onSelectionChangeHandler(concatenatedSelectionsWithoutDuplicates)
     }
-    console.log(concatenatedSelectionsWithoutDuplicates)
   }
 
   render () {
