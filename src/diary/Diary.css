@@ -1,6 +1,6 @@
 .diary-container {
     text-align: center;
-    width: 45%;
+    width: 50%;
 }
 
 .diary-content {
@@ -14,7 +14,8 @@
     position: relative;
     padding: 35px;
     text-align: center;
-    margin-left: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .child_div_1 {

@@ -33,8 +33,6 @@ class AddDiaryEntryModal extends Component {
         <Modal.Body>
           <p>
             <SearchComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
-          </p>
-          <p>
             <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
           </p>
 
