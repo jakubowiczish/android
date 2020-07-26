@@ -32,6 +32,11 @@ const contextActions = memoize(deleteHandler => (
 
 const columns = memoize(() => [
   {
+    name: 'Product name',
+    selector: 'productName',
+    sortable: true,
+  },
+  {
     name: 'Meal Type',
     selector: 'mealType',
     sortable: true,
@@ -40,50 +45,53 @@ const columns = memoize(() => [
     name: 'Meal Time',
     selector: 'mealTime',
     sortable: true,
-    minWidth: '200px'
+    // minWidth: '200px'
+    grow: 1,
   },
   {
     name: 'Amount of portions',
     selector: 'amount',
     sortable: true,
-    maxWidth: '50px'
+    maxWidth: '50px',
+    center: true,
   },
   {
     name: 'Portion',
     selector: 'portion',
     sortable: true,
-    maxWidth: '50px'
+    maxWidth: '50px',
+    center: true,
   },
   {
     name: 'Meal unit',
     selector: 'mealUnit',
     sortable: true,
-    maxWidth: '50px'
-  },
-  {
-    name: 'Product name',
-    selector: 'productName',
-    sortable: true,
+    maxWidth: '50px',
+    center: true,
   },
   {
     name: 'Calories',
     selector: 'caloriesEaten',
     sortable: true,
+    center: true,
   },
   {
     name: 'Proteins',
     selector: 'proteinsEaten',
     sortable: true,
+    center: true,
   },
   {
     name: 'Fat',
     selector: 'fatEaten',
     sortable: true,
+    center: true,
   },
   {
     name: 'Carbohydrates',
     selector: 'carbohydratesEaten',
     sortable: true,
+    center: true,
   }
 ])
 
@@ -112,7 +120,7 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        <Card style={{ height: '100%', width: '80%'}}> //TODO center card in componend
+        <Card style={{ height: '100%', width: '80%'}}>
           <DatePicker
             dateFormat="yyyy-MM-dd"
             selected={this.state.date}
