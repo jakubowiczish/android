@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import DateTimePicker from 'react-datetime-picker'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { addRecentProduct } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import { floatRegex } from '../constants/ValidationConstants'
+import Button from '@material-ui/core/Button'
 
 class AddDiaryEntryComponent extends React.Component {
   constructor (props) {
@@ -13,7 +14,7 @@ class AddDiaryEntryComponent extends React.Component {
       mealType: 'BREAKFAST',
       amount: 1,
       portion: 100,
-      portionUnit: 'g'
+      portionUnit: 'g',
     }
   }
 
@@ -44,6 +45,8 @@ class AddDiaryEntryComponent extends React.Component {
   }
 
   getChosenProductName = () => this.props.selectedRow != null ? 'You have chosen: ' + this.props.selectedRow.name : 'You have not chosen any product yet'
+
+  isProductChosen = () => this.props.selectedRow != null
 
   render () {
     return (
@@ -84,7 +87,9 @@ class AddDiaryEntryComponent extends React.Component {
                         name="mealTime"
                         className="form-control dateContainer"
                         value={this.state.mealTime}
-                        onChange={this.handleMealTimeChange}
+                        onChange={e => {
+                          this.handleMealTimeChange(e.target.value)
+                        }}
                       />
                     </div>
                     <div className="form-group field">
@@ -122,7 +127,6 @@ class AddDiaryEntryComponent extends React.Component {
                         className="form-control"
                       >
                         <option value="g">Grams</option>
-
                       </Field>
                       <ErrorMessage
                         component="div"
@@ -158,13 +162,20 @@ class AddDiaryEntryComponent extends React.Component {
                         className="invalid-feedback"
                       />
                     </div>
-                    <button
+                    <div className="form-group field">
+                      <ErrorMessage
+                        component="div"
+                        name="productId"
+                        className="invalid-feedback"
+                      />
+                    </div>
+                    <Button
                       type="submit"
                       className="btn btn-primary btn-block"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting && this.isProductChosen()}
                     >
                       {isSubmitting ? 'Please wait...' : 'Add diary entry'}
-                    </button>
+                    </Button>
                   </Form>
                 )}
               </Formik>

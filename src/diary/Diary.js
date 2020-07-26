@@ -30,24 +30,64 @@ const contextActions = memoize(deleteHandler => (
   </IconButton>
 ))
 
+const conditionalRowStyles = [
+  {
+    when: row => row.mealType === 'BREAKFAST',
+    style: {
+      backgroundColor: 'rgba(63, 195, 128, 0.9)',
+      color: 'white',
+    },
+  },
+  {
+    when: row => row.mealType === 'LUNCH',
+    style: {
+      backgroundColor: 'rgba(63, 19, 128, 0.9)',
+      color: 'white',
+    },
+  },
+  {
+    when: row => row.mealType === 'DINNER',
+    style: {
+      backgroundColor: 'rgba(34, 195, 30, 0.9)',
+      color: 'white',
+    },
+  },
+  {
+    when: row => row.mealType === 'SUPPER',
+    style: {
+      backgroundColor: 'rgba(200, 200, 50, 0.9)',
+      color: 'white',
+    },
+  },
+  {
+    when: row => row.mealType === 'SNACK',
+    style: {
+      backgroundColor: 'rgba(34, 30, 180, 0.9)',
+      color: 'white',
+    },
+  },
+]
+
 const columns = memoize(() => [
   {
     name: 'Product name',
     selector: 'productName',
     sortable: true,
-    wrap: true
+    wrap: true,
+    center: true,
   },
   {
     name: 'Meal Type',
     selector: 'mealType',
     sortable: true,
+    center: true,
   },
   {
     name: 'Meal Time',
     selector: 'mealTime',
     sortable: true,
-    // minWidth: '200px'
-    grow: 1,
+    grow: 1.5,
+    center: true,
   },
   {
     name: 'Portion',
@@ -133,9 +173,7 @@ class Diary extends React.Component {
     const { selectedRows } = this.state
     const rowsNames = selectedRows.map(r => r.productName)
     const rowsIds = selectedRows.map(r => r.recentProductId)
-    const deleteRecentProductsRequest = {
-      recentProductsIds: rowsIds
-    }
+    const deleteRecentProductsRequest = { recentProductsIds: rowsIds }
 
     if (window.confirm(`Are you sure you want to delete:\r ${rowsNames}?`)) {
       deleteRecentProducts(deleteRecentProductsRequest)
@@ -153,7 +191,6 @@ class Diary extends React.Component {
     return (
       <div>
         <Grid item xs={0}>
-          {/*<Card style={{ height: '100%', width: '80%', alignSelf: 'center' }}>*/}
           <Card className="card-container">
             <DatePicker
               dateFormat="yyyy-MM-dd"
@@ -161,7 +198,8 @@ class Diary extends React.Component {
               onChange={date => {
                 this.setState({ date: date })
                 this.handleGetRecentProductsByDate(date)
-              }}/>
+              }}
+            />
 
             <DataTable
               columns={columns()}
@@ -176,6 +214,7 @@ class Diary extends React.Component {
               actions={actions(this.handleOpenModal)}
               contextActions={contextActions(this.handleDeleteRecentProducts)}
               onSelectedRowsChange={this.handleSelectedRowClick}
+              conditionalRowStyles={conditionalRowStyles}
             />
           </Card>
         </Grid>
