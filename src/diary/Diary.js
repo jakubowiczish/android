@@ -106,6 +106,8 @@ class Diary extends React.Component {
       selectedRows: [],
       open: false
     }
+
+    this.handleGetRecentProductsByDate(this.state.date)
   }
 
   handleSelectedRowClick = state => {
@@ -137,6 +139,8 @@ class Diary extends React.Component {
           Alert.success('Product has been successfully deleted from diary')
         })
     }
+
+    // this.handleGetRecentProductsByDate(this.state.date)
   }
 
   render () {
