@@ -69,7 +69,9 @@ class RecentProductsComponent extends Component {
         name: 'Name',
         selector: 'name',
         sortable: true,
-        grow: 1.5
+        grow: 2.5,
+        wrap: true,
+        center: true
       },
       {
         name: 'Default portion',
@@ -114,6 +116,7 @@ class RecentProductsComponent extends Component {
               onChangePage={this.handlePageChange}
               selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
               selectableRowsNoSelectAll
+              selectableRowsHighlight
             />
           </div>
         </div>
