@@ -40,22 +40,25 @@ const columns = memoize(() => [
     name: 'Meal Time',
     selector: 'mealTime',
     sortable: true,
-    wrap: true,
+    minWidth: '200px'
   },
   {
     name: 'Amount of portions',
     selector: 'amount',
     sortable: true,
+    maxWidth: '50px'
   },
   {
     name: 'Portion',
     selector: 'portion',
     sortable: true,
+    maxWidth: '50px'
   },
   {
     name: 'Meal unit',
     selector: 'mealUnit',
     sortable: true,
+    maxWidth: '50px'
   },
   {
     name: 'Product name',
@@ -109,7 +112,7 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        <Card style={{ height: '100%' }}>
+        <Card style={{ height: '100%', width: '80%'}}> //TODO center card in componend
           <DatePicker
             dateFormat="yyyy-MM-dd"
             selected={this.state.date}
@@ -117,6 +120,12 @@ class Diary extends React.Component {
               this.setState({ date: date })
               this.handleGetRecentProductsByDate(date)
             }}/>
+
+          <Button style={{ alignRight: true }}
+                  variant="primary" onClick={() => this.setState({ open: true })}>
+            Add product to diary
+          </Button>
+
           <DataTable
             columns={columns()}
             data={this.state.tableData.recentProducts}
@@ -129,14 +138,7 @@ class Diary extends React.Component {
           />
         </Card>
 
-        <div>
-          <Button variant="primary" onClick={() => this.setState({ open: true })}>
-            Add product to diary
-          </Button>
-
-          <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
-
-        </div>
+        <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
       </div>
     )
   }
