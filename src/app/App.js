@@ -19,6 +19,7 @@ import './App.css'
 import Start from '../form/Start'
 import BMICalculator from '../calculator/bmi/BMICalculator'
 import ProductBrowser from '../productBrowser/ProductBrowser'
+import Diary from '../diary/Diary'
 
 class App extends Component {
   constructor (props) {
@@ -108,6 +109,12 @@ class App extends Component {
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={BMICalculator}
+            />
+            <PrivateRoute
+              path='/diary'
+              authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={Diary}
             />
             <Route path='/oauth2/redirect' component={OAuth2RedirectHandler} />
             <Route component={NotFound} />

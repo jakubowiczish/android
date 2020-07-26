@@ -79,3 +79,26 @@ export function getRecentProducts (pageIndex, perPage) {
     method: 'GET'
   })
 }
+
+export function addRecentProduct (addRecentProductRequest) {
+  return request({
+    url: API_BASE_URL + '/diary/add',
+    method: 'POST',
+    body: JSON.stringify(addRecentProductRequest)
+  })
+}
+
+export function getRecentProductsForDate (date) {
+  return request({
+    url: API_BASE_URL + '/diary/getForDate?date=' + date,
+    method: 'GET'
+  })
+}
+
+export function deleteRecentProducts (deleteRecentProductsRequest) {
+  return request({
+    url: API_BASE_URL + '/diary/delete',
+    method: 'DELETE',
+    body: JSON.stringify(deleteRecentProductsRequest)
+  })
+}
