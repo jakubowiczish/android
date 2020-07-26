@@ -161,11 +161,6 @@ class Diary extends React.Component {
               this.handleGetRecentProductsByDate(date)
             }}/>
 
-          <Button style={{ alignRight: true }}
-                  variant="primary" onClick={this.handleOpenModal}>
-            Add product to diary
-          </Button>
-
           <DataTable
             columns={columns()}
             data={this.state.tableData.recentProducts}

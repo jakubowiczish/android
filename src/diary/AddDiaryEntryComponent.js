@@ -4,9 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { addRecentProduct } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import { floatRegex } from '../constants/ValidationConstants'
-import { FormText } from 'react-bootstrap'
 
-class AddForm extends React.Component {
+class AddDiaryEntryComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -44,12 +43,15 @@ class AddForm extends React.Component {
       })
   }
 
+  getChosenProductName = () => this.props.selectedRow != null ? 'You have chosen: ' + this.props.selectedRow.name : 'You have not chosen any product yet'
+
   render () {
     return (
       <div>
         <div className={'container'}>
-          <div className="start-container parent_div_1">
-            <div className="start-content child_div_2">
+          <div className="diary-container parent_div_2">
+            <div className="diary-content child_div_2">
+              <h1 className='start-title'>{this.getChosenProductName()}</h1>
               <Formik
                 initialValues={{
                   mealTime: new Date(),
@@ -174,4 +176,4 @@ class AddForm extends React.Component {
   }
 }
 
-export default AddForm
+export default AddDiaryEntryComponent

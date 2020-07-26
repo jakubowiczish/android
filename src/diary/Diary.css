@@ -1,5 +1,6 @@
 .diary-container {
     text-align: center;
+    width: 45%;
 }
 
 .diary-content {
@@ -19,4 +20,8 @@
 .child_div_1 {
     width: 1200px;
     height: 900px;
+}
+
+.parent_div_2{
+    float: right;
 }
