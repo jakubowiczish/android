@@ -1,7 +1,5 @@
-import { Card } from '@material-ui/core'
 import moment from 'moment'
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import DataTable from 'react-data-table-component'
 import DatePicker from 'react-datepicker'
 import { deleteRecentProducts, getRecentProductsForDate } from '../util/APIUtils'
@@ -11,6 +9,8 @@ import { Add, Delete } from '@material-ui/icons'
 import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
+import Card from '@material-ui/core/Card'
+import Grid from '@material-ui/core/Grid'
 
 const actions = memoize(addHandler => (
   <IconButton
@@ -152,31 +152,33 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        <Card style={{ height: '100%', width: '80%' }}>
-          <DatePicker
-            dateFormat="yyyy-MM-dd"
-            selected={this.state.date}
-            onChange={date => {
-              this.setState({ date: date })
-              this.handleGetRecentProductsByDate(date)
-            }}/>
+        <Grid item xs={0}>
+          {/*<Card style={{ height: '100%', width: '80%', alignSelf: 'center' }}>*/}
+          <Card className="card-container">
+            <DatePicker
+              dateFormat="yyyy-MM-dd"
+              selected={this.state.date}
+              onChange={date => {
+                this.setState({ date: date })
+                this.handleGetRecentProductsByDate(date)
+              }}/>
 
-          <DataTable
-            columns={columns()}
-            data={this.state.tableData.recentProducts}
-            defaultSortField="productName"
-            wrap
-            pagination
-            selectableRows
-            pointerOnHover
-            highlightOnHover
-            clearSelectedRows={this.state.toggleCleared}
-            actions={actions(this.handleOpenModal)}
-            contextActions={contextActions(this.handleDeleteRecentProducts)}
-            onSelectedRowsChange={this.handleSelectedRowClick}
-          />
-        </Card>
-
+            <DataTable
+              columns={columns()}
+              data={this.state.tableData.recentProducts}
+              defaultSortField="productName"
+              wrap
+              pagination
+              selectableRows
+              pointerOnHover
+              highlightOnHover
+              clearSelectedRows={this.state.toggleCleared}
+              actions={actions(this.handleOpenModal)}
+              contextActions={contextActions(this.handleDeleteRecentProducts)}
+              onSelectedRowsChange={this.handleSelectedRowClick}
+            />
+          </Card>
+        </Grid>
         <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
       </div>
     )

@@ -26,3 +26,8 @@
 .parent_div_2{
     float: right;
 }
+
+.card-container {
+    margin-left: 5%;
+    width: 80%;
+}
