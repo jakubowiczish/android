@@ -36,6 +36,7 @@ const columns = memoize(() => [
     name: 'Product name',
     selector: 'productName',
     sortable: true,
+    wrap: true
   },
   {
     name: 'Meal Type',
@@ -50,15 +51,15 @@ const columns = memoize(() => [
     grow: 1,
   },
   {
-    name: 'Amount of portions',
-    selector: 'amount',
+    name: 'Portion',
+    selector: 'portion',
     sortable: true,
     maxWidth: '50px',
     center: true,
   },
   {
-    name: 'Portion',
-    selector: 'portion',
+    name: 'Amount of portions',
+    selector: 'amount',
     sortable: true,
     maxWidth: '50px',
     center: true,
@@ -104,7 +105,8 @@ class Diary extends React.Component {
       tableData: '',
       date: moment().valueOf(),
       selectedRows: [],
-      open: false
+      open: false,
+      toggleCleared: false,
     }
 
     this.handleGetRecentProductsByDate(this.state.date)
@@ -140,7 +142,8 @@ class Diary extends React.Component {
         })
     }
 
-    // this.handleGetRecentProductsByDate(this.state.date)
+    this.setState({ toggleCleared: !this.state.toggleCleared })
+    this.handleGetRecentProductsByDate(this.state.date)
   }
 
   render () {
@@ -169,6 +172,7 @@ class Diary extends React.Component {
             selectableRows
             pointerOnHover
             highlightOnHover
+            clearSelectedRows={this.state.toggleCleared}
             contextActions={contextActions(this.handleDeleteRecentProducts)}
             onSelectedRowsChange={this.handleSelectedRowClick}
           />
