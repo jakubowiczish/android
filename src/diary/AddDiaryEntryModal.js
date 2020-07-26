@@ -28,18 +28,6 @@ class AddDiaryEntryModal extends Component {
       })
   }
 
-  handleDeleteRecentProduct = () => {
-    const request = {
-      recentProductsIds: [5, 6, 7, 8]
-    }
-
-    deleteRecentProducts(request)
-      .then(res => {
-        console.log(res)
-        Alert.success('Product has been successfully deleted from diary')
-      })
-  }
-
   render () {
     return (
       <Modal
@@ -65,7 +53,6 @@ class AddDiaryEntryModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
-          <Button onClick={this.handleAddRecentProduct}>Add product</Button>
         </Modal.Footer>
       </Modal>
     )

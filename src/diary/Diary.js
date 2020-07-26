@@ -125,7 +125,7 @@ class Diary extends React.Component {
   handleDeleteRecentProducts = () => {
     const { selectedRows } = this.state
     const rowsNames = selectedRows.map(r => r.productName)
-    const rowsIds = selectedRows.map(r => r.id)
+    const rowsIds = selectedRows.map(r => r.recentProductId)
     const deleteRecentProductsRequest = {
       recentProductsIds: rowsIds
     }
