@@ -11,8 +11,8 @@ class AddForm extends React.Component {
     this.state = {
       mealTime: new Date(),
       mealType: 'BREAKFAST',
-      amount: 0,
-      portion: 0,
+      amount: 1,
+      portion: 100,
       portionUnit: 'g'
     }
   }
@@ -53,18 +53,18 @@ class AddForm extends React.Component {
                 initialValues={{
                   mealTime: new Date(),
                   mealType: 'BREAKFAST',
-                  amount: 0,
-                  portion: 0,
+                  amount: 1,
+                  portion: 100,
                   portionUnit: 'g',
                   productId: -1
                 }}
                 validate={values => {
                   let errors = {}
                   if (values.portion === '' || !floatRegex.test(values.portion)) {
-                    errors.portion = 'Invalid portion size - must be positive number'
+                    errors.portion = 'Invalid portion size - must be positive number with no more than 2 decimal places'
                   }
                   if (values.amount === '' || !floatRegex.test(values.amount)) {
-                    errors.amount = 'Invalid amount size - must be positive number'
+                    errors.amount = 'Invalid amount size - must be positive number with no more than 2 decimal places'
                   }
                   return errors
                 }}

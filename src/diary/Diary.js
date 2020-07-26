@@ -4,12 +4,13 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import DataTable from 'react-data-table-component'
 import DatePicker from 'react-datepicker'
-import { getRecentProductsForDate } from '../util/APIUtils'
+import { deleteRecentProducts, getRecentProductsForDate } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
 import './Diary.css'
 import { Add, Delete } from '@material-ui/icons'
 import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
+import Alert from 'react-s-alert'
 
 const selectProps = { indeterminate: isIndeterminate => isIndeterminate }
 
@@ -107,6 +108,10 @@ class Diary extends React.Component {
     }
   }
 
+  handleSelectedRowClick = state => {
+    this.setState({ selectedRows: state.selectedRows })
+  }
+
   handleGetRecentProductsByDate = (date) => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
@@ -117,10 +122,27 @@ class Diary extends React.Component {
       })
   }
 
+  handleDeleteRecentProducts = () => {
+    const { selectedRows } = this.state
+    const rowsNames = selectedRows.map(r => r.productName)
+    const rowsIds = selectedRows.map(r => r.id)
+    const deleteRecentProductsRequest = {
+      recentProductsIds: rowsIds
+    }
+
+    if (window.confirm(`Are you sure you want to delete:\r ${rowsNames}?`)) {
+      deleteRecentProducts(deleteRecentProductsRequest)
+        .then(res => {
+          console.log(res)
+          Alert.success('Product has been successfully deleted from diary')
+        })
+    }
+  }
+
   render () {
     return (
       <div>
-        <Card style={{ height: '100%', width: '80%'}}>
+        <Card style={{ height: '100%', width: '80%' }}>
           <DatePicker
             dateFormat="yyyy-MM-dd"
             selected={this.state.date}
@@ -137,12 +159,14 @@ class Diary extends React.Component {
           <DataTable
             columns={columns()}
             data={this.state.tableData.recentProducts}
-            defaultSortField="title"
+            defaultSortField="productName"
             wrap
-            highlightOnHover
-            pointerOnHover
             pagination
             selectableRows
+            pointerOnHover
+            highlightOnHover
+            contextActions={contextActions(this.handleDeleteRecentProducts)}
+            onSelectedRowsChange={this.handleSelectedRowClick}
           />
         </Card>
 
