@@ -85,8 +85,13 @@ class RecentProductsComponent extends Component {
       }]
   }
 
-  handleSelectChange () {
-    this.setState({ selectedRows: this.state.selectedProducts })
+  handleSelectChange (state) {
+    this.setState({ selectedProducts: state.selectedRows })
+    this.props.onSelectedRecentProductsChangeHandler(state.selectedRows)
+  }
+
+  isRowUnselected (row) {
+    return !this.state.selectedProducts.some(e => e.id === row.id)
   }
 
   render () {
@@ -107,6 +112,8 @@ class RecentProductsComponent extends Component {
               paginationRowsPerPageOptions={[10]}
               onChangeRowsPerPage={this.handlePerRowsChange}
               onChangePage={this.handlePageChange}
+              selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+              selectableRowsNoSelectAll
             />
           </div>
         </div>

@@ -99,8 +99,13 @@ class SearchComponent extends Component {
       }]
   }
 
-  handleSelectChange () {
-    this.setState({ selectedRows: this.state.selectedProducts })
+  handleSelectChange (state) {
+    this.setState({ selectedProducts: state.selectedRows })
+    this.props.onSelectedProductsChangeHandler(state.selectedRows)
+  }
+
+  isRowUnselected (row) {
+    return !this.state.selectedProducts.some(e => e.id === row.id)
   }
 
   render () {
@@ -139,6 +144,8 @@ class SearchComponent extends Component {
                 paginationRowsPerPageOptions={[10]}
                 onChangeRowsPerPage={this.handlePerRowsChange}
                 onChangePage={this.handlePageChange}
+                selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+                selectableRowsNoSelectAll
               />
             </div>
           </div>
