@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { addRecentProduct } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import { floatRegex } from '../constants/ValidationConstants'
+import { FormText } from 'react-bootstrap'
 
 class AddForm extends React.Component {
   constructor (props) {
@@ -69,7 +70,7 @@ class AddForm extends React.Component {
                   return errors
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                  values.productId = 1
+                  values.productId = this.props.selectedRow.id
                   this.handleAddRecentProduct(values, setSubmitting)
                 }}
               >
