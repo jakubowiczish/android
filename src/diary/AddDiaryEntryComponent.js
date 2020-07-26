@@ -4,7 +4,6 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { addRecentProduct } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import { floatRegex } from '../constants/ValidationConstants'
-import Button from '@material-ui/core/Button'
 
 class AddDiaryEntryComponent extends React.Component {
   constructor (props) {
@@ -18,15 +17,17 @@ class AddDiaryEntryComponent extends React.Component {
     }
   }
 
-  handleMealTimeChange = (mealTime) => {
+  handleMealTimeChange = mealTime => {
+    console.log(mealTime)
     this.setState({ mealTime: mealTime })
   }
 
-  handleMealTypeChange = (mealType) => {
+  handleMealTypeChange = mealType => {
+    console.log(mealType)
     this.setState({ mealType: mealType })
   }
 
-  handlePortionUnitChange = (portionUnit) => {
+  handlePortionUnitChange = (event, portionUnit) => {
     this.setState({ portionUnit: portionUnit })
   }
 
@@ -49,6 +50,8 @@ class AddDiaryEntryComponent extends React.Component {
   isProductChosen = () => this.props.selectedRow != null
 
   render () {
+    const { mealTime, mealType, amount, portion, portionUnit, productId } = this.state
+
     return (
       <div>
         <div className={'container'}>
@@ -56,13 +59,14 @@ class AddDiaryEntryComponent extends React.Component {
             <div className="diary-content child_div_2">
               <h1 className='start-title'>{this.getChosenProductName()}</h1>
               <Formik
+                enableReinitialize={true}
                 initialValues={{
-                  mealTime: new Date(),
-                  mealType: 'BREAKFAST',
-                  amount: 1,
-                  portion: 100,
-                  portionUnit: 'g',
-                  productId: -1
+                  mealTime: mealTime,
+                  mealType: mealType,
+                  amount: amount,
+                  portion: portion,
+                  portionUnit: portionUnit,
+                  productId: productId
                 }}
                 validate={values => {
                   let errors = {}
@@ -83,25 +87,21 @@ class AddDiaryEntryComponent extends React.Component {
                   <Form>
                     <div className="form-group field">
                       <label htmlFor="mealTime">Meal time</label>
-                      <DateTimePicker
-                        name="mealTime"
-                        className="form-control dateContainer"
-                        value={this.state.mealTime}
-                        onChange={e => {
-                          this.handleMealTimeChange(e.target.value)
-                        }}
+                      <DateTimePicker name="mealTime"
+                                      className="form-control dateContainer"
+                                      value={this.state.mealTime}
+                                      onChange={this.handleMealTimeChange}
                       />
                     </div>
                     <div className="form-group field">
                       <label htmlFor="mealType">Meal type</label>
-                      <Field
-                        as="select"
-                        name="mealType"
-                        value={this.state.mealType}
-                        onChange={e => {
-                          this.handleMealTypeChange(e.target.value)
-                        }}
-                        className="form-control"
+                      <Field as="select"
+                             name="mealType"
+                             value={this.state.mealType}
+                             onChange={e => {
+                               this.handleMealTypeChange(e.target.value)
+                             }}
+                             className="form-control"
                       >
                         <option value="BREAKFAST">Breakfast</option>
                         <option value="LUNCH">Lunch</option>
@@ -117,14 +117,13 @@ class AddDiaryEntryComponent extends React.Component {
                     </div>
                     <div className="form-group field">
                       <label htmlFor="portionUnit">Portion unit</label>
-                      <Field
-                        as="select"
-                        name="portionUnit"
-                        value={this.state.portionUnit}
-                        onChange={e => {
-                          this.handlePortionUnitChange(e.target.value)
-                        }}
-                        className="form-control"
+                      <Field as="select"
+                             name="portionUnit"
+                             value={this.state.portionUnit}
+                             onChange={e => {
+                               this.handlePortionUnitChange(e.target.value)
+                             }}
+                             className="form-control"
                       >
                         <option value="g">Grams</option>
                       </Field>
@@ -136,11 +135,10 @@ class AddDiaryEntryComponent extends React.Component {
                     </div>
                     <div className="form-group field">
                       <label htmlFor="portion">Portion size</label>
-                      <Field
-                        type="text"
-                        name="portion"
-                        placeholder="Enter the portion size"
-                        className={`form-control ${touched.portion && errors.portion ? 'is-invalid' : ''}`}
+                      <Field type="text"
+                             name="portion"
+                             placeholder="Enter the portion size"
+                             className={`form-control ${touched.portion && errors.portion ? 'is-invalid' : ''}`}
                       />
                       <ErrorMessage
                         component="div"
@@ -150,11 +148,10 @@ class AddDiaryEntryComponent extends React.Component {
                     </div>
                     <div className="form-group field">
                       <label htmlFor="amount">Amount of portions</label>
-                      <Field
-                        type="text"
-                        name="amount"
-                        placeholder="Enter the amount of portions"
-                        className={`form-control ${touched.amount && errors.amount ? 'is-invalid' : ''}`}
+                      <Field type="text"
+                             name="amount"
+                             placeholder="Enter the amount of portions"
+                             className={`form-control ${touched.amount && errors.amount ? 'is-invalid' : ''}`}
                       />
                       <ErrorMessage
                         component="div"
@@ -169,13 +166,13 @@ class AddDiaryEntryComponent extends React.Component {
                         className="invalid-feedback"
                       />
                     </div>
-                    <Button
+                    <button
                       type="submit"
                       className="btn btn-primary btn-block"
                       disabled={isSubmitting && this.isProductChosen()}
                     >
                       {isSubmitting ? 'Please wait...' : 'Add diary entry'}
-                    </Button>
+                    </button>
                   </Form>
                 )}
               </Formik>
