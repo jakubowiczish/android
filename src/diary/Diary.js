@@ -190,7 +190,7 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        <Grid item xs={0}>
+        <Grid item xl={'auto'}>
           <Card className="card-container">
             <DatePicker
               dateFormat="yyyy-MM-dd"
