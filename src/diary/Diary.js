@@ -12,15 +12,14 @@ import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 
-const selectProps = { indeterminate: isIndeterminate => isIndeterminate }
-
-const actions = (
+const actions = memoize(addHandler => (
   <IconButton
     color="primary"
+    onClick={addHandler}
   >
     <Add/>
   </IconButton>
-)
+))
 
 const contextActions = memoize(deleteHandler => (
   <IconButton
@@ -116,6 +115,10 @@ class Diary extends React.Component {
     this.setState({ selectedRows: state.selectedRows })
   }
 
+  handleOpenModal = () => {
+    this.setState({ open: true })
+  }
+
   handleGetRecentProductsByDate = (date) => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
@@ -159,7 +162,7 @@ class Diary extends React.Component {
             }}/>
 
           <Button style={{ alignRight: true }}
-                  variant="primary" onClick={() => this.setState({ open: true })}>
+                  variant="primary" onClick={this.handleOpenModal}>
             Add product to diary
           </Button>
 
@@ -173,6 +176,7 @@ class Diary extends React.Component {
             pointerOnHover
             highlightOnHover
             clearSelectedRows={this.state.toggleCleared}
+            actions={actions(this.handleOpenModal)}
             contextActions={contextActions(this.handleDeleteRecentProducts)}
             onSelectedRowsChange={this.handleSelectedRowClick}
           />
