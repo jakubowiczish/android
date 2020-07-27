@@ -177,6 +177,7 @@ class StartForm extends Component {
                      name="gender"
                      value={this.state.gender}
                      onChange={e => {
+                       // TODO FIX ON CHANGE IN THE WHOLE CLASS, UPDATE HEIGHT IN DATABASE AS WELL
                        this.handleChangeGender(e.target.value)
                      }}
                      className="form-control"
