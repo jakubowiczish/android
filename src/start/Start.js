@@ -15,11 +15,11 @@ class Start extends Component {
   }
 
   handleSelectedActivity = selection => {
-    this.setState({ selected: { active: selection, goal: this.state.selected.goal } })
+    this.setState({ selected: { active: selection } })
   }
 
   handleSelectedGoal = selection => {
-    this.setState({ selected: { active: this.state.selected.active, goal: selection } })
+    this.setState({ selected: { goal: selection } })
   }
 
   render () {
@@ -38,8 +38,7 @@ class Start extends Component {
             <h1 className="start-title">Fill up starter form!</h1>
             <StartForm handleSelectedActivity={this.handleSelectedActivity}
                        handleSelectedGoal={this.handleSelectedGoal}
-                       currentUser={this.props.currentUser}
-                       selected={this.state.selected}/>
+                       currentUser={this.props.currentUser}/>
           </div>
         </div>
         <ActivityBox className={'parent_div_1'} selected={this.state.selected}/>

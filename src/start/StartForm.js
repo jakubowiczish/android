@@ -9,36 +9,57 @@ import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPerce
 import RubberSlider from '@shwilliam/react-rubber-slider'
 import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
 
+const minDate = new Date('01/01/1950')
+const maxDate = new Date(moment(new Date()).subtract(16, 'years').format('DD/MM/YYYY'))
+
 class StartForm extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      birthDate: new Date('01/01/1990'),
+      gender: 'MALE',
+      goal: 'LOSE',
+      weight: 180,
+      height: 80,
+      activityLevel: 'BMR',
+      slider: 50,
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  state = {
-    birthDate: new Date('01/01/1990'),
-    goal: 'LOSE',
-    gender: 'MALE',
-    slider: 50
-  }
-
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    })
-  }
-  handleChangeGender = data => {
-    this.setState({
-      gender: data
-    })
-  }
   PROM = 1000
   MIN = 0.2
+
+  handleBirthDateChange = birthDate => {
+    this.setState({ birthDate: birthDate })
+  }
+
+  handleGenderChange = gender => {
+    this.setState({ gender: gender })
+  }
+
+  handleWeightChange = weight => {
+    this.setState({ weight: weight })
+  }
+
+  handleHeightChange = height => {
+    this.setState({ height: height })
+  }
+
+  handleGoalChange = goal => {
+    this.setState({ goal: goal })
+    this.props.handleSelectedGoal(goal)
+  }
+
+  handleActivityLevelChange = activityLevel => {
+    this.setState({ activityLevel: activityLevel })
+    this.props.handleSelectedActivity(activityLevel)
+  }
+
   handleSlider = data => {
     const fatPercentage = data / this.PROM + this.MIN
-    this.setState({
-      slider: fatPercentage
-    })
+    this.setState({ slider: fatPercentage })
   }
 
   handleSubmit (values, setSubmitting) {
@@ -70,21 +91,19 @@ class StartForm extends Component {
   }
 
   render () {
-    const minDate = new Date('01/01/1950')
-    const maxDate = new Date(moment(new Date()).subtract(16, 'years').format('DD/MM/YYYY'))
-
-    const { birthDate, gender, goal, slider } = this.state
-    const activityLevel = this.props.selected.active
+    const { birthDate, gender, height, weight, goal, activityLevel, slider } = this.state
 
     return (
       <Formik
+        enableReinitialize={true}
         initialValues={{
           birthDate: birthDate,
           gender: gender,
-          height: '',
-          weight: '',
+          height: height,
+          weight: weight,
           activityLevel: activityLevel,
-          goal: goal
+          goal: goal,
+          slider: slider
         }}
         validate={values => {
           let errors = {}
@@ -101,6 +120,7 @@ class StartForm extends Component {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log(values)
           values.birthDate = this.getFormattedDate(this.state.birthDate)
           values.fatPreferencesPercentage = this.state.slider
           this.handleSubmit(values, setSubmitting)
@@ -110,13 +130,12 @@ class StartForm extends Component {
           <Form>
             <div className="form-group field">
               <label htmlFor="birthDate">Birth date</label>
-              <DatePicker
-                name="birthDate"
-                className="form-control dateContainer"
-                selected={this.state.birthDate}
-                onChange={this.handleChange}
-                minDate={minDate}
-                maxDate={maxDate}
+              <DatePicker name="birthDate"
+                          className="form-control dateContainer"
+                          selected={this.state.birthDate}
+                          onChange={this.handleBirthDateChange}
+                          minDate={minDate}
+                          maxDate={maxDate}
               />
             </div>
             <div className="form-group field">
@@ -125,8 +144,7 @@ class StartForm extends Component {
                      name="gender"
                      value={this.state.gender}
                      onChange={e => {
-                       // TODO FIX ON CHANGE IN THE WHOLE CLASS, UPDATE HEIGHT IN DATABASE AS WELL
-                       this.handleChangeGender(e.target.value)
+                       this.handleGenderChange(e.target.value)
                      }}
                      className="form-control"
               >
@@ -141,13 +159,16 @@ class StartForm extends Component {
             </div>
             <div className="form-group field">
               <label htmlFor="height">Height in cm</label>
-              <Field
-                type="text"
-                name="height"
-                placeholder="Enter height"
-                className={`form-control ${
-                  touched.height && errors.height ? 'is-invalid' : ''
-                }`}
+              <Field type="text"
+                     name="height"
+                     value={this.state.height}
+                     onChange={e => {
+                       this.handleHeightChange(e.target.value)
+                     }}
+                     placeholder="Enter height"
+                     className={`form-control ${
+                       touched.height && errors.height ? 'is-invalid' : ''
+                     }`}
               />
               <ErrorMessage
                 component="div"
@@ -157,13 +178,16 @@ class StartForm extends Component {
             </div>
             <div className="form-group field">
               <label htmlFor="weight">Weight in kg</label>
-              <Field
-                type="weight"
-                name="weight"
-                placeholder="Choose weight"
-                className={`form-control ${
-                  touched.weight && errors.weight ? 'is-invalid' : ''
-                }`}
+              <Field type="weight"
+                     name="weight"
+                     value={this.state.weight}
+                     onChange={e => {
+                       this.handleWeightChange(e.target.value)
+                     }}
+                     placeholder="Choose weight"
+                     className={`form-control ${
+                       touched.weight && errors.weight ? 'is-invalid' : ''
+                     }`}
               />
               <ErrorMessage
                 component="div"
@@ -176,9 +200,9 @@ class StartForm extends Component {
               <Field as="select"
                      name="activityLevel"
                      className="form-control"
-                     value={this.props.selected.active}
+                     value={this.state.activityLevel}
                      onChange={e => {
-                       this.props.handleSelectedActivity(e.target.value)
+                       this.handleActivityLevelChange(e.target.value)
                      }}
               >
                 <option value="BMR">Basal Metabolic Rate (BMR)</option>
@@ -195,9 +219,9 @@ class StartForm extends Component {
                      name="goal"
                      placeholder="Choose goal"
                      className="form-control"
-                     value={this.props.selected.goal}
+                     value={this.state.goal}
                      onChange={e => {
-                       this.props.handleSelectedGoal(e.target.value)
+                       this.handleGoalChange(e.target.value)
                      }}
               >
                 <option value="GAIN">Weight gain</option>
