@@ -1,71 +1,13 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
-import { ErrorMessage, Field, Form, Formik } from 'formik'
-import './Start.css'
-import bmrActiveImg from '../img/activities/bmr-active-img.jpg'
-import sedentaryActiveImg from '../img/activities/sedentary-active-img.jpg'
-import lightActiveImg from '../img/activities/light-active-img.jpg'
-import moderateActiveImg from '../img/activities/moderate-active-img.jpg'
-import activeActiveImg from '../img/activities/active-active-img.jpg'
-import veryActiveActiveImg from '../img/activities/very_active-active-img.jpg'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import moment from 'moment'
-import gainGoalImg from '../img/activities/gain-active-img.jpg'
-import loseGoalImg from '../img/activities/lose-goal-img.jpg'
-import stayGoalImg from '../img/activities/stay-goal-img.jpg'
-import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
-import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
 import { createPlan } from '../util/APIUtils'
 import Alert from 'react-s-alert'
-import RubberSlider from '@shwilliam/react-rubber-slider'
-import '@shwilliam/react-rubber-slider/dist/styles.css'
+import moment from 'moment'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { heightRegex, weightRegex } from '../constants/ValidationConstants'
-
-class Start extends Component {
-  constructor (props) {
-
-    super(props)
-    this.state = {
-      selected: { active: 'BMR', goal: 'LOSE' },
-      goal: 'LOSE',
-      gender: 'MALE'
-    }
-  }
-
-  handleSelectedActivity = selection => {
-    this.setState({ selected: { active: selection, goal: this.state.selected.goal } })
-  }
-
-  handleSelectedGoal = selection => {
-    this.setState({ selected: { active: this.state.selected.active, goal: selection } })
-  }
-
-  render () {
-    if (this.props.authenticated) {
-      return <Redirect
-        to={{
-          pathname: '/',
-          state: { from: this.props.location }
-        }}/>
-    }
-
-    return (
-      <div className={'container'}>
-        <div className="start-container parent_div_1">
-          <div className="start-content child_div_2">
-            <h1 className="start-title">Fill up starter form!</h1>
-            <StartForm handleSelectedActivity={this.handleSelectedActivity}
-                       handleSelectedGoal={this.handleSelectedGoal}
-                       currentUser={this.props.currentUser}
-                       selected={this.state.selected}/>
-          </div>
-        </div>
-        <ActivityBox className={'parent_div_1'} selected={this.state.selected}/>
-      </div>
-    )
-  }
-}
+import DatePicker from 'react-datepicker'
+import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
+import RubberSlider from '@shwilliam/react-rubber-slider'
+import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
 
 class StartForm extends Component {
   constructor (props) {
@@ -74,7 +16,7 @@ class StartForm extends Component {
   }
 
   state = {
-    startDate: new Date('01/01/1990'),
+    birthDate: new Date('01/01/1990'),
     goal: 'LOSE',
     gender: 'MALE',
     slider: 50
@@ -103,13 +45,15 @@ class StartForm extends Component {
     values.userId = this.props.currentUser.id
     values.fatPreferencesPercentage = this.state.slider
     createPlan(values)
-      .then(response => {
+      .then(() => {
         Alert.success('You\'re successfully created your first diet plan')
-      }).catch(error => {
-      Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
-    }).finally(response => {
-      setSubmitting(false)
-    })
+      })
+      .catch(error => {
+        Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+      })
+      .finally(() => {
+        setSubmitting(false)
+      })
   }
 
   checkPartOfDate (partOfDate) {
@@ -128,15 +72,19 @@ class StartForm extends Component {
   render () {
     const minDate = new Date('01/01/1950')
     const maxDate = new Date(moment(new Date()).subtract(16, 'years').format('DD/MM/YYYY'))
+
+    const { birthDate, gender, goal, slider } = this.state
+    const activityLevel = this.props.selected.active
+
     return (
       <Formik
         initialValues={{
-          birthDate: '',
-          gender: 'MALE',
+          birthDate: birthDate,
+          gender: gender,
           height: '',
           weight: '',
-          activityLevel: 'BMR',
-          goal: 'LOSE'
+          activityLevel: activityLevel,
+          goal: goal
         }}
         validate={values => {
           let errors = {}
@@ -153,7 +101,7 @@ class StartForm extends Component {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
-          values.birthDate = this.getFormattedDate(this.state.startDate)
+          values.birthDate = this.getFormattedDate(this.state.birthDate)
           values.fatPreferencesPercentage = this.state.slider
           this.handleSubmit(values, setSubmitting)
         }}
@@ -165,7 +113,7 @@ class StartForm extends Component {
               <DatePicker
                 name="birthDate"
                 className="form-control dateContainer"
-                selected={this.state.startDate}
+                selected={this.state.birthDate}
                 onChange={this.handleChange}
                 minDate={minDate}
                 maxDate={maxDate}
@@ -286,92 +234,4 @@ class StartForm extends Component {
   }
 }
 
-class ActivityBox extends Component {
-
-  parseHeader = header => {
-    return header.charAt(0).toUpperCase() + header.slice(1).toLowerCase().replace('_', ' ')
-  }
-  parseActivityLevel = level => {
-    if (level === 'BMR') {
-      return level
-    }
-    return this.parseHeader(level)
-  }
-
-  render () {
-    const { selected } = this.props
-    if (selected.active === undefined) {
-      selected.active = 'BMR'
-    }
-
-    if (selected.goal === undefined) {
-      selected.goal = 'LOSE'
-    }
-    let imageActive
-    let imageGoal
-    let activeDescription
-    let goalDescription
-    let header = 'Activity level: ' + this.parseActivityLevel(selected.active)
-    let headerGoal = 'Goal: ' + this.parseHeader(selected.goal)
-    switch (selected.active) {
-      case 'BMR':
-        imageActive = bmrActiveImg
-        activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.'
-        break
-      case 'SEDENTARY':
-        imageActive = sedentaryActiveImg
-        activeDescription = 'You don\'t like to be in a hurry :) If you have sedentary work or your favorite exercise is reaching the remote this level is for you.'
-        break
-      case 'LIGHT':
-        imageActive = lightActiveImg
-        activeDescription = 'If you exercise 1-3 times per week and prefer light workouts this is your level.'
-        break
-      case 'MODERATE':
-        imageActive = moderateActiveImg
-        activeDescription = 'You are very active person. Exercise 4-5 times per week aren\'t scary for you.'
-        break
-      case 'ACTIVE':
-        imageActive = activeActiveImg
-        activeDescription = 'Gym veterans.You like very intense trainings or you do your daily exercise.'
-        break
-      case 'VERY_ACTIVE':
-        imageActive = veryActiveActiveImg
-        activeDescription = 'Level for fit lovers and physical workers. If you could you would sleep in the gym.'
-        break
-      default:
-        imageActive = bmrActiveImg
-        activeDescription = 'The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.'
-    }
-    switch (selected.goal) {
-      case 'LOSE':
-        imageGoal = loseGoalImg
-        goalDescription = 'To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit.'
-        break
-      case 'STAY':
-        imageGoal = stayGoalImg
-        goalDescription = 'To maintain your weight we calculate exactly how much calories do you need to consume during the day'
-        break
-      case 'GAIN':
-        imageGoal = gainGoalImg
-        goalDescription = 'To gain wight we have to add 100-300 calories to your basic caloric level.The calorific increase allowed to build additional muscle mass'
-        break
-      default:
-        imageGoal = loseGoalImg
-        goalDescription = 'To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit.'
-    }
-
-    return (
-      <div className="start-container">
-        <div className="start-content child_div_1">
-          <h2 className="start-title">{header}</h2>
-          <img src={imageActive} height={300} alt={'describing activity level'}/>
-          <p className={'field'}>{activeDescription}</p>
-          <h2 className="start-title">{headerGoal}</h2>
-          <img src={imageGoal} height={150} alt={'describing goal'}/>
-          <p>{goalDescription}</p>
-        </div>
-      </div>)
-  }
-}
-
-export default Start
+export default StartForm
