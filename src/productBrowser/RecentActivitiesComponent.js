@@ -1,67 +1,125 @@
 import React, { Component } from 'react'
 import './ProductBrowser.css'
-import { getRecentActivities } from '../util/APIUtils'
-import PaginationComponent from './PaginationComponent'
-import ActivityItemComponent from './ActivityItemComponent'
+import { getRecentActivities} from '../util/APIUtils'
+import DataTable from 'react-data-table-component'
 
 class RecentActivitiesComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      activities: [],
-      pageIndex: 0,
-      maxPageNumber: 0
+      activities: [
+      ],
+      selectedActivities: [],
+      loading: false,
+      totalRows: 0,
+      perPage: 10
     }
-    this.handleChangePage = this.handleChangePage.bind(this)
+    this.getColumnsForRecentActivitiesComponent = this.getColumnsForRecentActivitiesComponent.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
+    this.handlePerRowsChange = this.handlePerRowsChange.bind(this)
     this.loadRecentProducts()
   }
 
   loadRecentProducts () {
-    const perPage = 6
-    getRecentActivities(1, perPage).then(
+    getRecentActivities(1, this.state.perPage).then(
       response => {
         this.setState({
           activities: response.activities,
-          pageIndex: 1,
-          maxPageNumber: response.maximumPageNumber
+          totalRows: response.maximumPageNumber
         })
       }
     )
   }
 
-  handleChangePage (pageIndex) {
-    const perPage = 6
-    getRecentActivities(pageIndex, perPage).then(
+  async handlePageChange (page) {
+    const { perPage } = this.state
+
+    this.setState({ loading: true })
+
+    getRecentActivities(page, perPage).then(
       response => {
         this.setState({
           activities: response.activities,
-          pageIndex: pageIndex,
-          maxPageNumber: response.maximumPageNumber
+          loading: false,
+          totalRows: response.maximumPageNumber
         })
       }
     )
+  }
+
+  async handlePerRowsChange (perPage, page) {
+    this.setState({ loading: true })
+
+    getRecentActivities(page, perPage).then(
+      response => {
+        this.setState({
+          activities: response.activities,
+          loading: false,
+          perPage: perPage,
+          totalRows: response.maximumPageNumber
+        })
+      }
+    )
+  }
+
+  getColumnsForRecentActivitiesComponent () {
+    return [
+      {
+        name: 'Name',
+        selector: 'name',
+        sortable: true,
+        grow: 2.5,
+        wrap: true,
+        center: true
+      },
+      {
+        name: 'Default portion',
+        selector: row => row.defaultValue + ' ' + row.unit,
+        sortable: true,
+        sortFunction: (rowA, rowB) => rowA.defaultValue - rowB.defaultValue
+      },
+      {
+        name: 'Calories',
+        selector: row => row.calories + ' kcal',
+        sortable: true,
+        sortFunction: (rowA, rowB) => rowA.calories - rowB.calories
+      }]
+  }
+
+  handleSelectChange (state) {
+    this.setState({ selectedActivities: state.selectedRows })
+    this.props.onSelectedRecentActivitiesChangeHandler(state.selectedRows)
+  }
+
+  isRowUnselected (row) {
+    return !this.state.selectedActivities.some(e => e.id === row.id)
   }
 
   render () {
-    const productList = this.state.activities.map(product =>
-      <ActivityItemComponent
-        key={product.id}
-        name={product.name}
-      />)
-
     return (
-      <div className='recent-products-container'>
-        <div className='results-container'>
-          <div id='recent-products-label'>Recently added activities</div>
-          <div>
-            {productList}
+      <div className='container'>
+        <div className='recent-products-container parent_div_1'>
+          <div className='recent-products-content child_div_2'>
+            <h1 className='start-title'>Recently added activities</h1>
+            <DataTable
+              data={this.state.activities}
+              columns={this.getColumnsForRecentActivitiesComponent()}
+              onSelectedRowsChange={this.handleSelectChange}
+              selectableRows
+              progressPending={this.state.loading}
+              pagination
+              paginationServer
+              paginationTotalRows={this.state.totalRows}
+              paginationRowsPerPageOptions={[10]}
+              onChangeRowsPerPage={this.handlePerRowsChange}
+              onChangePage={this.handlePageChange}
+              selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
+              selectableRowsNoSelectAll
+              selectableRowsHighlight
+            />
           </div>
         </div>
-        <PaginationComponent
-          pageIndex={this.state.pageIndex}
-          maxPageNumber={this.state.maxPageNumber}
-          onClick={this.handleChangePage}
-        />
       </div>
     )
   }
