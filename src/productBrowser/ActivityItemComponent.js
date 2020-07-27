@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ProductBrowser.css'
+import './Browser.css'
 
 class ActivityItemComponent extends Component {
   render () {

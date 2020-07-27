@@ -27,10 +27,10 @@ class AppHeader extends Component {
                     <NavLink to='/activityBrowser'>Activity Browser</NavLink>
                   </li>
                   <li>
-                    <NavLink to='/achievements'>Achievements</NavLink>
+                    <NavLink to='/bmiCalculator'>BMI Calculator</NavLink>
                   </li>
                   <li>
-                    <NavLink to='/bmiCalculator'>BMI Calculator</NavLink>
+                    <NavLink to='/diary'>Diary</NavLink>
                   </li>
                   <li>
                     <a onClick={this.props.onLogout}>Logout</a>
