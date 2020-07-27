@@ -16,13 +16,13 @@
     text-align: center;
 }
 
-.recent-products-container {
+.recent-item-container {
     width: 45%;
     text-align: center;
     margin-left: 50px;
 }
 
-.recent-products-content {
+.recent-item-content {
     background: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;

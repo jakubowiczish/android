@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ProductBrowser.css'
+import './Browser.css'
 import { getRecentActivities} from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 
@@ -18,10 +18,10 @@ class RecentActivitiesComponent extends Component {
     this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
     this.handlePerRowsChange = this.handlePerRowsChange.bind(this)
-    this.loadRecentProducts()
+    this.loadRecentActivities()
   }
 
-  loadRecentProducts () {
+  loadRecentActivities () {
     getRecentActivities(1, this.state.perPage).then(
       response => {
         this.setState({
@@ -74,12 +74,6 @@ class RecentActivitiesComponent extends Component {
         center: true
       },
       {
-        name: 'Default portion',
-        selector: row => row.defaultValue + ' ' + row.unit,
-        sortable: true,
-        sortFunction: (rowA, rowB) => rowA.defaultValue - rowB.defaultValue
-      },
-      {
         name: 'Calories',
         selector: row => row.calories + ' kcal',
         sortable: true,
@@ -99,8 +93,8 @@ class RecentActivitiesComponent extends Component {
   render () {
     return (
       <div className='container'>
-        <div className='recent-products-container parent_div_1'>
-          <div className='recent-products-content child_div_2'>
+        <div className='recent-item-container parent_div_1'>
+          <div className='recent-item-content child_div_2'>
             <h1 className='start-title'>Recently added activities</h1>
             <DataTable
               data={this.state.activities}

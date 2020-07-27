@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ProductBrowser.css'
+import './Browser.css'
 import RecentActivitiesComponent from './RecentActivitiesComponent'
 import SearchActivityComponent from './SearchActivityComponent'
 class ActivityBrowser extends Component {

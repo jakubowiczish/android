@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ProductBrowser.css'
+import './Browser.css'
 import { getRecentProducts } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 
@@ -99,8 +99,8 @@ class RecentProductsComponent extends Component {
   render () {
     return (
       <div className='container'>
-        <div className='recent-products-container parent_div_1'>
-          <div className='recent-products-content child_div_2'>
+        <div className='recent-item-container parent_div_1'>
+          <div className='recent-item-content child_div_2'>
             <h1 className='start-title'>Recently added products</h1>
             <DataTable
               data={this.state.products}
