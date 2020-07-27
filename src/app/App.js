@@ -92,7 +92,8 @@ class App extends Component {
               component={ProductBrowser}
             />
             <PrivateRoute
-              path='/activityBrowser' authenticated={this.state.authenticated}
+              path='/activityBrowser'
+              authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={ActivityBrowser}
             />
