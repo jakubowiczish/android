@@ -15,10 +15,8 @@ class AchievementsList extends Component {
     getUserAchievements().then(
       response => {
         this.setState({
-          achievements: response,
+          achievements: response.achievementsResponseList,
         });
-        console.log('ASD');
-        console.log(response);
       }
     )
   }
