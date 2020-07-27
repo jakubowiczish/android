@@ -116,3 +116,10 @@ export function getRecentActivities (pageIndex, perPage) {
     method: 'GET'
   })
 }
+
+export function getUserAchievements () {
+  return request({
+    url: API_BASE_URL + '/achievements',
+    method: 'GET'
+  })
+}
