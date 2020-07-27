@@ -19,8 +19,8 @@ class StartForm extends Component {
       birthDate: new Date('01/01/1990'),
       gender: 'MALE',
       goal: 'LOSE',
-      weight: 180,
-      height: 80,
+      weight: 80,
+      height: 180,
       activityLevel: 'BMR',
       slider: 50,
     }
@@ -120,7 +120,6 @@ class StartForm extends Component {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
           values.birthDate = this.getFormattedDate(this.state.birthDate)
           values.fatPreferencesPercentage = this.state.slider
           this.handleSubmit(values, setSubmitting)
