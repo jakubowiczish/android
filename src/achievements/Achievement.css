@@ -1,4 +1,19 @@
 .achievement-div{
     text-decoration-color: #0b2e13;
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
 
+}
+.achievement-props{
+    text-align: center;
+    margin-left: 10%;
+}
+
+.achievement-details{
+    padding-top: 10px;
+    margin-left: -5%;
+    width: 100%;
+    font-size: 20px;
 }

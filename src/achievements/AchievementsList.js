@@ -26,7 +26,6 @@ class AchievementsList extends Component {
 
     return (
       <div>
-        <div>ASADSdasasdasd</div>
         <div>
           <List>
             {this.state.achievements.map(achievement =>
