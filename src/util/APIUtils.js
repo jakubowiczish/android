@@ -80,13 +80,6 @@ export function searchActivities (searchTerm, pageIndex, perPage) {
   })
 }
 
-export function getUserAchievements () {
-  return request({
-    url: API_BASE_URL + '/achievements',
-    method: 'GET'
-  })
-}
-
 export function getRecentProducts (pageIndex, perPage) {
   return request({
     url: API_BASE_URL + '/product-browser/recent-products?pageIndex=' + pageIndex + '&perPage=' + perPage,
