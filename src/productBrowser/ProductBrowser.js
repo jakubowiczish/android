@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ProductBrowser.css'
+import './Browser.css'
 import SearchComponent from './SearchComponent'
 import RecentProductsComponent from './RecentProductsComponent'
 

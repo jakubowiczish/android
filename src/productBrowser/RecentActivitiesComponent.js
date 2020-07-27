@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
 import './Browser.css'
-import { getRecentProducts } from '../util/APIUtils'
+import { getRecentActivities} from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 
-class RecentProductsComponent extends Component {
+class RecentActivitiesComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      products: [
+      activities: [
       ],
-      selectedProducts: [],
+      selectedActivities: [],
       loading: false,
       totalRows: 0,
       perPage: 10
     }
-    this.getColumnsForRecentProductsComponent = this.getColumnsForRecentProductsComponent.bind(this)
+    this.getColumnsForRecentActivitiesComponent = this.getColumnsForRecentActivitiesComponent.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
     this.handlePerRowsChange = this.handlePerRowsChange.bind(this)
-    this.loadRecentProducts()
+    this.loadRecentActivities()
   }
 
-  loadRecentProducts () {
-    getRecentProducts(1, this.state.perPage).then(
+  loadRecentActivities () {
+    getRecentActivities(1, this.state.perPage).then(
       response => {
         this.setState({
-          products: response.products,
-          totalRows: response.totalNumberOfProducts
+          activities: response.activities,
+          totalRows: response.maximumPageNumber
         })
       }
     )
@@ -37,12 +37,12 @@ class RecentProductsComponent extends Component {
 
     this.setState({ loading: true })
 
-    getRecentProducts(page, perPage).then(
+    getRecentActivities(page, perPage).then(
       response => {
         this.setState({
-          products: response.products,
+          activities: response.activities,
           loading: false,
-          totalRows: response.totalNumberOfProducts
+          totalRows: response.maximumPageNumber
         })
       }
     )
@@ -51,19 +51,19 @@ class RecentProductsComponent extends Component {
   async handlePerRowsChange (perPage, page) {
     this.setState({ loading: true })
 
-    getRecentProducts(page, perPage).then(
+    getRecentActivities(page, perPage).then(
       response => {
         this.setState({
-          products: response.products,
+          activities: response.activities,
           loading: false,
           perPage: perPage,
-          totalRows: response.totalNumberOfProducts
+          totalRows: response.maximumPageNumber
         })
       }
     )
   }
 
-  getColumnsForRecentProductsComponent () {
+  getColumnsForRecentActivitiesComponent () {
     return [
       {
         name: 'Name',
@@ -74,12 +74,6 @@ class RecentProductsComponent extends Component {
         center: true
       },
       {
-        name: 'Default portion',
-        selector: row => row.defaultValue + ' ' + row.unit,
-        sortable: true,
-        sortFunction: (rowA, rowB) => rowA.defaultValue - rowB.defaultValue
-      },
-      {
         name: 'Calories',
         selector: row => row.calories + ' kcal',
         sortable: true,
@@ -88,12 +82,12 @@ class RecentProductsComponent extends Component {
   }
 
   handleSelectChange (state) {
-    this.setState({ selectedProducts: state.selectedRows })
-    this.props.onSelectedRecentProductsChangeHandler(state.selectedRows)
+    this.setState({ selectedActivities: state.selectedRows })
+    this.props.onSelectedRecentActivitiesChangeHandler(state.selectedRows)
   }
 
   isRowUnselected (row) {
-    return !this.state.selectedProducts.some(e => e.id === row.id)
+    return !this.state.selectedActivities.some(e => e.id === row.id)
   }
 
   render () {
@@ -101,10 +95,10 @@ class RecentProductsComponent extends Component {
       <div className='container'>
         <div className='recent-item-container parent_div_1'>
           <div className='recent-item-content child_div_2'>
-            <h1 className='start-title'>Recently added products</h1>
+            <h1 className='start-title'>Recently added activities</h1>
             <DataTable
-              data={this.state.products}
-              columns={this.getColumnsForRecentProductsComponent()}
+              data={this.state.activities}
+              columns={this.getColumnsForRecentActivitiesComponent()}
               onSelectedRowsChange={this.handleSelectChange}
               selectableRows
               progressPending={this.state.loading}
@@ -114,7 +108,7 @@ class RecentProductsComponent extends Component {
               paginationRowsPerPageOptions={[10]}
               onChangeRowsPerPage={this.handlePerRowsChange}
               onChangePage={this.handlePageChange}
-              selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+              selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
               selectableRowsNoSelectAll
               selectableRowsHighlight
             />
@@ -125,4 +119,4 @@ class RecentProductsComponent extends Component {
   }
 }
 
-export default RecentProductsComponent
+export default RecentActivitiesComponent

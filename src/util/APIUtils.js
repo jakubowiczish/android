@@ -73,6 +73,13 @@ export function searchProducts (searchTerm, pageIndex, perPage) {
   })
 }
 
+export function searchActivities (searchTerm, pageIndex, perPage) {
+  return request({
+    url: API_BASE_URL + '/activity-browser?searchTerm=' + searchTerm + '&pageIndex=' + pageIndex + '&perPage=' + perPage,
+    method: 'GET'
+  })
+}
+
 export function getRecentProducts (pageIndex, perPage) {
   return request({
     url: API_BASE_URL + '/product-browser/recent-products?pageIndex=' + pageIndex + '&perPage=' + perPage,
@@ -100,5 +107,12 @@ export function deleteRecentProducts (deleteRecentProductsRequest) {
     url: API_BASE_URL + '/diary/delete',
     method: 'DELETE',
     body: JSON.stringify(deleteRecentProductsRequest)
+  })
+}
+
+export function getRecentActivities (pageIndex, perPage) {
+  return request({
+    url: API_BASE_URL + '/activity-browser/recent-activities?pageIndex=' + pageIndex + '&perPage=' + perPage,
+    method: 'GET'
   })
 }

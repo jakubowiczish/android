@@ -3,17 +3,17 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import './Browser.css'
-import { searchProducts } from '../util/APIUtils'
+import { searchActivities } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 
-class SearchComponent extends Component {
+class SearchActivityComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
       searchTerm: '',
-      products: [
+      activities: [
       ],
-      selectedProducts: [],
+      selectedActivities: [],
       loading: false,
       totalRows: 0,
       perPage: 10
@@ -33,12 +33,12 @@ class SearchComponent extends Component {
   handleSearchButtonClick () {
     const searchTerm = this.state.searchTerm
     const perPage = this.state.perPage
-    searchProducts(searchTerm, 1, perPage).then(
+    searchActivities(searchTerm, 1, perPage).then(
       response => {
         this.setState({
           searchTerm: searchTerm,
-          products: response.products,
-          totalRows: response.totalNumberOfProducts
+          activities: response.activities,
+          totalRows: response.maximumPageNumber
         })
       }
     )
@@ -50,12 +50,12 @@ class SearchComponent extends Component {
 
     this.setState({ loading: true })
 
-    searchProducts(searchTerm, page, perPage).then(
+    searchActivities(searchTerm, page, perPage).then(
       response => {
         this.setState({
-          products: response.products,
+          activities: response.activities,
           loading: false,
-          totalRows: response.totalNumberOfProducts
+          totalRows: response.maximumPageNumber
         })
       }
     )
@@ -65,13 +65,13 @@ class SearchComponent extends Component {
     this.setState({ loading: true })
     const searchTerm = this.state.searchTerm
 
-    searchProducts(searchTerm, page, perPage).then(
+    searchActivities(searchTerm, page, perPage).then(
       response => {
         this.setState({
-          products: response.products,
+          activities: response.activities,
           loading: false,
           perPage: perPage,
-          totalRows: response.totalNumberOfProducts
+          totalRows: response.maximumPageNumber
         })
       }
     )
@@ -88,26 +88,20 @@ class SearchComponent extends Component {
         center: true
       },
       {
-        name: 'Default portion',
-        selector: row => row.defaultValue + ' ' + row.unit,
+        name: 'Burned Calories',
+        selector: row => row.burnedCalories + ' kcal per min',
         sortable: true,
-        sortFunction: (rowA, rowB) => rowA.defaultValue - rowB.defaultValue
-      },
-      {
-        name: 'Calories',
-        selector: row => row.calories + ' kcal',
-        sortable: true,
-        sortFunction: (rowA, rowB) => rowA.calories - rowB.calories
+        sortFunction: (rowA, rowB) => rowA.burnedCalories - rowB.burnedCalories
       }]
   }
 
   handleSelectChange (state) {
-    this.setState({ selectedProducts: state.selectedRows })
-    this.props.onSelectedProductsChangeHandler(state.selectedRows)
+    this.setState({ selectedActivities: state.selectedRows })
+      this.props.onSelectedActivitiesChangeHandler(state.selectedRows)
   }
 
   isRowUnselected (row) {
-    return !this.state.selectedProducts.some(e => e.id === row.id)
+    return !this.state.selectedActivities.some(e => e.id === row.id)
   }
 
   render () {
@@ -116,13 +110,13 @@ class SearchComponent extends Component {
         <div className='browser-container parent_div_1'>
           <div className='browser-content child_div_2'>
             <div className='search-container'>
-              <h1 className='start-title'>Search for products</h1>
+              <h1 className='start-title'>Search for activities</h1>
               <InputGroup className='search-term'>
                 <FormControl
                   id='search-term'
                   onChange={this.handleSearchTermChange}
-                  placeholder='Product name'
-                  aria-label='Product name'
+                  placeholder='Activity name'
+                  aria-label='Activity name'
                 />
                 <InputGroup.Append>
                   <Button
@@ -135,7 +129,7 @@ class SearchComponent extends Component {
                 </InputGroup.Append>
               </InputGroup>
               <DataTable
-                data={this.state.products}
+                data={this.state.activities}
                 columns={this.getColumnsForSearchComponent()}
                 onSelectedRowsChange={this.handleSelectChange}
                 selectableRows
@@ -146,7 +140,7 @@ class SearchComponent extends Component {
                 paginationRowsPerPageOptions={[10]}
                 onChangeRowsPerPage={this.handlePerRowsChange}
                 onChangePage={this.handlePageChange}
-                selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+                selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
                 selectableRowsNoSelectAll
                 selectableRowsHighlight
               />
@@ -158,4 +152,4 @@ class SearchComponent extends Component {
   }
 }
 
-export default SearchComponent
+export default SearchActivityComponent
