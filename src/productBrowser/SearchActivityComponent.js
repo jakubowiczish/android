@@ -88,8 +88,8 @@ class SearchActivityComponent extends Component {
         center: true
       },
       {
-        name: 'Default portion',
-        selector: row => row.burnedCalories + ' per min',
+        name: 'Burned Calories',
+        selector: row => row.burnedCalories + ' kcal per min',
         sortable: true,
         sortFunction: (rowA, rowB) => rowA.burnedCalories - rowB.burnedCalories
       }]
@@ -97,7 +97,7 @@ class SearchActivityComponent extends Component {
 
   handleSelectChange (state) {
     this.setState({ selectedActivities: state.selectedRows })
-    this.props.onselectedActivitiesChangeHandler(state.selectedRows)
+      this.props.onSelectedActivitiesChangeHandler(state.selectedRows)
   }
 
   isRowUnselected (row) {
