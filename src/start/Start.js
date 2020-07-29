@@ -15,10 +15,12 @@ class Start extends Component {
   }
 
   handleSelectedActivity = selection => {
+    if (selection === this.state.selected.active) { return }
     this.setState({ selected: { active: selection } })
   }
 
   handleSelectedGoal = selection => {
+    if (selection === this.state.selected.goal) { return }
     this.setState({ selected: { goal: selection } })
   }
 
