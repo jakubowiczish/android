@@ -10,18 +10,21 @@ class Start extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      selected: { active: 'BMR', goal: 'LOSE' },
+      active: 'BMR',
+      goal: 'LOSE',
+      activeChanged: false,
+      goalChanged: false
     }
   }
 
   handleSelectedActivity = selection => {
-    if (selection === this.state.selected.active) { return }
-    this.setState({ selected: { active: selection } })
+    if (selection === this.state.active) {return}
+    this.setState({ activeChanged: !this.state.activeChanged, active: selection })
   }
 
   handleSelectedGoal = selection => {
-    if (selection === this.state.selected.goal) { return }
-    this.setState({ selected: { goal: selection } })
+    if (selection === this.state.goal) { return }
+    this.setState({ goalChanged: !this.state.goalChanged, goal: selection  })
   }
 
   render () {
@@ -43,7 +46,10 @@ class Start extends Component {
                        currentUser={this.props.currentUser}/>
           </div>
         </div>
-        <ActivityBox className={'parent_div_1'} selected={this.state.selected}/>
+        <ActivityBox className={'parent_div_1'}
+                     active={this.state.activeChanged ? this.state.active : undefined}
+                     goal={this.state.goal ? this.state.goal : undefined}
+        />
       </div>
     )
   }

@@ -72,34 +72,21 @@ function getImageAndDescriptionForGoal (goal) {
 class ActivityBox extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-
-    }
   }
 
   parseHeader = header => {
     return header.charAt(0).toUpperCase() + header.slice(1).toLowerCase().replace('_', ' ')
   }
+
   parseActivityLevel = level => {
-    if (level === 'BMR') {
-      return level
-    }
+    if (level === 'BMR') {return level}
     return this.parseHeader(level)
   }
 
   render () {
-    // const { selected } = this.props
-    // let active = 'BMR', goal = 'LOSE'
-    //
-    // if (selected.active !== undefined) {
-    //   active = selected.active
-    // }
-    // else if (selected.goal !== undefined) {
-    //   goal = selected.goal
-    // }
+    let active = this.props.active !== undefined ? this.props.active : 'BMR'
+    let goal = this.props.goal !== undefined ? this.props.goal : 'LOSE'
 
-    let active = this.props.selected.active !== undefined ? this.props.selected.active : 'BMR'
-    let goal = this.props.selected.goal !== undefined ? this.props.selected.goal : 'LOSE'
     let header = 'Activity level: ' + this.parseActivityLevel(active)
     let headerGoal = 'Goal: ' + this.parseHeader(goal)
 
