@@ -18,13 +18,19 @@ class AddDiaryEntryComponent extends React.Component {
   }
 
   handleMealTimeChange = mealTime => {
-    console.log(mealTime)
     this.setState({ mealTime: mealTime })
   }
 
   handleMealTypeChange = mealType => {
-    console.log(mealType)
     this.setState({ mealType: mealType })
+  }
+
+  handleAmountChange = amount => {
+    this.setState({ amount: amount })
+  }
+
+  handlePortionChange = portion => {
+    this.setState({ portion: portion })
   }
 
   handlePortionUnitChange = (event, portionUnit) => {
@@ -137,6 +143,10 @@ class AddDiaryEntryComponent extends React.Component {
                       <label htmlFor="portion">Portion size</label>
                       <Field type="text"
                              name="portion"
+                             value={this.state.portion}
+                             onChange={e => {
+                               this.handlePortionChange(e.target.value)
+                             }}
                              placeholder="Enter the portion size"
                              className={`form-control ${touched.portion && errors.portion ? 'is-invalid' : ''}`}
                       />
@@ -150,6 +160,10 @@ class AddDiaryEntryComponent extends React.Component {
                       <label htmlFor="amount">Amount of portions</label>
                       <Field type="text"
                              name="amount"
+                             value={this.state.amount}
+                             onChange={e => {
+                               this.handleAmountChange(e.target.value)
+                             }}
                              placeholder="Enter the amount of portions"
                              className={`form-control ${touched.amount && errors.amount ? 'is-invalid' : ''}`}
                       />
