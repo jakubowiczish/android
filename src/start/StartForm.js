@@ -10,7 +10,7 @@ import RubberSlider from '@shwilliam/react-rubber-slider'
 import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
 
 const minDate = new Date('01/01/1950')
-const maxDate = new Date(moment(new Date()).subtract(16, 'years').format('DD/MM/YYYY'))
+const maxDate = moment().subtract(16, 'years').toDate()
 
 class StartForm extends Component {
   constructor (props) {
