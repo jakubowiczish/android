@@ -91,7 +91,7 @@ const columns = memoize(() => [
   },
   {
     name: 'Portion',
-    selector: 'portion',
+    selector: row => row.portion + ' ' + row.mealUnit,
     sortable: true,
     maxWidth: '50px',
     center: true,
@@ -99,13 +99,6 @@ const columns = memoize(() => [
   {
     name: 'Amount of portions',
     selector: 'amount',
-    sortable: true,
-    maxWidth: '50px',
-    center: true,
-  },
-  {
-    name: 'Meal unit',
-    selector: 'mealUnit',
     sortable: true,
     maxWidth: '50px',
     center: true,
