@@ -152,6 +152,11 @@ class Diary extends React.Component {
     this.setState({ open: true })
   }
 
+  handleCloseModal = () => {
+    this.handleGetRecentProductsByDate(this.state.date)
+    this.setState({ open: false })
+  }
+
   handleGetRecentProductsByDate = (date) => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
@@ -170,8 +175,7 @@ class Diary extends React.Component {
 
     if (window.confirm(`Are you sure you want to delete:\r ${rowsNames}?`)) {
       deleteRecentProducts(deleteRecentProductsRequest)
-        .then(res => {
-          console.log(res)
+        .then(() => {
           Alert.success('Product has been successfully deleted from diary')
         })
         .then(() => {
@@ -213,7 +217,7 @@ class Diary extends React.Component {
             />
           </Card>
         </Grid>
-        <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
+        <AddDiaryEntryModal show={this.state.open} onHide={this.handleCloseModal}/>
       </div>
     )
   }
