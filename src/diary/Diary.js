@@ -174,10 +174,12 @@ class Diary extends React.Component {
           console.log(res)
           Alert.success('Product has been successfully deleted from diary')
         })
+        .then(() => {
+          this.handleGetRecentProductsByDate(this.state.date)
+        })
     }
 
     this.setState({ toggleCleared: !this.state.toggleCleared })
-    this.handleGetRecentProductsByDate(this.state.date)
   }
 
   render () {
