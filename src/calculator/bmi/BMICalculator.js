@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { calculateBMI } from '../../util/APIUtils'
 import Alert from 'react-s-alert'
 import bmiLevelsImg from '../../img/bmi/bmi_levels.jpg'
 import { heightRegex, weightRegex } from '../../constants/ValidationConstants'
@@ -51,16 +50,12 @@ class BMICalculatorForm extends Component {
     super(props)
   }
 
-  handleSubmit (values, setSubmitting) {
-    calculateBMI(values)
-      .then(res => {
-        Alert.success('Successful calculation of BMI')
-        this.props.handleShowingBmiLevel(res.userBMI)
-      }).catch(() => {
-      Alert.error('Something went wrong with calculating your BMI')
-    }).finally(() => {
-      setSubmitting(false)
-    })
+  calculateBMI (values) {
+    const height = values.height / 100
+    const result = (values.weight / (height * height)).toFixed(2)
+
+    Alert.success('Successful calculation of BMI')
+    this.props.handleShowingBmiLevel(result)
   }
 
   render () {
@@ -84,11 +79,11 @@ class BMICalculatorForm extends Component {
           }
           return errors
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          this.handleSubmit(values, setSubmitting)
+        onSubmit={(values) => {
+          this.calculateBMI(values)
         }}
       >
-        {({ touched, errors, isSubmitting }) => (
+        {({ touched, errors }) => (
           <Form>
             <div className='form-group field'>
               <label htmlFor='height'>Height in cm</label>
@@ -125,9 +120,8 @@ class BMICalculatorForm extends Component {
             <button
               type='submit'
               className='btn btn-primary btn-block'
-              disabled={isSubmitting}
             >
-              {isSubmitting ? 'Please wait...' : 'Submit'}
+              {'Submit'}
             </button>
           </Form>
         )}
