@@ -39,8 +39,7 @@ class AddDiaryEntryComponent extends React.Component {
 
   handleAddRecentProduct = (request, setSubmitting) => {
     addRecentProduct(request)
-      .then(res => {
-        console.log(res)
+      .then(() => {
         Alert.success('Product has been successfully added to diary')
       })
       .catch(error => {

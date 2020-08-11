@@ -91,7 +91,7 @@ const columns = memoize(() => [
   },
   {
     name: 'Portion',
-    selector: 'portion',
+    selector: row => row.portion + ' ' + row.mealUnit,
     sortable: true,
     maxWidth: '50px',
     center: true,
@@ -99,13 +99,6 @@ const columns = memoize(() => [
   {
     name: 'Amount of portions',
     selector: 'amount',
-    sortable: true,
-    maxWidth: '50px',
-    center: true,
-  },
-  {
-    name: 'Meal unit',
-    selector: 'mealUnit',
     sortable: true,
     maxWidth: '50px',
     center: true,
@@ -159,6 +152,11 @@ class Diary extends React.Component {
     this.setState({ open: true })
   }
 
+  handleCloseModal = () => {
+    this.handleGetRecentProductsByDate(this.state.date)
+    this.setState({ open: false })
+  }
+
   handleGetRecentProductsByDate = (date) => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
@@ -177,14 +175,15 @@ class Diary extends React.Component {
 
     if (window.confirm(`Are you sure you want to delete:\r ${rowsNames}?`)) {
       deleteRecentProducts(deleteRecentProductsRequest)
-        .then(res => {
-          console.log(res)
+        .then(() => {
           Alert.success('Product has been successfully deleted from diary')
+        })
+        .then(() => {
+          this.handleGetRecentProductsByDate(this.state.date)
         })
     }
 
     this.setState({ toggleCleared: !this.state.toggleCleared })
-    this.handleGetRecentProductsByDate(this.state.date)
   }
 
   render () {
@@ -218,7 +217,7 @@ class Diary extends React.Component {
             />
           </Card>
         </Grid>
-        <AddDiaryEntryModal show={this.state.open} onHide={() => this.setState({ open: false })}/>
+        <AddDiaryEntryModal show={this.state.open} onHide={this.handleCloseModal}/>
       </div>
     )
   }
