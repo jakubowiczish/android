@@ -6,34 +6,35 @@ import { getUserAchievements } from '../util/APIUtils'
 class AchievementsList extends Component {
   constructor (props) {
     super(props)
-    this.getAchievements();
+    this.getAchievements()
     this.state = {
-      achievements: [],
+      achievements: []
     }
   }
+
   getAchievements () {
     getUserAchievements().then(
       response => {
         this.setState({
-          achievements: response.achievementsResponseList,
-        });
+          achievements: response.achievementsResponseList
+        })
       }
     )
   }
-  render () {
 
+  render () {
     return (
       <div>
         <div>
           <List>
             {this.state.achievements.map(achievement =>
               <AchievementItem
-                key = {achievement.name}
+                key={achievement.name}
                 name={achievement.name}
                 description={achievement.description}
                 points={achievement.points}
                 completeCondition={achievement.completeCondition}
-                photo={achievement.photo}
+                imageUrl={achievement.imageUrl}
                 progress={achievement.progress}
                 completedDate={achievement.completedDate}
               />)}
