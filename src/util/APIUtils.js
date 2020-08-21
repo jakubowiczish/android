@@ -115,3 +115,10 @@ export function getUserAchievements () {
     method: 'GET'
   })
 }
+
+export function getUserProfile () {
+  return request({
+    url: API_BASE_URL + '/user/profile',
+    method: 'GET'
+  })
+}
