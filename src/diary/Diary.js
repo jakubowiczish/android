@@ -11,6 +11,7 @@ import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
+import FoodStatCards from './FoodStatCards'
 
 const actions = memoize(addHandler => (
   <IconButton
@@ -216,6 +217,7 @@ class Diary extends React.Component {
               conditionalRowStyles={conditionalRowStyles}
             />
           </Card>
+          <FoodStatCards/>
         </Grid>
         <AddDiaryEntryModal show={this.state.open} onHide={this.handleCloseModal}/>
       </div>
