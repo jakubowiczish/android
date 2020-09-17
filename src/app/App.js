@@ -116,6 +116,7 @@ class App extends Component {
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={Start}
+              {...this.props}
             />
             <PrivateRoute
               path='/bmiCalculator'

@@ -43,7 +43,9 @@ class Start extends Component {
             <h1 className="start-title">Fill up starter form!</h1>
             <StartForm handleSelectedActivity={this.handleSelectedActivity}
                        handleSelectedGoal={this.handleSelectedGoal}
-                       currentUser={this.props.currentUser}/>
+                       currentUser={this.props.currentUser}
+                       {...this.props}
+            />
           </div>
         </div>
         <ActivityBox className={'parent_div_1'}

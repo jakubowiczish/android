@@ -12,13 +12,10 @@ class AppHeader extends Component {
           </div>
           <div className='app-options'>
             <nav className='app-nav'>
-              {this.props.authenticated ? (
+              {this.props.authenticated ? ( !window.location.href.includes('startForm') ? (
                 <ul>
                   <li>
                     <NavLink to='/profile'>Profile</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/startForm'>Start Form</NavLink>
                   </li>
                   <li>
                     <NavLink to='/productBrowser'>Product Browser</NavLink>
@@ -39,6 +36,10 @@ class AppHeader extends Component {
                     <a onClick={this.props.onLogout}>Logout</a>
                   </li>
                 </ul>
+                ) : (
+                  <ul>
+                  </ul>
+                  )
               ) : (
                 <ul>
                   <li>
