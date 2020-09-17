@@ -12,8 +12,9 @@ import { Add, Delete } from '@material-ui/icons'
 import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
-import Card from '@material-ui/core/Card'
-import Grid from '@material-ui/core/Grid'
+// import Card from '@material-ui/core/Card'
+// import Grid from '@material-ui/core/Grid'
+import { Card } from 'antd'
 import FoodStatCards from './FoodStatCards'
 
 const actions = memoize(addHandler => (
@@ -186,9 +187,9 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        <Grid item xl={'auto'}>
+        {/* <Grid item xl={'auto'}> */}
           <Card className='card-container'>
-            <DatePicker
+            <DatePicker className="datepicker-container"
               dateFormat='yyyy-MM-dd'
               selected={this.state.date}
               onChange={date => {
@@ -213,11 +214,11 @@ class Diary extends React.Component {
               conditionalRowStyles={conditionalRowStyles}
             />
           </Card>
-
-          <Card className='card-container'>
+          <Card className='summary-container'>
             <FoodStatCards summaryList={this.state.tableData.summaryList} />
           </Card>
-        </Grid>
+        {/* </Grid> */}
+
         <AddDiaryEntryModal
           show={this.state.open}
           onHide={this.handleCloseModal}
