@@ -76,7 +76,7 @@ class StartForm extends Component {
         this.props.history.push('/')
       })
       .catch(error => {
-        Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+        Alert.error('Something went wrong with saving your user plan')
       })
       .finally(() => {
         setSubmitting(false)
