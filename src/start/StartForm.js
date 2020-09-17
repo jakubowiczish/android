@@ -8,11 +8,15 @@ import DatePicker from 'react-datepicker'
 import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
 import RubberSlider from '@shwilliam/react-rubber-slider'
 import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
+import { Redirect } from 'react-router-dom'
 
 const minDate = new Date('01/01/1950')
 const maxDate = moment().subtract(16, 'years').toDate()
 
 class StartForm extends Component {
+
+
+
   constructor (props) {
     super(props)
     this.state = {
@@ -30,6 +34,7 @@ class StartForm extends Component {
 
   PROM = 1000
   MIN = 0.2
+  submit = false;
 
   handleBirthDateChange = birthDate => {
     this.setState({ birthDate: birthDate })
@@ -68,6 +73,7 @@ class StartForm extends Component {
     createPlan(values)
       .then(() => {
         Alert.success('You\'re successfully created your first diet plan')
+        this.props.history.push('/')
       })
       .catch(error => {
         Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
@@ -93,6 +99,14 @@ class StartForm extends Component {
   render () {
     const { birthDate, gender, height, weight, goal, activityLevel, slider } = this.state
 
+    if(this.submit){
+      return <Redirect
+        to={{
+          pathname: '/',
+          state: { from: this.props.location }
+        }}
+      />
+    }
     return (
       <Formik
         enableReinitialize={true}
