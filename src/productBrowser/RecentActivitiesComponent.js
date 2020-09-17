@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Browser.css'
-import { getRecentActivities} from '../util/APIUtils'
+import { getRecentActivities } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 
 class RecentActivitiesComponent extends Component {

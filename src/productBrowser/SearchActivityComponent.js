@@ -97,7 +97,7 @@ class SearchActivityComponent extends Component {
 
   handleSelectChange (state) {
     this.setState({ selectedActivities: state.selectedRows })
-      this.props.onSelectedActivitiesChangeHandler(state.selectedRows)
+    this.props.onSelectedActivitiesChangeHandler(state.selectedRows)
   }
 
   isRowUnselected (row) {

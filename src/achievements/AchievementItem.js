@@ -10,7 +10,7 @@ class AchievementItem extends Component {
       <div className='achievement-div '>
         <div className='container'>
           <div className='row'>
-            <img height='250px' width='250px' id='ItemPreview' src={this.props.imageUrl} />
+            <img height='250px' width='250px' id='ItemPreview' src={'data:image/png;base64,' + this.props.photo} />
             <div className='achievement-props'>
               <div className='row'>
                 <h1>
