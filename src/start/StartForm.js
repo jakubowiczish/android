@@ -34,7 +34,7 @@ class StartForm extends Component {
 
   PROM = 1000
   MIN = 0.2
-  submit = false;
+
 
   handleBirthDateChange = birthDate => {
     this.setState({ birthDate: birthDate })
@@ -99,14 +99,6 @@ class StartForm extends Component {
   render () {
     const { birthDate, gender, height, weight, goal, activityLevel, slider } = this.state
 
-    if(this.submit){
-      return <Redirect
-        to={{
-          pathname: '/',
-          state: { from: this.props.location }
-        }}
-      />
-    }
     return (
       <Formik
         enableReinitialize={true}
