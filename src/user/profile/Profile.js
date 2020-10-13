@@ -3,13 +3,16 @@ import './Profile.css'
 import { getUserProfile } from '../../util/APIUtils'
 import { Container, Image } from 'react-bootstrap'
 import configurationIcon from '../../img/common/configuration_icon.png'
+import { Link } from 'react-router-dom'
+import UserData from './UserData'
 
 class Profile extends Component {
   constructor (props) {
     super(props)
     this.state = {
       user: this.props.currentUser,
-      weight: ''
+      weight: '',
+      editMode: false
     }
     this.loadUserProfile()
   }
@@ -53,26 +56,50 @@ class Profile extends Component {
               <p className='profile-email'>{this.state.user.email}</p>
             </div>
           </div>
-          <Container>
+          <Container id='userProfileDataContainer'>
+            <hr className='splitter-line' />
+            <UserData user={this.state.user}/>
+            {/*<div className='user-data-header'>*/}
+            {/*  <b>User data </b>*/}
+            {/*  {this.state.editMode*/}
+            {/*    ? <a href='#'>*/}
+            {/*      <Image*/}
+            {/*        onClick={() => this.setState({ editMode: false })}*/}
+            {/*        src={closeIcon} width={24} height={24}*/}
+            {/*        title='Edit your data'*/}
+            {/*      />*/}
+            {/*    </a>*/}
+            {/*    : <a href='#'>*/}
+            {/*      <Image*/}
+            {/*        onClick={() => this.setState({ editMode: true })}*/}
+            {/*        src={configurationIcon} width={24} height={24}*/}
+            {/*        title='Edit your data'*/}
+            {/*      />*/}
+            {/*    </a>}*/}
+            {/*</div>*/}
+            {/*{this.state.editMode*/}
+            {/*  ? <div className='user-data'>*/}
+            {/*    <b>Birth date: </b>{this.state.user.birthDate}*/}
+            {/*    </div>*/}
+            {/*  : <div className='edit-field'>*/}
+            {/*    <user-data-input-label><b>Simple label</b></user-data-input-label>*/}
+            {/*    <input type='text' />*/}
+            {/*  </div>}*/}
+            {/*<div className='user-data'>*/}
+            {/*  <b>Height: </b>{this.state.user.height + 'cm'}*/}
+            {/*</div>*/}
+            {/*<div className='user-data'>*/}
+            {/*  <b>Current weight: </b>{this.state.weight + 'kg'}*/}
+            {/*</div>*/}
+            {/*<div className='user-data'>*/}
+            {/*  <b>Last login date: </b>{dateTimeFormat.format(new Date(this.state.user.lastLoginDate))}*/}
+            {/*</div>*/}
             <hr className='splitter-line' />
             <div className='user-data-header'>
-              <b>User data</b>
-            </div>
-            <div className='user-data'>
-              <b>Birth date: </b>{this.state.user.birthDate}
-            </div>
-            <div className='user-data'>
-              <b>Height: </b>{this.state.user.height + 'cm'}
-            </div>
-            <div className='user-data'>
-              <b>Current weight: </b>{this.state.weight + 'kg'}
-            </div>
-            <div className='user-data'>
-              <b>Last login date: </b>{dateTimeFormat.format(new Date(this.state.user.lastLoginDate))}
-            </div>
-            <hr className='splitter-line' />
-            <div className='user-data-header'>
-              <b>User plan</b>
+              <b>User plan </b>
+              <Link to='startForm'>
+                <Image src={configurationIcon} width={24} height={24} title='Edit your plan' />
+              </Link>
             </div>
             <div className='user-data'>
               <b>Weight goal: </b>{this.state.user.userPlan.goal}

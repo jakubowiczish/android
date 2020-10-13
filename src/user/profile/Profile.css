@@ -1,6 +1,5 @@
 .profile-container {
     padding-top: 30px;
-    text-align: center;
 }
 
 .profile-info {
@@ -21,6 +20,10 @@
     font-weight: 400;
 }
 
+#userProfileDataContainer {
+    text-align: left;
+}
+
 .user-data-header {
     font-size: 20px;
     text-align: left;
@@ -31,6 +34,11 @@
     text-align: left;
     margin: 10px 10px 10px 35px;
 }
+
+.edit-field user-data-input-label {
+    margin: 10px 10px 0px 35px;
+    display: inline-block;
+}​
 
 .profile-content {
     background: #fff;
