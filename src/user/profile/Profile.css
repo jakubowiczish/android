@@ -21,9 +21,15 @@
     font-weight: 400;
 }
 
-.user-data {
+.user-data-header {
+    font-size: 20px;
     text-align: left;
     margin: 10px;
+}
+
+.user-data {
+    text-align: left;
+    margin: 10px 10px 10px 35px;
 }
 
 .profile-content {

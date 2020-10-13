@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './Profile.css'
 import { getUserProfile } from '../../util/APIUtils'
-import { Container } from 'react-bootstrap'
+import { Container, Image } from 'react-bootstrap'
+import configurationIcon from '../../img/common/configuration_icon.png'
 
 class Profile extends Component {
   constructor (props) {
@@ -54,6 +55,9 @@ class Profile extends Component {
           </div>
           <Container>
             <hr className='splitter-line' />
+            <div className='user-data-header'>
+              <b>User data</b>
+            </div>
             <div className='user-data'>
               <b>Birth date: </b>{this.state.user.birthDate}
             </div>
@@ -61,7 +65,32 @@ class Profile extends Component {
               <b>Height: </b>{this.state.user.height + 'cm'}
             </div>
             <div className='user-data'>
+              <b>Current weight: </b>{this.state.weight + 'kg'}
+            </div>
+            <div className='user-data'>
               <b>Last login date: </b>{dateTimeFormat.format(new Date(this.state.user.lastLoginDate))}
+            </div>
+            <hr className='splitter-line' />
+            <div className='user-data-header'>
+              <b>User plan</b>
+            </div>
+            <div className='user-data'>
+              <b>Weight goal: </b>{this.state.user.userPlan.goal}
+            </div>
+            <div className='user-data'>
+              <b>Activity level: </b>{this.state.user.userPlan.activityLevel}
+            </div>
+            <div className='user-data'>
+              <b>Calories per day: </b>{this.state.user.userPlan.calories + 'kcal'}
+            </div>
+            <div className='user-data'>
+              <b>Carbohydrates per day: </b>{this.state.user.userPlan.carbohydrates + 'g'}
+            </div>
+            <div className='user-data'>
+              <b>Proteins per day: </b>{this.state.user.userPlan.proteins + 'g'}
+            </div>
+            <div className='user-data'>
+              <b>Fat per day: </b>{this.state.user.userPlan.fat + 'g'}
             </div>
           </Container>
         </div>
