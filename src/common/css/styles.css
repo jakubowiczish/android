@@ -19,11 +19,11 @@ body, html {
 }
 
 .top_background {
-  background-image: url(src/img/background/background-final.jpg);
+  background-image: url(../../img/background/background-final.jpg);
 }
 
 .parallax.bottom_background {
-  background-image: url(src/img/background/louis-hansel-shotsoflouis-B38CaCySh74-unsplash.jpg);
+  background-image: url(../../img/background/louis-hansel-shotsoflouis-B38CaCySh74-unsplash.jpg);
 }
 
 .nav {
@@ -44,7 +44,7 @@ body, html {
 
 .nav div.logo a {
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
   font-size: 2.5rem;
 }
 
@@ -75,7 +75,7 @@ body, html {
 
 .nav div.main_list ul li a {
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
   line-height: 65px;
   font-size: 2.4rem;
 }
@@ -186,7 +186,7 @@ body, html {
 }
 
 .navTrigger i {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 2px;
   content: '';
   display: block;

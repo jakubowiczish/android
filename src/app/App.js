@@ -130,7 +130,11 @@ class App extends Component {
               currentUser={this.state.currentUser}
               component={Diary}
             />
-            <Route path='/oauth2/redirect' component={OAuth2RedirectHandler} />
+            <Route
+              path='/oauth2/redirect'
+              currentUser={this.state.currentUser}
+              component={OAuth2RedirectHandler}
+            />
             <Route component={NotFound} />
           </Switch>
         </div>
