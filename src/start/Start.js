@@ -37,6 +37,31 @@ class Start extends Component {
     }
 
     return (
+      <div>
+      <div>
+        <div id="page1" className="parallax top_background">
+
+          <section className="intro">
+
+            <div className="title__div">
+
+              <div className="intro__align">
+
+                <h1 className="intro__align__title animated__h1">Start you journey</h1>
+                <h2 className="intro__align__sub-title animated">Fill up a form</h2>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+        <div className="tab">
+
+        </div>
+        <div className="parallax bottom_background">
+        </div>
+      </div>
       <div className={'container'}>
         <div className="start-container parent_div_1">
           <div className="start-content child_div_2">
@@ -52,6 +77,7 @@ class Start extends Component {
                      active={this.state.activeChanged ? this.state.active : undefined}
                      goal={this.state.goal ? this.state.goal : undefined}
         />
+      </div>
       </div>
     )
   }

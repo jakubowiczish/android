@@ -8,7 +8,7 @@ import DatePicker from 'react-datepicker'
 import carbohydratesPercentageImag from '../img/fatPercentage/carbohydratesPercentage.jpg'
 import RubberSlider from '@shwilliam/react-rubber-slider'
 import fatPercentageImag from '../img/fatPercentage/fatPercentage.jpg'
-import { Redirect } from 'react-router-dom'
+import '../common/css/styles.css'
 
 const minDate = new Date('01/01/1950')
 const maxDate = moment().subtract(16, 'years').toDate()
