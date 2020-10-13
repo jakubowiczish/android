@@ -58,7 +58,7 @@ class Profile extends Component {
           </div>
           <Container id='userProfileDataContainer'>
             <hr className='splitter-line' />
-            <UserData user={this.state.user}/>
+            <UserData weight={this.state.weight} user={this.state.user} />
             {/*<div className='user-data-header'>*/}
             {/*  <b>User data </b>*/}
             {/*  {this.state.editMode*/}
