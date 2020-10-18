@@ -1,107 +1,577 @@
-.start-container {
-    text-align: center;
+
+h1 {
+    font-size: 3.2rem;
+    padding-top: 2rem;
 }
 
+h1 + p {
+    font-size: 1.8rem;
+    padding: 2rem 0 3rem;
+}
 
-.start-content {
-    background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    border-radius: 2px;
-    width: 500px;
-    display: inline-block;
-    margin-top: 30px;
-    vertical-align: middle;
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap {
+    margin: 2rem;
+}
+
+.container3 {
+    --rX: 0;
+    --rY: 0;
+    --bX: 50%;
+    --bY: 80%;
+    width: 30rem;
+    height: 36rem;
+    border: 1px solid var(--background-color);
+    border-radius: 1.6rem;
+    padding: 4rem;
+    display: flex;
+    align-items: flex-end;
     position: relative;
-    padding: 35px;
-    text-align: center;
-    margin-left: 70px;
 }
 
-.social-btn {
-    margin-bottom: 15px;
-    font-weight: 400;
-    font-size: 16px;
+.height {
+    --rX: 0;
+    --rY: 0;
+    --bX: 50%;
+    --bY: 80%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://libreshot.com/wp-content/uploads/2018/02/diet-concept.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn img {
-    height: 32px;
-    float: left;
-    margin-top: 10px;
+.weight {
+    --rX: 0;
+    --rY: 0;
+    --bX: 30%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://p1.pxfuel.com/preview/404/93/175/racism-pawn-scales-chess.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn.google {
-    margin-top: 7px;
+.birthDate {
+    --rX: 0;
+    --rY: 0;
+    --bX: 70%;
+    --bY: 70%;
+    filter: contrast(0.8);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://media.istockphoto.com/photos/birthday-cake-decorated-with-colorful-sprinkles-and-ten-candles-picture-id1136810581?k=6&m=1136810581&s=612x612&w=0&h=KJsbjGoy1eR4Zmh5isHg3SmFU5trNMfLJwKPhjE5wII=");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn.facebook img {
-    height: 24px;
-    margin-left: 3px;
+.gender {
+    --rX: 0;
+    --rY: 0;
+    --bX: 70%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://images.unsplash.com/photo-1545693315-85b6be26a3d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn.github img {
-    height: 24px;
-    margin-left: 3px;
+.goal {
+    --rX: 0;
+    --rY: 0;
+    --bX: 40%;
+    --bY: 70%;
+    filter: contrast(1);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://p0.pikist.com/photos/82/519/person-silhouette-sunset-rock-boulder-peak-success-dom-silence.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.signup-link {
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
+.prefer {
+    --rX: 0;
+    --rY: 0;
+    --bX: 40%;
+    --bY: 70%;
+    filter: contrast(1);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://p1.pxfuel.com/preview/734/50/355/table-cover-plaid-red.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.start-title {
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 30px;
-    color: rgba(0, 0, 0, 0.65);
-}
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.parent_div_1{
-    float: left;
-
-}
-.child_div_1 {
-    width: 600px;
-    height: 900px;
-}
-.child_div_2 {
-    height: 900px;
-}
-.container  {
-    text-align: center;
-}
-.field {
-    margin-bottom: 30px;
-}
-.dateContainer {
-    width: 430px;
+.activity {
+    --rX: 0;
+    --rY: 0;
+    --bX: 60%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://i2.pickpik.com/photos/821/986/504/golf-golf-ball-grass-green-preview.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.block {
-    display: inline-block;
-    width: 143px;
+.activity-explain {
+    --rX: 0;
+    --rY: 0;
+    --bX: 60%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://www.sixstarpro.com/wp-content/uploads/background-gym-tablet.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
-
-.pad {
-    padding-right: 20px;
+.goal-explain {
+    --rX: 0;
+    --rY: 0;
+    --bX: 0%;
+    --bY: 50%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://img.etimg.com/thumb/msid-75176755,width-640,resizemode-4,imgsize-612672/effect-of-coronavirus-on-food.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
-
-.container2 {
-    text-align: center;
-}
-
-.column {
-    float: left;
-    width: 33.33%;
-    padding: 5px;
-}
-
-.row::after {
+.container3::before,
+.container3::after {
     content: "";
-    clear: both;
-    display: table;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #fff;
+
+    position: absolute;
+    z-index: -1;
+
+    opacity: .3;
+    transition: .3s;
+}
+
+.container3::before {
+    top: 2rem;
+    right: 2rem;
+
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.container3::after {
+    bottom: 2rem;
+    left: 2rem;
+
+    border-top-width: 0;
+    border-right-width: 0;
+}
+
+.container3--active {
+    transition: none;
+}
+
+.container3--2 {
+    filter: hue-rotate(80deg) saturate(140%);
+}
+
+.container3--3 {
+    filter: hue-rotate(160deg) saturate(140%);
+}
+
+.container3 p {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 2.2rem;
+}
+
+.wrap:hover .container3::before,
+.wrap:hover .container3::after {
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+}
+
+.abs-site-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: hsla(0, 0%, 0%, .6);
+    font-size: 1.6rem;
+}
+
+.label {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    color: #ece2e2;
+}
+.label2{
+    position: fixed;
+    top: 70px;
+    left: 30px;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    color: #ece2e2;
+}
+.Fats {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+
+}
+
+.Carbs {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+}
+
+.slider {
+    position: fixed;
+    bottom: 60px;
+    left: 80px;
+}
+
+
+.flip-card {
+    height: 360px;
+    margin-bottom: 45px;
+}
+
+.fix {
+    top: -380px;
+}
+
+.flip-card-inner, .flip-card-inner2 {
+    width: 100%;
+    height: 380px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-inner.tog, .flip-card-inner2.tog {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.flip-card-inner.tog {
+}
+
+.flip-card-inner2.tog {
+}
+
+.flip-card-front, .flip-card-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+
+}
+
+.flip-card-back {
+    z-index: 0;
+    transform: rotateY(180deg);
+}
+
+
+.info-button {
+    background: url(https://img.icons8.com/color/30/000000/info--v1.png) no-repeat;
+    --bX: 50%;
+    --bY: 50%;
+    background-size: 3rem auto;
+    background-position: var(--bX) var(--bY);
+    cursor: pointer;
+    border: none;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 300px;
+    top: -20px;
+}
+
+.revert-button {
+    --bX: 50%;
+    --bY: 50%;
+    background-size: 0.2rem auto;
+    background-position: var(--bX) var(--bY);
+    cursor: pointer;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background: url(https://img.icons8.com/fluent/30/000000/circled-left-2.png) no-repeat;
+    position: absolute;
+    left: 300px;
+    top: -20px;
+}
+
+.content {
+
+}
+.foot-no{
+    height: 200px;
+
+}
+
+.footer{
+    height: 10px;
+    background-color: #000000;
+}
+
+.start-title{
+    font-size: 5rem;
+    font-weight: lighter;
+    color: #fff;
+    letter-spacing: 6px;
+    text-align: center;
+    padding-top: 80px;
+}
+.goal-header{
+
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    color:  #ece2e2;
+    letter-spacing: 6px;
+    text-align: left;
+}
+.goal-description{
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #ece2e2;
+    text-align: left;
+
+}
+.shade{
+    background-color: #000000;
+    opacity: 0.5;
+}
+.active-header{
+
+}
+.active-description{
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #ffffff;
+    text-align: left;
+}
+
+.glow-on-hover {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 28px;
+    width: 150px;
+    background: #f2f2f2;
+    border: 1px solid;
+    border-color: white #f7f7f7 whitesmoke;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+    background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.06));
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.dropdown:before, .dropdown:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 9px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 4px dashed;
+    border-color: #888888 transparent;
+    pointer-events: none;
+}
+
+.dropdown:before {
+    border-bottom-style: solid;
+    border-top: none;
+}
+
+.dropdown:after {
+    margin-top: 7px;
+    border-top-style: solid;
+    border-bottom: none;
+}
+
+.dropdown-select {
+    position: relative;
+    width: 130%;
+    margin: 0;
+    padding: 6px 8px 6px 10px;
+    height: 28px;
+    line-height: 14px;
+    font-size: 12px;
+    color: #62717a;
+    text-shadow: 0 1px white;
+    background: #f2f2f2; /* Fallback for IE 8 */
+    background: rgba(0, 0, 0, 0) !important; /* "transparent" doesn't work with Opera */
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+.dropdown-select:focus {
+    z-index: 3;
+    width: 100%;
+    color: #394349;
+    outline: 2px solid #49aff2;
+    outline: 2px solid -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.dropdown-select > option {
+    margin: 3px;
+    padding: 6px 8px;
+    text-shadow: none;
+    background: #f2f2f2;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Fix for IE 8 putting the arrows behind the select element. */
+
+.lt-ie9 .dropdown {
+    z-index: 1;
+}
+
+.lt-ie9 .dropdown-select {
+    z-index: -1;
+}
+
+.lt-ie9 .dropdown-select:focus {
+    z-index: 3;
+}
+
+/* Dirty fix for Firefox adding padding where it shouldn't. */
+
+@-moz-document url-prefix() {
+    .dropdown-select {
+        padding-left: 6px;
+    }
+}
+
+.dropdown-dark {
+    background: #444;
+    border-color: #111111 #0a0a0a black;
+    background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+    background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-dark:before {
+    border-bottom-color: #aaa;
+}
+
+.dropdown-dark:after {
+    border-top-color: #aaa;
+}
+
+.dropdown-dark .dropdown-select {
+    color: #aaa;
+    text-shadow: 0 1px black;
+    background: #444;  /* Fallback for IE 8 */
+}
+
+.dropdown-dark .dropdown-select:focus {
+    color: #ccc;
+}
+
+.dropdown-dark .dropdown-select > option {
+    background: #444;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.4);
 }
