@@ -175,7 +175,7 @@ class StartForm extends Component {
                       <label className={'label'} htmlFor="activityLevel">Activity Level</label>
                       <Field as="select"
                              name="activityLevel"
-                             className="form-control"
+                             className="select-css"
                              value={this.state.activityLevel}
                              onChange={e => {
                                this.handleActivityLevelChange(e.target.value)
@@ -214,7 +214,7 @@ class StartForm extends Component {
                         <Field as="select"
                                name="goal"
                                placeholder="Choose goal"
-                               className="form-control"
+                               className="select-css"
                                value={this.state.goal}
                                onChange={e => {
                                  this.handleGoalChange(e.target.value)
@@ -249,7 +249,7 @@ class StartForm extends Component {
                              this.handleHeightChange(e.target.value)
                            }}
                            placeholder="Enter height"
-                           className={`form-control ${
+                           className={` field-css form-control ${
                              touched.height && errors.height ? 'is-invalid' : ''
                            }`}
                     />
@@ -273,7 +273,7 @@ class StartForm extends Component {
                              this.handleWeightChange(e.target.value)
                            }}
                            placeholder="Choose weight"
-                           className={`form-control ${
+                           className={` field-css form-control ${
                              touched.weight && errors.weight ? 'is-invalid' : ''
                            }`}
                     />
@@ -290,7 +290,7 @@ class StartForm extends Component {
                   <div className="form-group field">
                     <label className={'label'} htmlFor="birthDate">Birth date</label>
                     <DatePicker name="birthDate"
-                                className="form-control dateContainer"
+                                className="form-control dateContainer field-css"
                                 selected={this.state.birthDate}
                                 onChange={this.handleBirthDateChange}
                                 minDate={minDate}
@@ -311,7 +311,7 @@ class StartForm extends Component {
                              onChange={e => {
                                this.handleGenderChange(e.target.value)
                              }}
-                             className="form-control"
+                             className="select-css"
                       >
                         <option value="MALE">Male</option>
                         <option value="FEMALE">Female</option>
