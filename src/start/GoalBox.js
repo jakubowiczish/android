@@ -3,7 +3,6 @@ import loseGoalImg from '../img/activities/lose-goal-img.jpg'
 import stayGoalImg from '../img/activities/stay-goal-img.jpg'
 import gainGoalImg from '../img/activities/gain-active-img.jpg'
 
-
 function getImageAndDescriptionForGoal (goal) {
   let imageGoal, goalDescription
 
@@ -37,8 +36,6 @@ class GoalBox extends Component {
     return header.charAt(0).toUpperCase() + header.slice(1).toLowerCase().replace('_', ' ')
   }
 
-
-
   render () {
     let goal = this.props.goal !== undefined ? this.props.goal : 'LOSE'
 
@@ -50,9 +47,9 @@ class GoalBox extends Component {
 
     return (
       <div className="start-container">
-          <h2 className="label">{headerGoal}</h2>
-        <div className={"shade"}>
-          <h3 className={"goal-description"}>{goalDescription}</h3>
+        <h2 className="label">{headerGoal}</h2>
+        <div className={'shade'}>
+          <h3 className={'goal-description'}>{goalDescription}</h3>
         </div>
       </div>)
   }
