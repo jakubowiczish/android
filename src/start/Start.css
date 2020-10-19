@@ -377,7 +377,7 @@ h1 + p {
 
 }
 .active-description{
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: lighter;
     color: #ffffff;
     text-align: left;
@@ -386,7 +386,6 @@ h1 + p {
 .glow-on-hover {
     width: 100%;
     height: 50px;
-    border: none;
     outline: none;
     color: #fff;
     background: #111;
@@ -394,6 +393,8 @@ h1 + p {
     position: relative;
     z-index: 0;
     border-radius: 10px;
+    font-size: 3rem;
+    border: 2px solid #ffffff;
 }
 
 .glow-on-hover:before {
