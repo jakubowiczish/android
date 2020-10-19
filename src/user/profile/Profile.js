@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Profile.css'
 import { getUserProfile } from '../../util/APIUtils'
 import { Container, Image } from 'react-bootstrap'
-import configurationIcon from '../../img/common/configuration_icon.png'
+import configurationIcon from '../../img/common/configuration-icon.svg'
 import { Link } from 'react-router-dom'
 import UserData from './UserData'
 
@@ -15,6 +15,7 @@ class Profile extends Component {
       editMode: false
     }
     this.loadUserProfile()
+    this.changeWeight = this.changeWeight.bind(this)
   }
 
   loadUserProfile () {
@@ -28,14 +29,11 @@ class Profile extends Component {
     )
   }
 
+  changeWeight (newWeight) {
+    this.setState({ weight: newWeight })
+  }
+
   render () {
-    const dateTimeFormat = new Intl.DateTimeFormat('en', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: 'numeric',
-      minute: 'numeric'
-    })
     return (
       <div className='profile-container'>
         <div className='profile-content'>
@@ -51,49 +49,14 @@ class Profile extends Component {
                 )
               }
             </div>
-            <div className='profile-name'>
-              <h2>{this.state.user.name}</h2>
-              <p className='profile-email'>{this.state.user.email}</p>
+            <div className='profile-header-container'>
+              <div className='profile-name'>{this.state.user.name}</div>
+              <div className='profile-email'>{this.state.user.email}</div>
             </div>
           </div>
           <Container id='userProfileDataContainer'>
             <hr className='splitter-line' />
-            <UserData weight={this.state.weight} user={this.state.user} />
-            {/*<div className='user-data-header'>*/}
-            {/*  <b>User data </b>*/}
-            {/*  {this.state.editMode*/}
-            {/*    ? <a href='#'>*/}
-            {/*      <Image*/}
-            {/*        onClick={() => this.setState({ editMode: false })}*/}
-            {/*        src={closeIcon} width={24} height={24}*/}
-            {/*        title='Edit your data'*/}
-            {/*      />*/}
-            {/*    </a>*/}
-            {/*    : <a href='#'>*/}
-            {/*      <Image*/}
-            {/*        onClick={() => this.setState({ editMode: true })}*/}
-            {/*        src={configurationIcon} width={24} height={24}*/}
-            {/*        title='Edit your data'*/}
-            {/*      />*/}
-            {/*    </a>}*/}
-            {/*</div>*/}
-            {/*{this.state.editMode*/}
-            {/*  ? <div className='user-data'>*/}
-            {/*    <b>Birth date: </b>{this.state.user.birthDate}*/}
-            {/*    </div>*/}
-            {/*  : <div className='edit-field'>*/}
-            {/*    <user-data-input-label><b>Simple label</b></user-data-input-label>*/}
-            {/*    <input type='text' />*/}
-            {/*  </div>}*/}
-            {/*<div className='user-data'>*/}
-            {/*  <b>Height: </b>{this.state.user.height + 'cm'}*/}
-            {/*</div>*/}
-            {/*<div className='user-data'>*/}
-            {/*  <b>Current weight: </b>{this.state.weight + 'kg'}*/}
-            {/*</div>*/}
-            {/*<div className='user-data'>*/}
-            {/*  <b>Last login date: </b>{dateTimeFormat.format(new Date(this.state.user.lastLoginDate))}*/}
-            {/*</div>*/}
+            <UserData weight={this.state.weight} user={this.state.user} changeWeight={this.changeWeight} />
             <hr className='splitter-line' />
             <div className='user-data-header'>
               <b>User plan </b>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import './Profile.css'
 import { Image } from 'react-bootstrap'
-import configurationIcon from '../../img/common/configuration_icon.png'
+import configurationIcon from '../../img/common/configuration-icon.svg'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
 import { updateWeight } from '../../util/APIUtils'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 class UserData extends Component {
   constructor (props) {
@@ -17,23 +18,23 @@ class UserData extends Component {
     this.handleWeightChange = this.handleWeightChange.bind(this)
   }
 
-  handleWeightChange (newTerm) {
-    console.log(newTerm.target.value)
-    this.setState({ newWeight: newTerm.target.value })
-    // TODO: validate if new weight matches some regexp etc.
+  handleWeightChange (weightInput) {
+    if (/^((\d)*(\.)?(\d)?)$/.test(weightInput.target.value)) {
+      this.setState({ newWeight: weightInput.target.value })
+    } else {
+      weightInput.target.value = this.state.newWeight
+    }
   }
 
   saveNewWeight () {
     const newWeight = this.state.newWeight
-    console.log(newWeight)
     updateWeight({ weight: newWeight }).then(
       () => {
-        //TODO: check response status code
+        this.props.changeWeight(newWeight)
         this.setState({
           showModal: false,
           newWeight: ''
         })
-        // this.props.weight = newWeight
       }
     )
   }
@@ -51,13 +52,6 @@ class UserData extends Component {
         <div>
           <div className='user-data-header'>
             <b>User data </b>
-            <a href='#'>
-              <Image
-                onClick={() => this.setState({ showModal: true })}
-                src={configurationIcon} width={24} height={24}
-                title='Edit your data'
-              />
-            </a>
           </div>
           <div className='user-data'>
             <b>Birth date: </b>{this.props.user.birthDate}
@@ -66,7 +60,14 @@ class UserData extends Component {
             <b>Height: </b>{this.props.user.height + 'cm'}
           </div>
           <div className='user-data'>
-            <b>Current weight: </b>{this.props.weight + 'kg'}
+            <b>Current weight: </b>{this.props.weight + 'kg '}
+            <a href='#'>
+              <Image
+                onClick={() => this.setState({ showModal: true })}
+                src={configurationIcon} width={24} height={24}
+                title='Edit your data'
+              />
+            </a>
           </div>
           <div className='user-data'>
             <b>Last login date: </b>{dateTimeFormat.format(new Date(this.props.user.lastLoginDate))}
@@ -77,24 +78,33 @@ class UserData extends Component {
           show={this.state.showModal} onHide={() => this.setState({ showModal: false })}
           size='lg'
           aria-labelledby='contained-modal-title-vcenter'
+          dialogClassName='modal-90w'
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>Change your current weight</Modal.Title>
+            <Modal.Title className='change-current-weight-header' id='contained-modal-title-vcenter'>Change your current weight</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <FormControl
-              id='search-term'
-              onChange={this.handleWeightChange}
-              placeholder='Current weight'
-              aria-label='Current weight'
-            />
+            <InputGroup>
+              <FormControl
+                size='lg'
+                onChange={this.handleWeightChange}
+                maxLength={5}
+                type='number'
+                placeholder='Your current weight'
+                aria-label='Your current weight'
+                aria-describedby='weight-addon'
+              />
+              <InputGroup.Append>
+                <InputGroup.Text id='weight-addon' className='weight-addon'>kg</InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant='secondary' onClick={() => this.setState({ showModal: false })}>
+            <Button size='lg' variant='secondary' onClick={() => this.setState({ showModal: false })}>
               Close
             </Button>
-            <Button variant='primary' onClick={() => this.saveNewWeight()}>
+            <Button size='lg' variant='primary' onClick={() => this.saveNewWeight()}>
               Save Changes
             </Button>
           </Modal.Footer>

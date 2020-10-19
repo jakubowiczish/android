@@ -2,6 +2,27 @@
     padding-top: 30px;
 }
 
+.change-current-weight-header {
+    font-size: 24px;
+}
+
+.modal-90w {
+    width: 20%;
+    max-width: none!important;
+}
+
+.weight-addon {
+    font-size: 14px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
 .profile-info {
     text-align: center;
 }
@@ -11,12 +32,25 @@
     max-width: 250px;
 }
 
-.profile-info .profile-name {
+.profile-info {
     font-weight: 500;
-    font-size: 18px;
 }
 
-.profile-info .profile-email {
+.profile-header-container {
+    font-weight: 500;
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.profile-email {
+    font-size: 20px;
+}
+
+.profile-info {
+    font-size: 22px;
     font-weight: 400;
 }
 
@@ -25,12 +59,14 @@
 }
 
 .user-data-header {
-    font-size: 20px;
+    font-size: 22px;
     text-align: left;
     margin: 10px;
 }
 
 .user-data {
+    font-weight: 400;
+    font-size: 18px;
     text-align: left;
     margin: 10px 10px 10px 35px;
 }
