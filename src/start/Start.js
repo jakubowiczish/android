@@ -3,9 +3,7 @@ import { Redirect } from 'react-router'
 import './Start.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import '@shwilliam/react-rubber-slider/dist/styles.css'
-import ActivityBox from './ActivitiyBox'
 import StartForm from './StartForm'
-
 class Start extends Component {
   constructor (props) {
     super(props)
@@ -40,7 +38,6 @@ class Start extends Component {
       <div>
       <div>
         <div id="page1" className="parallax top_background">
-
           <section className="intro">
 
             <div className="title__div">
@@ -56,28 +53,27 @@ class Start extends Component {
           </section>
 
         </div>
-        <div className="tab">
-
+        <div className={"footer"}>
         </div>
-        <div className="parallax bottom_background">
+        <div className="tab">
+          <h1 className="start-title">Fill up starter form!</h1>
         </div>
       </div>
-      <div className={'container'}>
-        <div className="start-container parent_div_1">
-          <div className="start-content child_div_2">
+      <div className={'content'}>
+          <div className="parallax bottom_background">
+            <div>
             <h1 className="start-title">Fill up starter form!</h1>
             <StartForm handleSelectedActivity={this.handleSelectedActivity}
                        handleSelectedGoal={this.handleSelectedGoal}
                        currentUser={this.props.currentUser}
                        {...this.props}
             />
+            </div>
+
+            <div className={"footer"}>
+            </div>
           </div>
         </div>
-        <ActivityBox className={'parent_div_1'}
-                     active={this.state.activeChanged ? this.state.active : undefined}
-                     goal={this.state.goal ? this.state.goal : undefined}
-        />
-      </div>
       </div>
     )
   }
