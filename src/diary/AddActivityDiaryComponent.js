@@ -1,28 +1,24 @@
 import React from 'react'
 import DateTimePicker from 'react-datetime-picker'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { addRecentProduct } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import { floatRegex } from '../constants/ValidationConstants'
+import { addUserActivity } from '../util/APIUtils'
 
-class AddDiaryEntryComponent extends React.Component {
+class AddActivityDiaryComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      mealTime: new Date(),
-      mealType: 'BREAKFAST',
+      activityTime: new Date(),
+      mealType: 'Activities',
       amount: 1,
       portion: 100,
-      portionUnit: 'g',
+      portionUnit: 'min',
     }
   }
 
-  handleMealTimeChange = mealTime => {
-    this.setState({ mealTime: mealTime })
-  }
-
-  handleMealTypeChange = mealType => {
-    this.setState({ mealType: mealType })
+  handleActivityTimeChange = activityTime => {
+    this.setState({ activityTime: activityTime })
   }
 
   handleAmountChange = amount => {
@@ -37,10 +33,10 @@ class AddDiaryEntryComponent extends React.Component {
     this.setState({ portionUnit: portionUnit })
   }
 
-  handleAddRecentProduct = (request, setSubmitting) => {
-    addRecentProduct(request)
+  handleAddRecentActivity = (request, setSubmitting) => {
+    addUserActivity(request)
       .then(() => {
-        Alert.success('Product has been successfully added to diary')
+        Alert.success('Activity has been successfully added to diary')
       })
       .catch(error => {
         Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
@@ -50,23 +46,23 @@ class AddDiaryEntryComponent extends React.Component {
       })
   }
 
-  getChosenProductName = () => this.props.selectedRow != null ? 'You have chosen: ' + this.props.selectedRow.name : 'You have not chosen any product yet'
+  getChosenActivityName = () => this.props.selectedRow != null ? 'You have chosen: ' + this.props.selectedRow.name : 'You have not chosen any activity yet'
 
-  isProductChosen = () => this.props.selectedRow != null
+  isActivityChosen = () => this.props.selectedRow != null
 
   render () {
-    const { mealTime, mealType, amount, portion, portionUnit, productId } = this.state
+    const { activityTime, mealType, amount, portion, portionUnit, productId } = this.state
 
     return (
       <div>
         <div className={'container'}>
           <div className="diary-container parent_div_2">
             <div className="diary-content child_div_2">
-              <h1 className='start-title'>{this.getChosenProductName()}</h1>
+              <h1 className='start-title'>{this.getChosenActivityName()}</h1>
               <Formik
                 enableReinitialize={true}
                 initialValues={{
-                  mealTime: mealTime,
+                  activityTime: activityTime,
                   mealType: mealType,
                   amount: amount,
                   portion: portion,
@@ -76,7 +72,7 @@ class AddDiaryEntryComponent extends React.Component {
                 validate={values => {
                   let errors = {}
                   if (values.portion === '' || !floatRegex.test(values.portion)) {
-                    errors.portion = 'Invalid portion size - must be positive number with no more than 2 decimal places'
+                    errors.portion = 'Invalid time size - must be positive number with no more than 2 decimal places'
                   }
                   if (values.amount === '' || !floatRegex.test(values.amount)) {
                     errors.amount = 'Invalid amount size - must be positive number with no more than 2 decimal places'
@@ -85,17 +81,17 @@ class AddDiaryEntryComponent extends React.Component {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   values.productId = this.props.selectedRow.id
-                  this.handleAddRecentProduct(values, setSubmitting)
+                  this.handleAddRecentActivity(values, setSubmitting)
                 }}
               >
                 {({ touched, errors, isSubmitting }) => (
                   <Form>
                     <div className="form-group field">
-                      <label htmlFor="mealTime">Meal time</label>
-                      <DateTimePicker name="mealTime"
+                      <label htmlFor="activityTime">Meal time</label>
+                      <DateTimePicker name="activityTime"
                                       className="form-control dateContainer"
-                                      value={this.state.mealTime}
-                                      onChange={this.handleMealTimeChange}
+                                      value={this.state.activityTime}
+                                      onChange={this.handleActivityTimeChange}
                       />
                     </div>
                     <div className="form-group field">
@@ -146,7 +142,7 @@ class AddDiaryEntryComponent extends React.Component {
                              onChange={e => {
                                this.handlePortionChange(e.target.value)
                              }}
-                             placeholder="Enter the portion size"
+                             placeholder="Enter the time"
                              className={`form-control ${touched.portion && errors.portion ? 'is-invalid' : ''}`}
                       />
                       <ErrorMessage
@@ -182,7 +178,7 @@ class AddDiaryEntryComponent extends React.Component {
                     <button
                       type="submit"
                       className="btn btn-primary btn-block"
-                      disabled={isSubmitting && this.isProductChosen()}
+                      disabled={isSubmitting && this.isActivityChosen()}
                     >
                       {isSubmitting ? 'Please wait...' : 'Add diary entry'}
                     </button>
@@ -197,4 +193,4 @@ class AddDiaryEntryComponent extends React.Component {
   }
 }
 
-export default AddDiaryEntryComponent
+export default AddActivityDiaryComponent

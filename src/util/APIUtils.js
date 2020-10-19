@@ -87,6 +87,13 @@ export function addRecentProduct (addRecentProductRequest) {
   })
 }
 
+export function addUserActivity (addUserActivityRequest) {
+  return request({
+    url: API_BASE_URL + '/userActivities/add',
+    method: 'POST',
+    body: JSON.stringify(addUserActivityRequest)
+  })
+}
 export function getRecentProductsForDate (date) {
   return request({
     url: API_BASE_URL + '/diary/getForDate?date=' + date,
@@ -99,6 +106,13 @@ export function deleteRecentProducts (deleteRecentProductsRequest) {
     url: API_BASE_URL + '/diary/delete',
     method: 'DELETE',
     body: JSON.stringify(deleteRecentProductsRequest)
+  })
+}
+
+export function getRecentActivitiesForDate (date) {
+  return request({
+    url: API_BASE_URL + '/userActivities/getForDate?date=' + date,
+    method: 'GET'
   })
 }
 

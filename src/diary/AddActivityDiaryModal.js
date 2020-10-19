@@ -1,8 +1,8 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import React, { Component } from 'react'
-import SearchComponent from '../productBrowser/SearchComponent'
-import AddDiaryEntryComponent from './AddDiaryEntryComponent'
+import AddActivityDiaryComponent from './AddActivityDiaryComponent'
+import SearchActivityComponent from '../productBrowser/SearchActivityComponent'
 
 class AddActivityDiaryModal extends Component {
   constructor (props) {
@@ -12,7 +12,7 @@ class AddActivityDiaryModal extends Component {
     }
   }
 
-  handleSelectedProductsChange = (selectedRows) => {
+  handleSelectedActivityChange = (selectedRows) => {
     this.setState({ selectedRows: selectedRows })
   }
 
@@ -27,13 +27,13 @@ class AddActivityDiaryModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
-            Add product to the diary
+            Add activity to diary
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            <SearchComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
-            <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
+            <SearchActivityComponent onSelectedActivitiesChangeHandler={this.handleSelectedActivityChange}/>
+            <AddActivityDiaryComponent selectedRow={this.state.selectedRows[0]}/>
           </p>
 
         </Modal.Body>

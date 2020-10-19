@@ -3,7 +3,7 @@ import React from 'react'
 import DataTable from 'react-data-table-component'
 import DatePicker from 'react-datepicker'
 import {
-  deleteRecentProducts,
+  deleteRecentProducts, getRecentActivitiesForDate,
   getRecentProductsForDate
 } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
@@ -16,6 +16,7 @@ import Alert from 'react-s-alert'
 // import Grid from '@material-ui/core/Grid'
 import { Card } from 'antd'
 import FoodStatCards from './FoodStatCards'
+import AddActivityDiaryModal from './AddActivityDiaryModal'
 
 const actions = memoize(addHandler => (
   <IconButton color='primary' onClick={addHandler}>
@@ -26,6 +27,12 @@ const actions = memoize(addHandler => (
 const contextActions = memoize(deleteHandler => (
   <IconButton color='secondary' onClick={deleteHandler}>
     <Delete />
+  </IconButton>
+))
+
+const activities = memoize(addHandler => (
+  <IconButton color='primary' onClick={addHandler}>
+    <Add />
   </IconButton>
 ))
 
@@ -137,7 +144,8 @@ class Diary extends React.Component {
       date: moment().valueOf(),
       selectedRows: [],
       open: false,
-      toggleCleared: false
+      toggleCleared: false,
+      activityOpen: false
     }
 
     this.handleGetRecentProductsByDate(this.state.date)
@@ -151,16 +159,31 @@ class Diary extends React.Component {
     this.setState({ open: true })
   }
 
+  handleOpenActivitiesModal = () => {
+    this.setState({activityOpen:true})
+  }
+
   handleCloseModal = () => {
     this.handleGetRecentProductsByDate(this.state.date)
     this.setState({ open: false })
+  }
+
+  handleCloseActivityModal = () => {
+    this.handleGetUserActivityByDate(this.state.date)
+    this.setState({ activityOpen: false })
   }
 
   handleGetRecentProductsByDate = date => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
     getRecentProductsForDate(dateString).then(res => {
-      // console.log(res)
+      this.setState({ tableData: res })
+    })
+  }
+  handleGetUserActivityByDate = date => {
+    const dateString = moment(date).format('YYYY-MM-DD')
+
+    getRecentActivitiesForDate(dateString).then(res => {
       this.setState({ tableData: res })
     })
   }
@@ -208,7 +231,7 @@ class Diary extends React.Component {
               pointerOnHover
               highlightOnHover
               clearSelectedRows={this.state.toggleCleared}
-              actions={actions(this.handleOpenModal)}
+              actions={[actions(this.handleOpenModal), activities(this.handleOpenActivitiesModal)]}
               contextActions={contextActions(this.handleDeleteRecentProducts)}
               onSelectedRowsChange={this.handleSelectedRowClick}
               conditionalRowStyles={conditionalRowStyles}
@@ -223,6 +246,10 @@ class Diary extends React.Component {
           show={this.state.open}
           onHide={this.handleCloseModal}
         />
+        <AddActivityDiaryModal
+          show={this.state.activityOpen}
+         onHide={this.handleCloseActivityModal}
+          />
       </div>
     )
   }
