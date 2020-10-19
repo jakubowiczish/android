@@ -1,59 +1,64 @@
 import React, { Component } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import './css/styles.css'
 import './AppHeader.css'
+import { Link, NavLink } from 'react-router-dom'
+import $ from 'jquery'
 
 class AppHeader extends Component {
+  componentDidMount () {
+    $('.navTrigger').click(function () {
+      $(this).toggleClass('active')
+      $('#mainNav').toggleClass('mobileNav')
+      $('#mainListDiv').toggleClass('show_list')
+      $('#mainListDiv').fadeIn()
+    })
+    $(window).scroll(function () {
+      if ($(document).scrollTop() > 50) {
+        $('.nav').addClass('affix')
+      } else {
+        $('.nav').removeClass('affix')
+      }
+    })
+  }
+
   render () {
     return (
-      <header className='app-header'>
+      <nav id='mainNav' className='nav'>
         <div className='container'>
-          <div className='app-branding'>
-            <Link to='/' className='app-title'>Master Diet</Link>
+          <div className='logo'>
+            <Link to='/'>Master Diet</Link>
           </div>
-          <div className='app-options'>
-            <nav className='app-nav'>
-              {this.props.authenticated ? (
-                <ul>
-                  <li>
-                    <NavLink to='/profile'>Profile</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/startForm'>Start Form</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/productBrowser'>Product Browser</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/activityBrowser'>Activity Browser</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/achievements'>Achievements</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/bmiCalculator'>BMI Calculator</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/diary'>Diary</NavLink>
-                  </li>
-                  <li>
-                    <a onClick={this.props.onLogout}>Logout</a>
-                  </li>
-                </ul>
-              ) : (
-                <ul>
-                  <li>
-                    <NavLink to='/login'>Login</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/signup'>Signup</NavLink>
-                  </li>
-
-                </ul>
-              )}
-            </nav>
+          <div id='mainListDiv' className='main_list'>
+            {this.props.authenticated ? (!window.location.href.includes('startForm') ? (
+              <ul className='navlinks'>
+                <li><NavLink to='/diary'>Diary</NavLink></li>
+                <li><NavLink to='/profile'>Profile</NavLink></li>
+                <li><NavLink to='/achievements'>Achievements</NavLink></li>
+                <li>
+                  <a onClick={this.props.onLogout}>Logout</a>
+                </li>
+              </ul>
+            ) : (
+              <ul className='navlinks' />
+            )
+            ) : (
+              <ul className='navlinks'>
+                <li>
+                  <NavLink to='/login'>Login</NavLink>
+                </li>
+                <li>
+                  <NavLink to='/signup'>Sign Up</NavLink>
+                </li>
+              </ul>
+            )}
           </div>
+          <span className='navTrigger'>
+            <i />
+            <i />
+            <i />
+          </span>
         </div>
-      </header>
+      </nav>
     )
   }
 }

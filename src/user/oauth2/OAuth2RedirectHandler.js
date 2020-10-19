@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
 import { ACCESS_TOKEN } from '../../constants'
 import { Redirect } from 'react-router-dom'
+import { getCurrentUser } from '../../util/APIUtils'
 
 class OAuth2RedirectHandler extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { user: null }
+    getCurrentUser()
+      .then(res => {
+        this.setState({ user: res })
+      })
+  }
+
   getUrlParameter (name) {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
@@ -17,11 +27,22 @@ class OAuth2RedirectHandler extends Component {
 
     if (token) {
       localStorage.setItem(ACCESS_TOKEN, token)
-      return <Redirect to={{
-        pathname: '/profile',
-        state: { from: this.props.location }
-      }}
-      />
+      const user = this.state.user
+      return user == null
+        ? (<a>Loading</a>) : user.userPlan != null
+          ? (
+            <Redirect to={{
+              pathname: '/',
+              state: { from: this.props.location }
+            }}
+            />
+          ) : (
+            <Redirect to={{
+              pathname: '/startForm',
+              state: { from: this.props.location }
+            }}
+            />
+          )
     } else {
       return <Redirect to={{
         pathname: '/login',
@@ -30,7 +51,7 @@ class OAuth2RedirectHandler extends Component {
           error: error
         }
       }}
-             />
+      />
     }
   }
 }

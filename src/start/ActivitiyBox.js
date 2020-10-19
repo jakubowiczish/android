@@ -5,9 +5,7 @@ import lightActiveImg from '../img/activities/light-active-img.jpg'
 import moderateActiveImg from '../img/activities/moderate-active-img.jpg'
 import activeActiveImg from '../img/activities/active-active-img.jpg'
 import veryActiveActiveImg from '../img/activities/very_active-active-img.jpg'
-import loseGoalImg from '../img/activities/lose-goal-img.jpg'
-import stayGoalImg from '../img/activities/stay-goal-img.jpg'
-import gainGoalImg from '../img/activities/gain-active-img.jpg'
+import './Start.css'
 
 function getImageAndDescriptionForActive (active) {
   let imageActive, activeDescription
@@ -45,30 +43,6 @@ function getImageAndDescriptionForActive (active) {
   return [imageActive, activeDescription]
 }
 
-function getImageAndDescriptionForGoal (goal) {
-  let imageGoal, goalDescription
-
-  switch (goal) {
-    case 'LOSE':
-      imageGoal = loseGoalImg
-      goalDescription = 'To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit.'
-      break
-    case 'STAY':
-      imageGoal = stayGoalImg
-      goalDescription = 'To maintain your weight we calculate exactly how much calories do you need to consume during the day'
-      break
-    case 'GAIN':
-      imageGoal = gainGoalImg
-      goalDescription = 'To gain wight we have to add 100-300 calories to your basic caloric level.The calorific increase allowed to build additional muscle mass'
-      break
-    default:
-      imageGoal = loseGoalImg
-      goalDescription = 'To achieve your goal we have to cut 100-300 calories from your basic caloric level that you would enter your caloric deficit.'
-  }
-
-  return [imageGoal, goalDescription]
-}
-
 class ActivityBox extends Component {
   constructor (props) {
     super(props)
@@ -85,28 +59,18 @@ class ActivityBox extends Component {
 
   render () {
     let active = this.props.active !== undefined ? this.props.active : 'BMR'
-    let goal = this.props.goal !== undefined ? this.props.goal : 'LOSE'
 
-    let header = 'Activity level: ' + this.parseActivityLevel(active)
-    let headerGoal = 'Goal: ' + this.parseHeader(goal)
+    let header = this.parseActivityLevel(active)
 
     let activeData = getImageAndDescriptionForActive(active)
-    let imageActive = activeData[0]
     let activeDescription = activeData[1]
-
-    let goalData = getImageAndDescriptionForGoal(goal)
-    let imageGoal = goalData[0]
-    let goalDescription = goalData[1]
 
     return (
       <div className="start-container">
-        <div className="start-content child_div_1">
-          <h2 className="start-title">{header}</h2>
-          <img src={imageActive} height={300} alt={'describing activity level'}/>
-          <p className={'field'}>{activeDescription}</p>
-          <h2 className="start-title">{headerGoal}</h2>
-          <img src={imageGoal} height={150} alt={'describing goal'}/>
-          <p>{goalDescription}</p>
+          <h2 className={"label"}> Activity level</h2>
+          <h2 className="label2">{header}</h2>
+        <div className={"shade"}>
+          <h3 className={'active-description'}>{activeDescription}</h3>
         </div>
       </div>)
   }

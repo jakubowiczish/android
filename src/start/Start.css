@@ -1,107 +1,541 @@
-.start-container {
-    text-align: center;
+
+h1 {
+    font-size: 3.2rem;
+    padding-top: 2rem;
 }
 
+h1 + p {
+    font-size: 1.8rem;
+    padding: 2rem 0 3rem;
+}
 
-.start-content {
-    background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    border-radius: 2px;
-    width: 500px;
-    display: inline-block;
-    margin-top: 30px;
-    vertical-align: middle;
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap {
+    margin: 2rem;
+}
+
+.container3 {
+    --rX: 0;
+    --rY: 0;
+    --bX: 50%;
+    --bY: 80%;
+    width: 30rem;
+    height: 36rem;
+    border: 1px solid var(--background-color);
+    border-radius: 1.6rem;
+    padding: 4rem;
+    display: flex;
+    align-items: flex-end;
     position: relative;
-    padding: 35px;
-    text-align: center;
-    margin-left: 70px;
 }
 
-.social-btn {
-    margin-bottom: 15px;
-    font-weight: 400;
-    font-size: 16px;
+.height {
+    --rX: 0;
+    --rY: 0;
+    --bX: 50%;
+    --bY: 80%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://libreshot.com/wp-content/uploads/2018/02/diet-concept.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn img {
-    height: 32px;
-    float: left;
-    margin-top: 10px;
+.weight {
+    --rX: 0;
+    --rY: 0;
+    --bX: 30%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://p1.pxfuel.com/preview/404/93/175/racism-pawn-scales-chess.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn.google {
-    margin-top: 7px;
+.birthDate {
+    --rX: 0;
+    --rY: 0;
+    --bX: 70%;
+    --bY: 70%;
+    filter: contrast(0.8);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://media.istockphoto.com/photos/birthday-cake-decorated-with-colorful-sprinkles-and-ten-candles-picture-id1136810581?k=6&m=1136810581&s=612x612&w=0&h=KJsbjGoy1eR4Zmh5isHg3SmFU5trNMfLJwKPhjE5wII=");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn.facebook img {
-    height: 24px;
-    margin-left: 3px;
+.gender {
+    --rX: 0;
+    --rY: 0;
+    --bX: 70%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://images.unsplash.com/photo-1545693315-85b6be26a3d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.social-btn.github img {
-    height: 24px;
-    margin-left: 3px;
+.goal {
+    --rX: 0;
+    --rY: 0;
+    --bX: 40%;
+    --bY: 70%;
+    filter: contrast(1);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://p0.pikist.com/photos/82/519/person-silhouette-sunset-rock-boulder-peak-success-dom-silence.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.signup-link {
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
+.prefer {
+    --rX: 0;
+    --rY: 0;
+    --bX: 40%;
+    --bY: 70%;
+    filter: contrast(1);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://p1.pxfuel.com/preview/734/50/355/table-cover-plaid-red.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.start-title {
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 30px;
-    color: rgba(0, 0, 0, 0.65);
-}
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.parent_div_1{
-    float: left;
-
-}
-.child_div_1 {
-    width: 600px;
-    height: 900px;
-}
-.child_div_2 {
-    height: 900px;
-}
-.container  {
-    text-align: center;
-}
-.field {
-    margin-bottom: 30px;
-}
-.dateContainer {
-    width: 430px;
+.activity {
+    --rX: 0;
+    --rY: 0;
+    --bX: 60%;
+    --bY: 70%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://i2.pickpik.com/photos/821/986/504/golf-golf-ball-grass-green-preview.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
 
-.block {
-    display: inline-block;
-    width: 143px;
+.activity-explain {
+    --rX: 0;
+    --rY: 0;
+    --bX: 60%;
+    --bY: 53%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://www.sixstarpro.com/wp-content/uploads/background-gym-tablet.jpg");
+    background-size: 66rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
-
-.pad {
-    padding-right: 20px;
+.goal-explain {
+    --rX: 0;
+    --rY: 0;
+    --bX: 0%;
+    --bY: 50%;
+    filter: contrast(1.4);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://img.etimg.com/thumb/msid-75176755,width-640,resizemode-4,imgsize-612672/effect-of-coronavirus-on-food.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }
-
-.container2 {
-    text-align: center;
-}
-
-.column {
-    float: left;
-    width: 33.33%;
-    padding: 5px;
-}
-
-.row::after {
+.container3::before,
+.container3::after {
     content: "";
-    clear: both;
-    display: table;
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #fff;
+
+    position: absolute;
+    z-index: -1;
+
+    opacity: .3;
+    transition: .3s;
+}
+
+.container3::before {
+    top: 2rem;
+    right: 2rem;
+
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.container3::after {
+    bottom: 2rem;
+    left: 2rem;
+
+    border-top-width: 0;
+    border-right-width: 0;
+}
+
+.container3--active {
+    transition: none;
+}
+
+.container3--2 {
+    filter: hue-rotate(80deg) saturate(140%);
+}
+
+.container3--3 {
+    filter: hue-rotate(160deg) saturate(140%);
+}
+
+.container3 p {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 2.2rem;
+}
+
+.wrap:hover .container3::before,
+.wrap:hover .container3::after {
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+}
+
+.abs-site-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: hsla(0, 0%, 0%, .6);
+    font-size: 1.6rem;
+}
+
+.label {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    color: #ece2e2;
+}
+.label2{
+    position: fixed;
+    top: 70px;
+    left: 30px;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    color: #ece2e2;
+}
+.Fats {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+
+}
+
+.Carbs {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+}
+
+.slider {
+    position: fixed;
+    bottom: 60px;
+    left: 80px;
+}
+
+
+.flip-card {
+    height: 360px;
+    margin-bottom: 45px;
+}
+
+.fix {
+    top: -380px;
+}
+
+.flip-card-inner, .flip-card-inner2 {
+    width: 100%;
+    height: 380px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-inner.tog, .flip-card-inner2.tog {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.flip-card-inner.tog {
+}
+
+.flip-card-inner2.tog {
+}
+
+.flip-card-front, .flip-card-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+
+}
+
+.flip-card-back {
+    z-index: 0;
+    transform: rotateY(180deg);
+}
+
+
+.info-button {
+    background: url(https://img.icons8.com/color/30/000000/info--v1.png) no-repeat;
+    --bX: 50%;
+    --bY: 50%;
+    background-size: 3rem auto;
+    background-position: var(--bX) var(--bY);
+    cursor: pointer;
+    border: none;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 300px;
+    top: -20px;
+}
+
+.revert-button {
+    --bX: 50%;
+    --bY: 50%;
+    background-size: 0.2rem auto;
+    background-position: var(--bX) var(--bY);
+    cursor: pointer;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background: url(https://img.icons8.com/fluent/30/000000/circled-left-2.png) no-repeat;
+    position: absolute;
+    left: 300px;
+    top: -20px;
+}
+
+.content {
+
+}
+.foot-no{
+    height: 200px;
+
+}
+
+.footer{
+    height: 10px;
+    background-color: #000000;
+}
+
+.start-title{
+    font-size: 5rem;
+    font-weight: lighter;
+    color: #fff;
+    letter-spacing: 6px;
+    text-align: center;
+    padding-top: 80px;
+}
+.goal-header{
+
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    color:  #ece2e2;
+    letter-spacing: 6px;
+    text-align: left;
+}
+.goal-description{
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #ece2e2;
+    text-align: left;
+
+}
+.shade{
+    background-color: #000000;
+    opacity: 0.5;
+}
+.active-header{
+
+}
+.active-description{
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #ffffff;
+    text-align: left;
+}
+
+.glow-on-hover {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 3rem;
+    border: 2px solid #ffffff;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0;}
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+.field-css {
+    display: block;
+    font-size: 14px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 100%;
+    max-width: 100%; /* useful when width is set to anything other than 100% */
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+
+}
+.select-css {
+    display: block;
+    font-size: 14px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 100%;
+    max-width: 100%; /* useful when width is set to anything other than 100% */
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient.
+        for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
+
+    */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+    linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+    background-position: right .7em top 50%, 0 0;
+    /* icon size, then gradient */
+    background-size: .65em auto, 100%;
+}
+/* Hide arrow icon in IE browsers */
+.select-css::-ms-expand {
+    display: none;
+}
+/* Hover style */
+.select-css:hover {
+    border-color: #888;
+}
+.field-css:hover {
+    border-color: #888;
+}
+/* Focus style */
+.select-css:focus {
+    border-color: #aaa;
+    /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+}
+.field-css option {
+    font-weight:normal;
+}
+/* Set options to normal weight */
+.select-css option {
+    font-weight:normal;
+}
+
+/* Support for rtl text, explicit support for Arabic and Hebrew */
+*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
+    background-position: left .7em top 50%, 0 0;
+    padding: .6em .8em .5em 1.4em;
+}
+
+/* Disabled styles */
+.select-css:disabled, .select-css[aria-disabled=true] {
+    color: graytext;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+    linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+}
+
+.select-css:disabled:hover, .select-css[aria-disabled=true] .field-css{
+    border-color: #aaa;
 }

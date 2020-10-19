@@ -3,9 +3,7 @@ import { Redirect } from 'react-router'
 import './Start.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import '@shwilliam/react-rubber-slider/dist/styles.css'
-import ActivityBox from './ActivitiyBox'
 import StartForm from './StartForm'
-
 class Start extends Component {
   constructor (props) {
     super(props)
@@ -37,19 +35,45 @@ class Start extends Component {
     }
 
     return (
-      <div className={'container'}>
-        <div className="start-container parent_div_1">
-          <div className="start-content child_div_2">
+      <div>
+      <div>
+        <div id="page1" className="parallax top_background">
+          <section className="intro">
+
+            <div className="title__div">
+
+              <div className="intro__align">
+
+                <h1 className="intro__align__title animated__h1">Start you journey</h1>
+                <h2 className="intro__align__sub-title animated">Fill up a form</h2>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+        <div className={"footer"}>
+        </div>
+        <div className="tab">
+          <h1 className="start-title">Fill up starter form!</h1>
+        </div>
+      </div>
+      <div className={'content'}>
+          <div className="parallax bottom_background">
+            <div>
             <h1 className="start-title">Fill up starter form!</h1>
             <StartForm handleSelectedActivity={this.handleSelectedActivity}
                        handleSelectedGoal={this.handleSelectedGoal}
-                       currentUser={this.props.currentUser}/>
+                       currentUser={this.props.currentUser}
+                       {...this.props}
+            />
+            </div>
+
+            <div className={"footer"}>
+            </div>
           </div>
         </div>
-        <ActivityBox className={'parent_div_1'}
-                     active={this.state.activeChanged ? this.state.active : undefined}
-                     goal={this.state.goal ? this.state.goal : undefined}
-        />
       </div>
     )
   }
