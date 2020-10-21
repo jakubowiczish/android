@@ -109,6 +109,14 @@ export function deleteRecentProducts (deleteRecentProductsRequest) {
   })
 }
 
+export function deleteUserActivities (deleteUserActivitiesRequest) {
+  return request({
+    url: API_BASE_URL + '/userActivities/delete',
+    method: 'DELETE',
+    body: JSON.stringify(deleteUserActivitiesRequest)
+  })
+}
+
 export function getRecentActivitiesForDate (date) {
   return request({
     url: API_BASE_URL + '/userActivities/getForDate?date=' + date,

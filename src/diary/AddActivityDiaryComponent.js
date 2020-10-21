@@ -10,10 +10,9 @@ class AddActivityDiaryComponent extends React.Component {
     super(props)
     this.state = {
       activityTime: new Date(),
-      mealType: 'Activities',
       amount: 1,
-      portion: 100,
-      portionUnit: 'min',
+      time: 100,
+      timeUnit: 'min',
     }
   }
 
@@ -25,12 +24,12 @@ class AddActivityDiaryComponent extends React.Component {
     this.setState({ amount: amount })
   }
 
-  handlePortionChange = portion => {
-    this.setState({ portion: portion })
+  handleTimeChange = time => {
+    this.setState({ time: time })
   }
 
-  handlePortionUnitChange = (event, portionUnit) => {
-    this.setState({ portionUnit: portionUnit })
+  handleTimeUnitChange = (event, timeUnit) => {
+    this.setState({ timeUnit: timeUnit })
   }
 
   handleAddRecentActivity = (request, setSubmitting) => {
@@ -51,7 +50,7 @@ class AddActivityDiaryComponent extends React.Component {
   isActivityChosen = () => this.props.selectedRow != null
 
   render () {
-    const { activityTime, mealType, amount, portion, portionUnit, productId } = this.state
+    const { activityTime, amount, time, timeUnit, activityId } = this.state
 
     return (
       <div>
@@ -63,24 +62,14 @@ class AddActivityDiaryComponent extends React.Component {
                 enableReinitialize={true}
                 initialValues={{
                   activityTime: activityTime,
-                  mealType: mealType,
                   amount: amount,
-                  portion: portion,
-                  portionUnit: portionUnit,
-                  productId: productId
+                  time: time,
+                  timeUnit: timeUnit,
+                  activityId: activityId
                 }}
-                validate={values => {
-                  let errors = {}
-                  if (values.portion === '' || !floatRegex.test(values.portion)) {
-                    errors.portion = 'Invalid time size - must be positive number with no more than 2 decimal places'
-                  }
-                  if (values.amount === '' || !floatRegex.test(values.amount)) {
-                    errors.amount = 'Invalid amount size - must be positive number with no more than 2 decimal places'
-                  }
-                  return errors
-                }}
+                validator={() => ({})}
                 onSubmit={(values, { setSubmitting }) => {
-                  values.productId = this.props.selectedRow.id
+                  values.activityId = this.props.selectedRow.id
                   this.handleAddRecentActivity(values, setSubmitting)
                 }}
               >
@@ -95,64 +84,42 @@ class AddActivityDiaryComponent extends React.Component {
                       />
                     </div>
                     <div className="form-group field">
-                      <label htmlFor="mealType">Meal type</label>
-                      <Field as="select"
-                             name="mealType"
-                             value={this.state.mealType}
-                             onChange={e => {
-                               this.handleMealTypeChange(e.target.value)
-                             }}
-                             className="form-control"
-                      >
-                        <option value="BREAKFAST">Breakfast</option>
-                        <option value="LUNCH">Lunch</option>
-                        <option value="DINNER">Dinner</option>
-                        <option value="SUPPER">Supper</option>
-                        <option value="SNACK">Snack</option>
-                      </Field>
-                      <ErrorMessage
-                        component="div"
-                        name="mealType"
-                        className="invalid-feedback"
-                      />
-                    </div>
-                    <div className="form-group field">
-                      <label htmlFor="portionUnit">Portion unit</label>
+                      <label htmlFor="timeUnit">Time unit</label>
                       <Field as="select"
                              name="portionUnit"
-                             value={this.state.portionUnit}
+                             value={this.state.timeUnit}
                              onChange={e => {
-                               this.handlePortionUnitChange(e.target.value)
+                               this.handleTimeUnitChange(e.target.value)
                              }}
                              className="form-control"
                       >
-                        <option value="g">Grams</option>
+                        <option value="min">Minutes</option>
                       </Field>
                       <ErrorMessage
                         component="div"
-                        name="portionUnit"
+                        name="timeUnit"
                         className="invalid-feedback"
                       />
                     </div>
                     <div className="form-group field">
-                      <label htmlFor="portion">Portion size</label>
+                      <label htmlFor="time">Time</label>
                       <Field type="text"
-                             name="portion"
-                             value={this.state.portion}
+                             name="time"
+                             value={this.state.time}
                              onChange={e => {
-                               this.handlePortionChange(e.target.value)
+                               this.handleTimeChange(e.target.value)
                              }}
                              placeholder="Enter the time"
-                             className={`form-control ${touched.portion && errors.portion ? 'is-invalid' : ''}`}
+                             className={`form-control ${touched.time && errors.time ? 'is-invalid' : ''}`}
                       />
                       <ErrorMessage
                         component="div"
-                        name="portion"
+                        name="time"
                         className="invalid-feedback"
                       />
                     </div>
                     <div className="form-group field">
-                      <label htmlFor="amount">Amount of portions</label>
+                      <label htmlFor="amount">Amount</label>
                       <Field type="text"
                              name="amount"
                              value={this.state.amount}
@@ -171,7 +138,7 @@ class AddActivityDiaryComponent extends React.Component {
                     <div className="form-group field">
                       <ErrorMessage
                         component="div"
-                        name="productId"
+                        name="activityId"
                         className="invalid-feedback"
                       />
                     </div>
