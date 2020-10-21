@@ -151,7 +151,8 @@ class Diary extends React.Component {
       activities: [],
       open: false,
       toggleCleared: false,
-      activityOpen: false
+      activityOpen: false,
+      caloriesActivities:0
     }
 
     this.refresh()
@@ -170,8 +171,9 @@ class Diary extends React.Component {
     let data = this.state.tableData
     empty = empty.concat(data.recentProducts).concat(this.state.activities)
     data.recentProducts = empty
-    console.log(data)
-    console.log(this.state.activities)
+    data.summaryList[1] =  {description: "Calories",
+      sum: data.summaryList[1].sum + this.state.caloriesActivities
+      , difference: data.summaryList[1].difference};
     this.setState({ tableData: data })
   }
 
@@ -226,6 +228,7 @@ class Diary extends React.Component {
 
       for (let i = 0; i < list.length; i++) {
         result.push(this.mapActivityToProduct(list[i]))
+        this.state.caloriesActivities +=  -1 * list[i].caloriesBurned
       }
       this.setState({ activities: result })
       this.handleGetRecentProductsByDate(this.state.date)
@@ -294,7 +297,9 @@ class Diary extends React.Component {
           />
         </Card>
         <Card className='summary-container'>
-          <FoodStatCards summaryList={this.state.tableData.summaryList}/>
+          <FoodStatCards summaryList={this.state.tableData.summaryList}
+          caloriesActivities = {this.state.caloriesActivities}
+          />
         </Card>
         {/* </Grid> */}
 
