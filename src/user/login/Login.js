@@ -3,10 +3,14 @@ import './Login.css'
 import { ACCESS_TOKEN, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from '../../constants'
 import { login } from '../../util/APIUtils'
 import { Link, Redirect } from 'react-router-dom'
-import fbLogo from '../../img/fb-logo.png'
+import fbLogo from '../../img/social-icons/facebook-logo.png'
 import googleLogo from '../../img/google-logo.png'
-import githubLogo from '../../img/github-logo.png'
+import githubLogo from '../../img/social-icons/github-logo.png'
 import Alert from 'react-s-alert'
+import ReactstrapLogin from './ReactstrapLogin'
+import SignInContainer from './SignInContainer'
+import LoginSignupContainer from './LoginSignupContainer'
+import StartForm from '../../start/StartForm'
 
 class Login extends Component {
   componentDidMount () {
@@ -37,17 +41,52 @@ class Login extends Component {
     }
 
     return (
-      <div className='login-container'>
-        <div className='login-content'>
-          <h1 className='login-title'>Login to Master Diet</h1>
-          <SocialLogin />
-          <div className='or-separator'>
-            <span className='or-text'>OR</span>
+      <div>
+        <div>
+          <div id="page1" className="parallax top_login_background">
+            <section className="intro">
+              <div className="title__div">
+                <div className="intro__align">
+                  <h1 className="intro__align__title animated__h1">Welcome to Master Diet</h1>
+                  <h2 className="intro__align__sub-title animated">Log in</h2>
+                </div>
+              </div>
+            </section>
           </div>
-          <LoginForm {...this.props} />
-          <span className='signup-link'>New user? <Link to='/signup'>Sign up!</Link></span>
+          <div className={'footer'}>
+          </div>
+          <div className="tab">
+            <h1 className="start-title">Fill up starter form!</h1>
+          </div>
+        </div>
+        <div className={'content'}>
+          <div className="parallax bottom_login_background">
+            <div className="center-login-signup-form">
+              <LoginSignupContainer/>
+              <SocialLogin/>
+            </div>
+            <div className={'footer'}>
+            </div>
+          </div>
         </div>
       </div>
+      // <div>
+      //   <LoginSignupContainer/>
+      //   {/* <div className='login-container'>*/}
+      //   {/*   <div className='login-content'>*/}
+      //   {/*     <h1 className='login-title'>Login to Master Diet</h1>*/}
+      //   {/*<SignInContainer/>*/}
+      //   {/*<ReactstrapLogin/>*/}
+      //   {/*<LoginForm/>*/}
+      //   {/*<LoginComponent/>*/}
+      //   {/*<div className='or-separator'>*/}
+      //   {/*  <span className='or-text'>OR</span>*/}
+      //   {/*</div>*/}
+      //   {/*<LoginForm {...this.props} />*/}
+      //   {/*<span className='signup-link'>New user? <Link to='/signup'>Sign up!</Link></span>*/}
+      //   {/*   </div>*/}
+      //   {/* </div>*/}
+      // </div>
     )
   }
 }
@@ -57,13 +96,13 @@ class SocialLogin extends Component {
     return (
       <div className='social-login'>
         <a className='btn btn-block social-btn google' href={GOOGLE_AUTH_URL}>
-          <img src={googleLogo} alt='Google' /> Log in with Google
+          <img src={googleLogo} alt='Google'/> Log in with Google
         </a>
         <a className='btn btn-block social-btn facebook' href={FACEBOOK_AUTH_URL}>
-          <img src={fbLogo} alt='Facebook' /> Log in with Facebook
+          <img src={fbLogo} alt='Facebook'/> Log in with Facebook
         </a>
         <a className='btn btn-block social-btn github' href={GITHUB_AUTH_URL}>
-          <img src={githubLogo} alt='Github' /> Log in with Github
+          <img src={githubLogo} alt='Github'/> Log in with Github
         </a>
       </div>
     )
@@ -102,8 +141,8 @@ class LoginForm extends Component {
         window.location.reload(true)
         Alert.success('You\'re successfully logged in!')
       }).catch(error => {
-        Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
-      })
+      Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+    })
   }
 
   render () {

@@ -3,9 +3,9 @@ import './Signup.css'
 import { Link, Redirect } from 'react-router-dom'
 import { FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from '../../constants'
 import { signup } from '../../util/APIUtils'
-import fbLogo from '../../img/fb-logo.png'
+import fbLogo from '../../img/social-icons/facebook-logo.png'
 import googleLogo from '../../img/google-logo.png'
-import githubLogo from '../../img/github-logo.png'
+import githubLogo from '../../img/social-icons/github-logo.png'
 import Alert from 'react-s-alert'
 
 class Signup extends Component {
