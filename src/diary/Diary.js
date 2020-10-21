@@ -167,10 +167,10 @@ class Diary extends React.Component {
   }
 
   concatActivitiesAndProducts () {
-    let empty = []
+    let recentProducts = []
     let data = this.state.tableData
-    empty = empty.concat(data.recentProducts).concat(this.state.activities)
-    data.recentProducts = empty
+    recentProducts = recentProducts.concat(data.recentProducts).concat(this.state.activities)
+    data.recentProducts = recentProducts
     data.summaryList[1] =  {description: "Calories",
       sum: data.summaryList[1].sum + this.state.caloriesActivities
       , difference: data.summaryList[1].difference};
