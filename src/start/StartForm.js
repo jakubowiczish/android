@@ -17,13 +17,13 @@ const maxDate = moment().subtract(16, 'years').toDate()
 class StartForm extends Component {
   componentDidMount () {
     $('#rotate').click(function () {
-      $('.flip-card-inner').toggleClass('tog');
-      $('#rotate').hide().css({ top: '100px' });
-      })
+      $('.flip-card-inner').toggleClass('tog')
+      $('#rotate').hide().css({ top: '100px' })
+    })
 
     $('#rotate2').click(function () {
       $('.flip-card-inner').toggleClass('tog')
-      $('#rotate').css({ top: '-20px' }).show();
+      $('#rotate').css({ top: '-20px' }).show()
     })
 
     $('#rotate3').click(function () {
@@ -202,7 +202,7 @@ class StartForm extends Component {
                 </div>
               </div>
 
-              <div className={"footer"}>
+              <div className={'footer'}>
               </div>
               <div className={'flip-card'}>
                 <div className={'flip-card-inner'}>
@@ -232,7 +232,7 @@ class StartForm extends Component {
                     <div className="goal-explain fix container3 container--3 ">
                       <button className={'revert-button'} id="rotate2" type="button"/>
                       <GoalBox className={''}
-                                   goal={this.state.goal ? this.state.goal : undefined}
+                               goal={this.state.goal ? this.state.goal : undefined}
                       />
                     </div>
                   </div>
