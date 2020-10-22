@@ -53,9 +53,7 @@ class Login extends Component {
         </div>
         <div className={'content'}>
           <div className="parallax bottom_login_background">
-            <div className="center-login-signup-form">
-              <LoginSignupContainer/>
-            </div>
+              <LoginSignupContainer />
             <div className={'footer'}>
             </div>
           </div>

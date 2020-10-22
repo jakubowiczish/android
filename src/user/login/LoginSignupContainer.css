@@ -41,12 +41,12 @@ h2 {
 }
 
 .center-login-signup-form {
-    align-content: center;
-    align-self: center;
-    /*margin-left: 10%;*/
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
 }
 
-p {
+.message-panel-left-right {
     font-size: 14px;
     font-weight: 100;
     line-height: 20px;
@@ -91,7 +91,7 @@ button.ghost {
     border-color: #FFFFFF;
 }
 
-form {
+.login-signup-form {
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
