@@ -42,8 +42,8 @@ h2 {
 
 .center-login-signup-form {
     display: flex;
-    alignItems: center;
-    justifyContent: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .message-panel-left-right {

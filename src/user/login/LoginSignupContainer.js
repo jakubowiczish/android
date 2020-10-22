@@ -87,11 +87,6 @@ class LoginSignupContainer extends React.Component {
 
   render () {
     return (
-      // <div style={{
-      //   display: 'flex',
-      //   alignItems: 'center',
-      //   justifyContent: 'center',
-      // }}>
       <div className="center-login-signup-form">
         <div className="login-signup-container" id="login_signup_container_id">
           <div className="form-container sign-up-container">
