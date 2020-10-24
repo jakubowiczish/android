@@ -8,6 +8,8 @@ import googleLogo from '../../img/google-logo.png'
 import githubLogo from '../../img/social-icons/github-logo.png'
 import Alert from 'react-s-alert'
 
+// TODO to be removed probably but leave it as it is for now, might be useful
+
 class Signup extends Component {
   render () {
     if (this.props.authenticated) {
