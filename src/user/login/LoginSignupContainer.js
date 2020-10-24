@@ -57,7 +57,6 @@ class LoginSignupContainer extends React.Component {
       .then(response => {
         localStorage.setItem(ACCESS_TOKEN, response.accessToken)
         window.location.reload(true)
-        this.props.history.push('/')
         Alert.success('You\'re successfully logged in!')
       })
       .catch(error => {
@@ -93,24 +92,27 @@ class LoginSignupContainer extends React.Component {
             <form className='login-signup-form' action="#" onSubmit={this.handleSignupSubmit}>
               <h1>Create Account</h1>
               <div className="social-container">
-                <a href={FACEBOOK_AUTH_URL} className="social fab facebook-icon"/>
-                <a href={GOOGLE_AUTH_URL} className="social fab google-icon"/>
-                <a href={GITHUB_AUTH_URL} className="social fab github-icon"/>
+                <a href={FACEBOOK_AUTH_URL} className="social login-signup-icon-a fab facebook-icon"/>
+                <a href={GOOGLE_AUTH_URL} className="social login-signup-icon-a fab google-icon"/>
+                <a href={GITHUB_AUTH_URL} className="social login-signup-icon-a fab github-icon"/>
               </div>
               <span>or use your email for registration</span>
-              <input type="text"
+              <input className="login-signup-text-input"
+                     type="text"
                      placeholder="Name"
                      name="signupName"
                      value={this.state.signupName}
                      onChange={this.handleInputChange} required
               />
-              <input type="email"
+              <input className="login-signup-text-input"
+                     type="email"
                      placeholder="Email"
                      name="signupEmail"
                      value={this.state.signupEmail}
                      onChange={this.handleInputChange} required
               />
-              <input type="password"
+              <input className="login-signup-text-input"
+                     type="password"
                      placeholder="Password"
                      name="signupPassword"
                      value={this.state.signupPassword}
@@ -125,18 +127,20 @@ class LoginSignupContainer extends React.Component {
             <form className='login-signup-form' action="#" onSubmit={this.handleLoginSubmit}>
               <h1>Sign in</h1>
               <div className="social-container">
-                <a href={FACEBOOK_AUTH_URL} className="social fab facebook-icon"/>
-                <a href={GOOGLE_AUTH_URL} className="social fab google-icon"/>
-                <a href={GITHUB_AUTH_URL} className="social fab github-icon"/>
+                <a href={FACEBOOK_AUTH_URL} className="social login-signup-icon-a fab facebook-icon"/>
+                <a href={GOOGLE_AUTH_URL} className="social login-signup-icon-a fab google-icon"/>
+                <a href={GITHUB_AUTH_URL} className="social login-signup-icon-a fab github-icon"/>
               </div>
               <span>or use your account</span>
-              <input type="email"
+              <input className="login-signup-text-input"
+                     type="email"
                      placeholder="Email"
                      name="loginEmail"
                      value={this.state.loginEmail}
                      onChange={this.handleInputChange} required
               />
-              <input type="password"
+              <input className="login-signup-text-input"
+                     type="password"
                      placeholder="Password"
                      name="loginPassword"
                      value={this.state.loginPassword}

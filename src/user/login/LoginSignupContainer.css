@@ -52,7 +52,7 @@ h2 {
     font-size: 14px;
     font-weight: 100;
     line-height: 20px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     margin: 20px 0 30px;
 }
 
@@ -60,7 +60,7 @@ span {
     font-size: 12px;
 }
 
-a {
+.login-signup-icon-a {
     color: #333;
     font-size: 14px;
     text-decoration: none;
@@ -104,9 +104,9 @@ button.ghost {
     text-align: center;
 }
 
-input {
+.login-signup-text-input {
     background-color: #eee;
-    border: none;
+    border: 1px solid #000000;
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
