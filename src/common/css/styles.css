@@ -18,6 +18,15 @@ body, html {
   filter: contrast(1.4);
 }
 
+.top_login_background {
+  background-image: url(../../img/background/login_background_3.jpg);
+}
+
+.parallax.bottom_login_background {
+  align-content: center;
+  background-image: url(../../img/background/parallax_login_background_1.jpg);
+}
+
 .top_background {
   background-image: url(../../img/background/background-final.jpg);
 }
