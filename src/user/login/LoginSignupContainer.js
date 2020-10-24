@@ -33,7 +33,6 @@ class LoginSignupContainer extends React.Component {
     signInButton.addEventListener('click', () => {
       container.classList.remove('right-panel-active')
     })
-
   }
 
   handleInputChange (event) {
@@ -57,12 +56,13 @@ class LoginSignupContainer extends React.Component {
     login(loginRequest)
       .then(response => {
         localStorage.setItem(ACCESS_TOKEN, response.accessToken)
-        // this.props.history.push('/')
         window.location.reload(true)
+        this.props.history.push('/')
         Alert.success('You\'re successfully logged in!')
       })
       .catch(error => {
-        Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+        console.log(error)
+        Alert.error('Oops! Something went wrong. Please try again!')
       })
   }
 
@@ -116,7 +116,9 @@ class LoginSignupContainer extends React.Component {
                      value={this.state.signupPassword}
                      onChange={this.handleInputChange} required
               />
-              <button>Sign Up</button>
+              <button className="login-signup-button">
+                Sign Up
+              </button>
             </form>
           </div>
           <div className="form-container sign-in-container">
@@ -140,7 +142,9 @@ class LoginSignupContainer extends React.Component {
                      value={this.state.loginPassword}
                      onChange={this.handleInputChange} required
               />
-              <button>Sign In</button>
+              <button className="login-signup-button">
+                Sign In
+              </button>
             </form>
           </div>
           <div className="overlay-container">
@@ -150,7 +154,7 @@ class LoginSignupContainer extends React.Component {
                 <p className='message-panel-left-right'>
                   To keep connected with us please login with your personal info
                 </p>
-                <button className="ghost" id="signIn">
+                <button className="ghost login-signup-button" id="signIn">
                   Sign In
                 </button>
               </div>
@@ -159,7 +163,7 @@ class LoginSignupContainer extends React.Component {
                 <p className='message-panel-left-right'>
                   Please enter your personal details and start your journey
                 </p>
-                <button className="ghost" id="signUp">
+                <button className="ghost login-signup-button" id="signUp">
                   Sign Up
                 </button>
               </div>

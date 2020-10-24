@@ -53,7 +53,7 @@ class Login extends Component {
         </div>
         <div className={'content'}>
           <div className="parallax bottom_login_background">
-              <LoginSignupContainer />
+              <LoginSignupContainer {...this.props} />
             <div className={'footer'}>
             </div>
           </div>

@@ -41,6 +41,8 @@ h2 {
 }
 
 .center-login-signup-form {
+    padding-top: 50px;
+    padding-bottom: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,7 +67,7 @@ a {
     margin: 15px 0;
 }
 
-button {
+.login-signup-button {
     border-radius: 20px;
     border: 1px solid #FF4B2B;
     background-color: #FF4B2B;
