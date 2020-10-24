@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { List, Card, Row } from 'antd'
+import { List, Card } from 'antd'
 import './FoodStatCards.css'
-import { Grid } from '@material-ui/core'
 
 class FoodStatCards extends React.Component {
   constructor (props) {
