@@ -5,6 +5,7 @@ import { Container, Image } from 'react-bootstrap'
 import configurationIcon from '../../img/common/configuration-icon.svg'
 import { Link } from 'react-router-dom'
 import UserData from './UserData'
+import Alert from 'react-s-alert'
 
 class Profile extends Component {
   constructor (props) {
@@ -19,18 +20,21 @@ class Profile extends Component {
   }
 
   loadUserProfile () {
-    getUserProfile().then(
-      response => {
+    getUserProfile()
+      .then(response => {
         this.setState({
           user: response.user,
           weight: response.weight
         })
       }
-    )
+      ).catch(error => {
+        Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!')
+      })
   }
 
   changeWeight (newWeight) {
     this.setState({ weight: newWeight })
+    Alert.success('Weight has been updated successfully')
   }
 
   render () {
