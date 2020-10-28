@@ -65,6 +65,15 @@ export function searchProducts (searchTerm, pageIndex, perPage) {
   })
 }
 
+export function updateWeight (updateWeightRequest) {
+  console.log(updateWeightRequest)
+  return request({
+    url: API_BASE_URL + '/user/weight',
+    body: JSON.stringify(updateWeightRequest),
+    method: 'PUT'
+  })
+}
+
 export function searchActivities (searchTerm, pageIndex, perPage) {
   return request({
     url: API_BASE_URL + '/activity-browser?searchTerm=' + searchTerm + '&pageIndex=' + pageIndex + '&perPage=' + perPage,
@@ -134,6 +143,13 @@ export function getRecentActivities (pageIndex, perPage) {
 export function getUserAchievements () {
   return request({
     url: API_BASE_URL + '/achievements',
+    method: 'GET'
+  })
+}
+
+export function getUserProfile () {
+  return request({
+    url: API_BASE_URL + '/user/profile',
     method: 'GET'
   })
 }
