@@ -33,7 +33,7 @@ class Home extends Component {
     return (
       <div>
         <div>
-          <div id='page1' className='parallax top_background'>
+          <div id='page1' className='parallax home_top_background'>
             <section className='home__intro'>
               <div className='home__title__div'>
                 <div className='intro__align'>
