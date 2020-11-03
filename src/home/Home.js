@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Home.css'
 import Alert from 'react-s-alert'
 import { getUserCaloriesStatus } from '../util/APIUtils'
+import CaloriesStatusContainer from './CaloriesStatusContainer'
 
 class Home extends Component {
   constructor (props) {
@@ -30,27 +31,22 @@ class Home extends Component {
 
   render () {
     return (
-      <div className='home-container'>
-        <div className='container'>
-          <div className='graf-bg-container'>
-            <div className='graf-layout'>
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-              <div className='graf-circle' />
-            </div>
+      <div>
+        <div>
+          <div id='page1' className='parallax top_background'>
+            <section className='home__intro'>
+              <div className='home__title__div'>
+                <div className='intro__align'>
+                  <h1 className='intro__align__title animated__h1'>Master Diet</h1>
+                  {this.props.authenticated
+                    ? <CaloriesStatusContainer
+                      caloriesConsumed={this.state.caloriesConsumed}
+                      dailyCaloricDemand={this.state.dailyCaloricDemand}/> : ''}
+                </div>
+              </div>
+            </section>
           </div>
-          <h1 className='home-title'>Master Diet</h1>
-          {this.props.authenticated
-            ? <h2 className='calories-status'>Calories consumed: {this.state.caloriesConsumed}/{this.state.dailyCaloricDemand} kcal</h2>
-            : ''}
+          <div className='footer' />
         </div>
       </div>
     )
