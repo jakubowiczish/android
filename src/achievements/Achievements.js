@@ -8,19 +8,13 @@ class Achievements extends Component {
         <div>
           <div id='page1' className='parallax top_achievements_background'>
             <section className='intro'>
-
               <div className='title__div'>
-
                 <div className='intro__align'>
-
                   <h1 className='intro__align__title animated__h1'>Achievements</h1>
-                  <h2 className="intro__align__sub-title animated">Unlock them all!</h2>
+                  <h2 className='intro__align__sub-title animated'>Unlock them all!</h2>
                 </div>
-
               </div>
-
             </section>
-
           </div>
           <div className='footer' />
           <div className='tab'>
@@ -34,7 +28,6 @@ class Achievements extends Component {
                 <AchievementsList />
               </div>
             </div>
-
             <div className='footer' />
           </div>
         </div>
