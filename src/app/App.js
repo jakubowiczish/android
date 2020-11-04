@@ -80,7 +80,10 @@ class App extends Component {
         </div>
         <div className='app-body'>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route
+              exact path='/'
+              render={(props) => <Home authenticated={this.state.authenticated} {...props} />}
+            />
             <PrivateRoute
               path='/profile'
               authenticated={this.state.authenticated}

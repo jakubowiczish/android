@@ -31,6 +31,10 @@ body, html {
   background-image: url(../../img/background/background-final.jpg);
 }
 
+.home_top_background {
+  background-image: url(../../img/background/home_background.jpg);
+}
+
 .parallax.bottom_background {
   background-image: url(../../img/background/louis-hansel-shotsoflouis-B38CaCySh74-unsplash.jpg);
 }

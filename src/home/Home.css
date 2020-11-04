@@ -13,6 +13,21 @@
     margin-top: 50px;
 }
 
+.home__title__div {
+    background-color: rgba(72,68,68,0.6);
+    width: 100%;
+    padding-bottom: 4%;
+}
+
+.home__intro {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .graf-bg-container {
     width: 100%;
     height: 310px;

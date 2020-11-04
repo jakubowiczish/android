@@ -1,0 +1,22 @@
+.calories-status-container {
+    margin-top: 5%;
+}
+
+.calories-status-header {
+    font-size: 3rem;
+    font-weight: lighter;
+    color: #fff;
+    letter-spacing: 1px;
+    display:inline-block;
+}
+
+.progress-bar-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 10%;
+}
+
+.calories-progress-bar {
+    min-height: 30px;
+    font-size: 20px;
+}

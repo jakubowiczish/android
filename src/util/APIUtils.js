@@ -153,3 +153,10 @@ export function getUserProfile () {
     method: 'GET'
   })
 }
+
+export function getUserCaloriesStatus () {
+  return request({
+    url: API_BASE_URL + '/user/caloriesStatus',
+    method: 'GET'
+  })
+}
