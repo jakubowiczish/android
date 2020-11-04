@@ -26,7 +26,7 @@ class AchievementsList extends Component {
     return (
       <div>
         <div>
-          <List>
+          <List className='main'>
             {this.state.achievements.map(achievement =>
               <AchievementItem
                 key={achievement.name}
