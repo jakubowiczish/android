@@ -16,4 +16,113 @@
     margin-left: -5%;
     width: 100%;
     font-size: 20px;
+    color: #ece2e2;
+}
+
+.bottom_achievements_background {
+    background-image: url(../img/background/achievementsBack.jpeg);
+}
+
+.top_achievements_background {
+    background-image: url(../img/background/topAchievementsBack.jpg);
+}
+
+
+.container4 {
+    --rX: 0;
+    --rY: 0;
+    --bX: 50%;
+    --bY: 80%;
+    width: 50rem;
+    height: 36rem;
+    border: 1px solid var(--background-color);
+    border-radius: 1.6rem;
+    padding: 4rem;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+}
+
+.container4::before,
+.container4::after {
+    content: "";
+
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #fff;
+
+    position: absolute;
+    z-index: -1;
+
+    opacity: .3;
+    transition: .3s;
+}
+
+.container4::before {
+    top: 2rem;
+    right: 2rem;
+
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.container4::after {
+    bottom: 2rem;
+    left: 2rem;
+
+    border-top-width: 0;
+    border-right-width: 0;
+}
+
+.container4--active {
+    transition: none;
+}
+
+.container4--2 {
+    filter: hue-rotate(80deg) saturate(140%);
+}
+
+.container4--3 {
+    filter: hue-rotate(160deg) saturate(140%);
+}
+
+.container4 p {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 2.2rem;
+}
+
+.wrap:hover .container4::before,
+.wrap:hover .container4::after {
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+}
+.achievement-card {
+    --rX: 0;
+    --rY: 0;
+    --bX: 40%;
+    --bY: 70%;
+    filter: contrast(1);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://i.pinimg.com/originals/0b/dd/0f/0bdd0f4a885cf076a4d7e0752c30ccd7.jpg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
+}
+
+.achievement-photo{
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+}
+.achievement-card.success {
+    --rX: 0;
+    --rY: 0;
+    --bX: 40%;
+    --bY: 70%;
+    filter: contrast(1);
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    url("https://www.themebeta.com/media/cache/728/files/chrome/images/201705/23/61514253806bf148c4a6db6daf9648e9.jpeg");
+    background-size: 60rem auto;
+    background-position: var(--bX) var(--bY);
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
 }

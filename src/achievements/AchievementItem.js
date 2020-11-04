@@ -6,28 +6,26 @@ class AchievementItem extends Component {
     const color = this.props.progress === this.props.completeCondition ? 'success' : ''
     const progressMade = this.props.progress ? this.props.progress : 0
     return (
-
-      <div className='achievement-div '>
-        <div className='container'>
-          <div className='row'>
-            <img height='250px' width='250px' id='ItemPreview' src={'data:image/png;base64,' + this.props.photo} />
-            <div className='achievement-props'>
+      <div className='wrap wrap--3'>
+        <div className={`achievement-card container4 container--4  ${color}`}>
+          <div className='form-group field'>
+            <label className='label' htmlFor='slider'>{this.props.name}</label>
+          </div>
+          <p className='label2'>({this.props.points} points)</p>
+          <div className='achievement-props'>
+            <div className='container'>
               <div className='row'>
-                <h1>
-                  <b>{this.props.name} </b>
-                </h1>
-                <p>({this.props.points} points)</p>
+                <img className='achievement-photo' height='100px' width='100px' id='ItemPreview' src={'data:image/png;base64,' + this.props.photo} />
               </div>
               <div className='achievement-details'>
                 <b>Description: {this.props.description}</b>
-                <br />
                 {this.props.completedDate ? <b>Completed: {this.props.completedDate.replace('T', ' ')}</b> : ''}
               </div>
+              <div className='text-center'>{this.props.progress} of {this.props.completeCondition}</div>
+              <Progress color={`${color}`} animated value={progressMade} max={this.props.completeCondition} />
             </div>
           </div>
         </div>
-        <div className='text-center'>{this.props.progress} of {this.props.completeCondition}</div>
-        <Progress color={`${color}`} animated value={progressMade} max={this.props.completeCondition} />
       </div>
     )
   }
