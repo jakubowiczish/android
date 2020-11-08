@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createPlan } from '../util/APIUtils'
+import { createPlan, getCurrentUser } from '../util/APIUtils'
 import Alert from 'react-s-alert'
 import moment from 'moment'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -49,7 +49,7 @@ class StartForm extends Component {
       activeChanged: false,
       goalChanged: false
     }
-
+    this.setForm()
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -65,6 +65,24 @@ class StartForm extends Component {
 
   PROM = 1000
   MIN = 0.2
+
+  setForm = form => {
+    let user = this.props.currentUser
+    if(user.userPlan != undefined) {
+      this.state = {
+        birthDate: new Date(user.birthDate),
+        height: user.height,
+        goal: user.userPlan.goal,
+        activityLevel: user.userPlan.activityLevel,
+        weight: user.userPlan.currentWeight,
+        gender: user.gender,
+        slider: 50,
+        active: 'BMR',
+        activeChanged: false,
+        goalChanged: false
+      }
+    }
+  }
 
   handleBirthDateChange = birthDate => {
     this.setState({ birthDate: birthDate })

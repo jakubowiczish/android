@@ -34,18 +34,29 @@ class Start extends Component {
           state: { from: this.props.location }
         }}/>
     }
+    let background = this.props.currentUser.userPlan == undefined ? 'top_background' : 'top_update_background'
+    let greeting = this.props.currentUser.userPlan == undefined ?
+      (
+        <h1 className="intro__align__title animated__h1">Start you journey</h1>
+  ): (  <h1 className="intro__align__title animated__h1">Update your plan</h1>
+      )
+
+    let formGreeting = this.props.currentUser.userPlan == undefined ?
+      (<h1 className="start-title">Fill up starter form!</h1>
+      ): (  <h1 className="start-title">Fill form to update your plan!</h1>
+      );
+    let backgroundForm = this.props.currentUser.userPlan == undefined ? "bottom_background": "bottom_background_update"
 
     return (
       <div>
         <div>
-          <div id="page1" className="parallax top_background">
+          <div id="page1" className={`parallax top_background ${background}`}>
             <section className="intro">
 
               <div className="title__div">
 
                 <div className="intro__align">
-
-                  <h1 className="intro__align__title animated__h1">Start you journey</h1>
+                  {greeting}
                   <h2 className="intro__align__sub-title animated">Fill up a form</h2>
                 </div>
 
@@ -57,13 +68,13 @@ class Start extends Component {
           <div className={'footer'}>
           </div>
           <div className="tab">
-            <h1 className="start-title">Fill up starter form!</h1>
+            {formGreeting}
           </div>
         </div>
         <div className={'content'}>
-          <div className="parallax bottom_background">
+          <div className={`parallax ${backgroundForm}`}>
             <div>
-              <h1 className="start-title">Fill up starter form!</h1>
+              {formGreeting}
               <StartForm handleSelectedActivity={this.handleSelectedActivity}
                          handleSelectedGoal={this.handleSelectedGoal}
                          currentUser={this.props.currentUser}
