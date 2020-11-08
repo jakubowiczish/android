@@ -5,9 +5,7 @@ import Alert from 'react-s-alert'
 import LoginSignupContainer from './LoginSignupContainer'
 
 class Login extends Component {
-
   componentDidMount () {
-
     // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
     // Here we display the error and then remove the error query parameter from the location.
 
@@ -26,7 +24,6 @@ class Login extends Component {
 
   render () {
     if (this.props.authenticated) {
-
       return <Redirect
         to={{
           pathname: '/',
@@ -38,24 +35,22 @@ class Login extends Component {
     return (
       <div>
         <div>
-          <div id="page1" className="parallax top_login_background">
-            <section className="intro">
-              <div className="title__div">
-                <div className="intro__align">
-                  <h1 className="intro__align__title animated__h1">Welcome to Master Diet</h1>
-                  <h2 className="intro__align__sub-title animated">Scroll down</h2>
+          <div id='page1' className='parallax top_login_background'>
+            <section className='intro'>
+              <div className='title__div'>
+                <div className='intro__align'>
+                  <h1 className='intro__align__title animated__h1'>Welcome to Master Diet</h1>
+                  <h2 className='intro__align__sub-title animated'>Scroll down</h2>
                 </div>
               </div>
             </section>
           </div>
-          <div className={'footer'}>
-          </div>
+          <div className='footer' />
         </div>
-        <div className={'content'}>
-          <div className="parallax bottom_login_background">
-              <LoginSignupContainer {...this.props} />
-            <div className={'footer'}>
-            </div>
+        <div className='content'>
+          <div className='parallax bottom_login_background'>
+            <LoginSignupContainer {...this.props} />
+            <div className='footer' />
           </div>
         </div>
       </div>

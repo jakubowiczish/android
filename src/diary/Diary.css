@@ -37,7 +37,7 @@
     height: 900px;
 }
 
-.parent_div_2{
+.parent_div_2 {
     float: right;
 }
 
@@ -46,3 +46,22 @@
     width: 80%;
     border: 2px solid #000000;
 }
+
+.bottom_diary_background {
+    background-image: url(../img/background/bottom_diary_background.jpg);
+}
+
+.top_diary_background {
+    background-image: url(../img/background/top_diary_background.jpg);
+}
+
+.card_container_background {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: #fe7500;
+    background: -webkit-linear-gradient(to right, #eac82d, #fe7500);
+    background: linear-gradient(to right, #eac82d, #fe7500);
+    background-repeat: no-repeat;
+}
+
