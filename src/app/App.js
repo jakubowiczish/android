@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import AppHeader from '../common/AppHeader'
 import Home from '../home/Home'
 import Login from '../user/login/Login'
-import Signup from '../user/signup/Signup'
 import Profile from '../user/profile/Profile'
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler'
 import NotFound from '../common/NotFound'
@@ -22,6 +21,7 @@ import ProductBrowser from '../productBrowser/ProductBrowser'
 import ActivityBrowser from '../productBrowser/ActivityBrowser'
 import Diary from '../diary/Diary'
 import Achievements from '../achievements/Achievements'
+import Statistics from '../statistic/Statisctics'
 
 class App extends Component {
   constructor (props) {
@@ -49,10 +49,10 @@ class App extends Component {
           loading: false
         })
       }).catch(error => {
-        this.setState({
-          loading: false
-        })
+      this.setState({
+        loading: false
       })
+    })
   }
 
   handleLogout () {
@@ -70,13 +70,13 @@ class App extends Component {
 
   render () {
     if (this.state.loading) {
-      return <LoadingIndicator />
+      return <LoadingIndicator/>
     }
 
     return (
       <div className='app'>
         <div className='app-top-box'>
-          <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} />
+          <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
         </div>
         <div className='app-body'>
           <Switch>
@@ -128,6 +128,12 @@ class App extends Component {
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={Diary}
+            />
+            <PrivateRoute
+              path='/statistics'
+              authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={Statistics}
             />
             <Route
               path='/oauth2/redirect'
