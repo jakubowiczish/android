@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { List, Card } from 'antd'
-import './FoodStatCards.css'
+import './FoodStatCardsList.css'
 
-class FoodStatCards extends React.Component {
+class FoodStatCardsList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -34,4 +34,4 @@ class FoodStatCards extends React.Component {
   }
 }
 
-export default FoodStatCards
+export default FoodStatCardsList

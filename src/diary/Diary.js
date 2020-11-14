@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 import { Card } from 'antd'
-import FoodStatCards from './FoodStatCards'
+import FoodStatCardsList from './FoodStatCardsList'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
 import AchievementsList from '../achievements/AchievementsList'
 
@@ -146,7 +146,7 @@ class Diary extends React.Component {
     super(props)
     this.state = {
       count: 0,
-      tableData: [],
+      tableData: '',
       date: moment().valueOf(),
       selectedRows: [],
       activities: [],
@@ -159,25 +159,16 @@ class Diary extends React.Component {
     this.refresh()
   }
 
+  componentDidMount () {
+    this.refresh()
+  }
+
   handleSelectedRowClick = state => {
     this.setState({ selectedRows: state.selectedRows })
   }
 
   refresh () {
     this.handleGetUserActivityByDate(this.state.date)
-  }
-
-  concatActivitiesAndProducts () {
-    let recentProducts = []
-    let data = this.state.tableData
-    recentProducts = recentProducts.concat(data.recentProducts).concat(this.state.activities)
-    data.recentProducts = recentProducts
-    data.summaryList[1] = {
-      description: 'Calories',
-      sum: data.summaryList[1].sum + this.state.caloriesActivities
-      , difference: data.summaryList[1].difference
-    }
-    this.setState({ tableData: data })
   }
 
   mapActivityToProduct (activity) {
@@ -219,10 +210,25 @@ class Diary extends React.Component {
 
     getRecentProductsForDate(dateString)
       .then(res => {
-        this.setState({ tableData: res })
-        this.concatActivitiesAndProducts()
+        // this.setState({ tableData: res })
+        this.concatActivitiesAndProducts(res)
       })
   }
+
+  concatActivitiesAndProducts (res) {
+    console.log(res)
+    let recentProducts = []
+    let data = res
+    recentProducts = recentProducts.concat(data.recentProducts).concat(this.state.activities)
+    data.recentProducts = recentProducts
+    data.summaryList[1] = {
+      description: 'Calories',
+      sum: data.summaryList[1].sum + this.state.caloriesActivities,
+      difference: data.summaryList[1].difference
+    }
+    this.setState({ tableData: data })
+  }
+
   handleGetUserActivityByDate = date => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
@@ -251,9 +257,10 @@ class Diary extends React.Component {
         deleteUserActivities(deleteRowRequest)
           .then(() => {
             Alert.success('Activity has been successfully deleted from diary')
-          }).then(() => {
-          this.refresh()
-        })
+          })
+          .then(() => {
+            this.refresh()
+          })
       }
       if (recentProductsIds.length !== 0) {
         const deleteRowRequest = { recentProductsIds: recentProductsIds }
@@ -293,8 +300,9 @@ class Diary extends React.Component {
           <div className='parallax bottom_diary_background'>
             <div>
               <div>
-                <div className='card_container_background'>
-                  <Card className='card-container'>
+                <Card className='main_diary_card'>
+
+                  <Card className='datepicker_card_container'>
                     <DatePicker className="datepicker-container"
                                 dateFormat='yyyy-MM-dd'
                                 selected={this.state.date}
@@ -303,12 +311,16 @@ class Diary extends React.Component {
                                   this.refresh()
                                 }}
                     />
+                  </Card>
+
+                  <Card className='card-container'>
 
                     <DataTable
                       columns={columns()}
                       data={this.state.tableData.recentProducts}
                       defaultSortField='productName'
                       wrap
+                      theme={'dark'}
                       pagination
                       selectableRows
                       pointerOnHover
@@ -320,13 +332,15 @@ class Diary extends React.Component {
                       conditionalRowStyles={conditionalRowStyles}
                     />
                   </Card>
-                  <Card className='summary-container'>
-                    <FoodStatCards className='cards_list'
-                                   summaryList={this.state.tableData.summaryList}
-                                   caloriesActivities={this.state.caloriesActivities}
-                    />
-                  </Card>
-                </div>
+
+                  {/*<Card className='summary-container'>*/}
+                  <FoodStatCardsList className='cards_list'
+                                     summaryList={this.state.tableData.summaryList}
+                                     caloriesActivities={this.state.caloriesActivities}
+                  />
+                  {/*</Card>*/}
+
+                </Card>
               </div>
               <AddDiaryEntryModal
                 show={this.state.open}

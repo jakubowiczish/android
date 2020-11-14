@@ -4,8 +4,12 @@
 }
 
 .summary-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 50px;
-    width: 50%;
     text-align: center;
     align-self: center;
     position: relative;
@@ -26,12 +30,6 @@
     margin-right: 10px;
 }
 
-
-.datepicker-container {
-    align-self: center;
-    align-content: center;
-}
-
 .child_div_1 {
     width: 1200px;
     height: 900px;
@@ -39,12 +37,6 @@
 
 .parent_div_2 {
     float: right;
-}
-
-.card-container {
-    margin-left: 5%;
-    width: 80%;
-    border: 2px solid #000000;
 }
 
 .bottom_diary_background {
@@ -55,13 +47,58 @@
     background-image: url(../img/background/top_diary_background.jpg);
 }
 
-.card_container_background {
+.main_diary_card {
     display: inline-block;
-    width: 100%;
-    height: 100%;
+    border: 2px solid #856404;
+    width: auto;
+    margin: 50px;
+
     background: #fe7500;
     background: -webkit-linear-gradient(to right, #eac82d, #fe7500);
     background: linear-gradient(to right, #eac82d, #fe7500);
     background-repeat: no-repeat;
 }
 
+.datepicker_card_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.datepicker-container {
+    margin: 5px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+}
+
+.card-container {
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.diary_data_table {
+    display: flex;
+    align-self: center;
+}
+
+.react-datepicker {
+    font-size: 1.3rem !important;
+}
+
+.react-datepicker__current-month {
+    font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+    padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+    top: 13px !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+    margin: 0.5rem !important;
+}
