@@ -320,7 +320,7 @@ class Diary extends React.Component {
                       data={this.state.tableData.recentProducts}
                       defaultSortField='productName'
                       wrap
-                      theme={'dark'}
+                      // theme={'dark'}
                       pagination
                       selectableRows
                       pointerOnHover

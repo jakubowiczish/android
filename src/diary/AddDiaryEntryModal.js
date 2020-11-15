@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import React, { Component } from 'react'
 import SearchComponent from '../productBrowser/SearchComponent'
 import AddDiaryEntryComponent from './AddDiaryEntryComponent'
+import './Diary.css'
 
 class AddDiaryEntryModal extends Component {
   constructor (props) {
@@ -30,12 +31,9 @@ class AddDiaryEntryModal extends Component {
             Add product to the diary
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <p>
-            <SearchComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
-            <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
-          </p>
-
+        <Modal.Body className='modal_body'>
+          <SearchComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
+          <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
