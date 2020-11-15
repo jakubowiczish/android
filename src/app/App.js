@@ -21,6 +21,7 @@ import ProductBrowser from '../productBrowser/ProductBrowser'
 import ActivityBrowser from '../productBrowser/ActivityBrowser'
 import Diary from '../diary/Diary'
 import Achievements from '../achievements/Achievements'
+import Statistics from '../statistic/Statisctics'
 
 class App extends Component {
   constructor (props) {
@@ -127,6 +128,12 @@ class App extends Component {
               authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={Diary}
+            />
+            <PrivateRoute
+              path='/statistics'
+              authenticated={this.state.authenticated}
+              currentUser={this.state.currentUser}
+              component={Statistics}
             />
             <Route
               path='/oauth2/redirect'
