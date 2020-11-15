@@ -61,6 +61,7 @@ class AddDiaryEntryComponent extends React.Component {
 
     return (
       <Card className='add_diary_entry_container'>
+        {/*<h1 className='start-title'>{this.getChosenProductName()}</h1>*/}
         <Formik
           enableReinitialize={true}
           initialValues={{

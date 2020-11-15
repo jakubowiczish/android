@@ -18,6 +18,17 @@
     -webkit-text-fill-color: transparent;
 }
 
+.search_for_activities_title {
+    font-size: 3rem;
+    letter-spacing: 6px;
+    text-align: center;
+    padding-top: 80px;
+    background: -webkit-linear-gradient(#00a2d3, #0b2e13);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
 .browser-container {
     /*width: 50%;*/
     order: 0;

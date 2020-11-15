@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Browser.css'
-import SearchComponent from './SearchComponent'
+import SearchProductComponent from './SearchProductComponent'
 import RecentProductsComponent from './RecentProductsComponent'
 
 class ProductBrowser extends Component {
@@ -39,7 +39,7 @@ class ProductBrowser extends Component {
   render () {
     return (
       <div>
-        <SearchComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange} />
+        <SearchProductComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange} />
         <RecentProductsComponent onSelectedRecentProductsChangeHandler={this.handleSelectedRecentProductsChange} />
       </div>
     )

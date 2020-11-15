@@ -2,14 +2,6 @@
     height: 35px;
 }
 
-.modal_body {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-image: url(../img/background/modal_background_3.jpg);
-}
-
 .add_diary_entry_container {
     display: flex;
     flex-direction: column;
@@ -89,6 +81,8 @@
 }
 
 .main_diary_card {
+    min-height: 500px;
+    min-width: 300px;
     display: inline-block;
     align-self: center;
     align-items: center;
@@ -96,23 +90,7 @@
     border: 2px solid #856404;
     width: auto;
     margin: 50px;
-
-    /*background: #fe7500;*/
-    /*background: -webkit-linear-gradient(to right, #eac82d, #fe7500);*/
-    /*background: linear-gradient(to right, #eac82d, #fe7500);*/
-    /*background-repeat: no-repeat;*/
     background-image: url(../img/background/background_diary_1.jpg);
-
-    /*--rX: 0;*/
-    /*--rY: 0;*/
-    /*--bX: 40%;*/
-    /*--bY: 70%;*/
-    /*filter: contrast(1);*/
-    /*background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),*/
-    /*url("https://i.pinimg.com/originals/0b/dd/0f/0bdd0f4a885cf076a4d7e0752c30ccd7.jpg");*/
-    /*background-size: 60rem auto;*/
-    /*background-position: var(--bX) var(--bY);*/
-    /*box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);*/
 }
 
 .datepicker_card_container {

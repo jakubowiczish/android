@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import React, { Component } from 'react'
 import AddActivityDiaryComponent from './AddActivityDiaryComponent'
 import SearchActivityComponent from '../productBrowser/SearchActivityComponent'
+import './DiaryModals.css'
 
 class AddActivityDiaryModal extends Component {
   constructor (props) {
@@ -30,12 +31,9 @@ class AddActivityDiaryModal extends Component {
             Add activity to diary
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <p>
+        <Modal.Body className='activity_modal_body'>
             <SearchActivityComponent onSelectedActivitiesChangeHandler={this.handleSelectedActivityChange}/>
             <AddActivityDiaryComponent selectedRow={this.state.selectedRows[0]}/>
-          </p>
-
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>

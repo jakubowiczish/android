@@ -6,9 +6,8 @@ import './Browser.css'
 import { searchProducts } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
 import Card from '@material-ui/core/Card'
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
-class SearchComponent extends Component {
+class SearchProductComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -155,4 +154,4 @@ class SearchComponent extends Component {
   }
 }
 
-export default SearchComponent
+export default SearchProductComponent

@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import React, { Component } from 'react'
-import SearchComponent from '../productBrowser/SearchComponent'
+import SearchProductComponent from '../productBrowser/SearchProductComponent'
 import AddDiaryEntryComponent from './AddDiaryEntryComponent'
 import './Diary.css'
 
@@ -31,8 +31,8 @@ class AddDiaryEntryModal extends Component {
             Add product to the diary
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className='modal_body'>
-          <SearchComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
+        <Modal.Body className='search_modal_body'>
+          <SearchProductComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
           <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
         </Modal.Body>
         <Modal.Footer>
