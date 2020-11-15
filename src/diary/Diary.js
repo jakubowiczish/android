@@ -3,7 +3,9 @@ import React from 'react'
 import DataTable from 'react-data-table-component'
 import DatePicker from 'react-datepicker'
 import {
-  deleteRecentProducts, deleteUserActivities, getRecentActivitiesForDate,
+  deleteRecentProducts,
+  deleteUserActivities,
+  getRecentActivitiesForDate,
   getRecentProductsForDate
 } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
@@ -13,9 +15,7 @@ import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 import { Card } from 'antd'
-import FoodStatCardsList from './FoodStatCardsList'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
-import AchievementsList from '../achievements/AchievementsList'
 
 const actions = memoize(addHandler => (
   <IconButton color='primary' onClick={addHandler}>
@@ -156,12 +156,24 @@ class Diary extends React.Component {
       caloriesActivities: 0
     }
 
+    this.handleSelectedRowClick = this.handleSelectedRowClick.bind(this)
+    this.refresh = this.refresh.bind(this)
+    this.mapActivityToProduct = this.mapActivityToProduct.bind(this)
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleOpenActivitiesModal = this.handleOpenActivitiesModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+    this.handleCloseActivityModal = this.handleCloseActivityModal.bind(this)
+    this.handleGetRecentProductsByDate = this.handleGetRecentProductsByDate.bind(this)
+    this.concatActivitiesAndProducts = this.concatActivitiesAndProducts.bind(this)
+    this.handleGetUserActivityByDate = this.handleGetUserActivityByDate.bind(this)
+    this.handleDeleteRecentProducts = this.handleDeleteRecentProducts.bind(this)
+
     this.refresh()
   }
 
-  componentDidMount () {
-    this.refresh()
-  }
+  // componentDidMount () {
+  //   this.refresh()
+  // }
 
   handleSelectedRowClick = state => {
     this.setState({ selectedRows: state.selectedRows })
@@ -216,7 +228,6 @@ class Diary extends React.Component {
   }
 
   concatActivitiesAndProducts (res) {
-    console.log(res)
     let recentProducts = []
     let data = res
     recentProducts = recentProducts.concat(data.recentProducts).concat(this.state.activities)
@@ -332,14 +343,6 @@ class Diary extends React.Component {
                       conditionalRowStyles={conditionalRowStyles}
                     />
                   </Card>
-
-                  {/*<Card className='summary-container'>*/}
-                  <FoodStatCardsList className='cards_list'
-                                     summaryList={this.state.tableData.summaryList}
-                                     caloriesActivities={this.state.caloriesActivities}
-                  />
-                  {/*</Card>*/}
-
                 </Card>
               </div>
               <AddDiaryEntryModal
