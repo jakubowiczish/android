@@ -34,6 +34,7 @@ class AppHeader extends Component {
                 <li><NavLink to='/diary'>Diary</NavLink></li>
                 <li><NavLink to='/profile'>Profile</NavLink></li>
                 <li><NavLink to='/achievements'>Achievements</NavLink></li>
+                <li><NavLink to='/statistics'>Statistics</NavLink></li>
                 <li>
                   <a onClick={this.props.onLogout}>Logout</a>
                 </li>

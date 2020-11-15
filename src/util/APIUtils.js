@@ -58,6 +58,13 @@ export function createPlan (userPlanRequest) {
   })
 }
 
+export function getAllUserWeight () {
+  return request({
+    url: API_BASE_URL + '/stats/weight',
+    method: 'GET'
+  })
+}
+
 export function searchProducts (searchTerm, pageIndex, perPage) {
   return request({
     url: API_BASE_URL + '/product-browser?searchTerm=' + searchTerm + '&pageIndex=' + pageIndex + '&perPage=' + perPage,
