@@ -133,16 +133,16 @@ class StartForm extends Component {
       })
   }
 
-  checkPartOfDate (partOfDate) {
+  static checkPartOfDate (partOfDate) {
     return partOfDate.length > 1 ? partOfDate : '0' + partOfDate
   }
 
-  getFormattedDate (date) {
+  static getFormattedDate (date) {
     const year = date.getFullYear()
     let month = (1 + date.getMonth()).toString()
-    month = this.checkPartOfDate(month)
+    month = StartForm.checkPartOfDate(month)
     let day = date.getDate().toString()
-    day = this.checkPartOfDate(day)
+    day = StartForm.checkPartOfDate(day)
     return day + '/' + month + '/' + year
   }
 
@@ -176,7 +176,7 @@ class StartForm extends Component {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
-          values.birthDate = this.getFormattedDate(this.state.birthDate)
+          values.birthDate = StartForm.getFormattedDate(this.state.birthDate)
           values.fatPreferencesPercentage = this.state.slider
           this.handleSubmit(values, setSubmitting)
         }}

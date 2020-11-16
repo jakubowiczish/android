@@ -58,7 +58,7 @@ export function createPlan (userPlanRequest) {
   })
 }
 
-export function getAllUserWeight () {
+export function getAllWeightsOfUser () {
   return request({
     url: API_BASE_URL + '/stats/weight',
     method: 'GET'
