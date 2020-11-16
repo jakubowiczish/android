@@ -3,7 +3,9 @@ import React from 'react'
 import DataTable from 'react-data-table-component'
 import DatePicker from 'react-datepicker'
 import {
-  deleteRecentProducts, deleteUserActivities, getRecentActivitiesForDate,
+  deleteRecentProducts,
+  deleteUserActivities,
+  getRecentActivitiesForDate,
   getRecentProductsForDate
 } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
@@ -13,8 +15,8 @@ import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 import { Card } from 'antd'
-import FoodStatCards from './FoodStatCards'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
+import FoodStatCardsList from './FoodStatCardsList'
 
 const actions = memoize(addHandler => (
   <IconButton color='primary' onClick={addHandler}>
@@ -145,18 +147,34 @@ class Diary extends React.Component {
     super(props)
     this.state = {
       count: 0,
-      tableData: [],
+      tableData: '',
       date: moment().valueOf(),
       selectedRows: [],
       activities: [],
       open: false,
       toggleCleared: false,
       activityOpen: false,
-      caloriesActivities:0
+      caloriesActivities: 0
     }
+
+    this.handleSelectedRowClick = this.handleSelectedRowClick.bind(this)
+    this.refresh = this.refresh.bind(this)
+    this.mapActivityToProduct = this.mapActivityToProduct.bind(this)
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleOpenActivitiesModal = this.handleOpenActivitiesModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+    this.handleCloseActivityModal = this.handleCloseActivityModal.bind(this)
+    this.handleGetRecentProductsByDate = this.handleGetRecentProductsByDate.bind(this)
+    this.concatActivitiesAndProducts = this.concatActivitiesAndProducts.bind(this)
+    this.handleGetUserActivityByDate = this.handleGetUserActivityByDate.bind(this)
+    this.handleDeleteRecentProducts = this.handleDeleteRecentProducts.bind(this)
 
     this.refresh()
   }
+
+  // componentDidMount () {
+  //   this.refresh()
+  // }
 
   handleSelectedRowClick = state => {
     this.setState({ selectedRows: state.selectedRows })
@@ -164,17 +182,6 @@ class Diary extends React.Component {
 
   refresh () {
     this.handleGetUserActivityByDate(this.state.date)
-  }
-
-  concatActivitiesAndProducts () {
-    let recentProducts = []
-    let data = this.state.tableData
-    recentProducts = recentProducts.concat(data.recentProducts).concat(this.state.activities)
-    data.recentProducts = recentProducts
-    data.summaryList[1] =  {description: "Calories",
-      sum: data.summaryList[1].sum + this.state.caloriesActivities
-      , difference: data.summaryList[1].difference};
-    this.setState({ tableData: data })
   }
 
   mapActivityToProduct (activity) {
@@ -214,11 +221,31 @@ class Diary extends React.Component {
   handleGetRecentProductsByDate = date => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
-    getRecentProductsForDate(dateString).then(res => {
-      this.setState({ tableData: res })
-      this.concatActivitiesAndProducts()
-    })
+    getRecentProductsForDate(dateString)
+      .then(res => {
+        // this.setState({ tableData: res })
+        this.concatActivitiesAndProducts(res)
+      })
   }
+
+  concatActivitiesAndProducts (res) {
+    let recentProducts = []
+    let data = res
+    recentProducts = recentProducts.concat(data.recentProducts).concat(this.state.activities)
+    data.recentProducts = recentProducts
+    data.summaryList[0] = {
+      description: 'Calories',
+      sum: data.summaryList[0].sum + this.state.caloriesActivities,
+      difference: data.summaryList[0].difference
+    }
+    this.setState({ tableData: data })
+
+  }
+
+  updateFoodStatList = (state) => {
+    state.setState({ summaryList: this.state.tableData.summaryList })
+  }
+
   handleGetUserActivityByDate = date => {
     const dateString = moment(date).format('YYYY-MM-DD')
 
@@ -228,7 +255,7 @@ class Diary extends React.Component {
 
       for (let i = 0; i < list.length; i++) {
         result.push(this.mapActivityToProduct(list[i]))
-        this.state.caloriesActivities +=  -1 * list[i].caloriesBurned
+        this.state.caloriesActivities += -1 * list[i].caloriesBurned
       }
       this.setState({ activities: result })
       this.handleGetRecentProductsByDate(this.state.date)
@@ -247,11 +274,12 @@ class Diary extends React.Component {
         deleteUserActivities(deleteRowRequest)
           .then(() => {
             Alert.success('Activity has been successfully deleted from diary')
-          }).then(() => {
-          this.refresh()
-        })
+          })
+          .then(() => {
+            this.refresh()
+          })
       }
-      if (recentProductsIds.length !==0){
+      if (recentProductsIds.length !== 0) {
         const deleteRowRequest = { recentProductsIds: recentProductsIds }
         deleteRecentProducts(deleteRowRequest)
           .then(() => {
@@ -269,48 +297,80 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        {/* <Grid item xl={'auto'}> */}
-        <Card className='card-container'>
-          <DatePicker className="datepicker-container"
-                      dateFormat='yyyy-MM-dd'
-                      selected={this.state.date}
-                      onChange={date => {
-                        this.setState({ date: date })
-                        this.refresh()
-                      }}
-          />
+        <div>
+          <div id='page1' className='parallax top_diary_background'>
+            <section className='intro'>
+              <div className='title__div'>
+                <div className='intro__align'>
+                  <h1 className='intro__align__title animated__h1'>Diary</h1>
+                  <h2 className='intro__align__sub-title animated'>Welcome to the diary!</h2>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div className='footer'/>
+          <div className='tab'>
+            <h1 className='start-title'>Fill up starter form!</h1>
+          </div>
+        </div>
+        <div className='content'>
+          <div className='parallax bottom_diary_background'>
+            <div>
+              <div className={'outer'}>
+                <Card className='main_diary_card'>
 
-          <DataTable
-            columns={columns()}
-            data={this.state.tableData.recentProducts}
-            defaultSortField='productName'
-            wrap
-            pagination
-            selectableRows
-            pointerOnHover
-            highlightOnHover
-            clearSelectedRows={this.state.toggleCleared}
-            actions={[actions(this.handleOpenModal), activities(this.handleOpenActivitiesModal)]}
-            contextActions={contextActions(this.handleDeleteRecentProducts)}
-            onSelectedRowsChange={this.handleSelectedRowClick}
-            conditionalRowStyles={conditionalRowStyles}
-          />
-        </Card>
-        <Card className='summary-container'>
-          <FoodStatCards summaryList={this.state.tableData.summaryList}
-          caloriesActivities = {this.state.caloriesActivities}
-          />
-        </Card>
-        {/* </Grid> */}
+                  <FoodStatCardsList
+                    summaryList={this.state.tableData.summaryList}
+                    caloriesActivities={this.state.caloriesActivities}
+                  />
 
-        <AddDiaryEntryModal
-          show={this.state.open}
-          onHide={this.handleCloseModal}
-        />
-        <AddActivityDiaryModal
-          show={this.state.activityOpen}
-          onHide={this.handleCloseActivityModal}
-        />
+                  <Card className='datepicker_card_container'>
+                    <DatePicker className="datepicker-container"
+                                dateFormat='yyyy-MM-dd'
+                                selected={this.state.date}
+                                onChange={date => {
+                                  this.setState({ date: date })
+                                  this.refresh()
+                                }}
+                    />
+                  </Card>
+
+                  <Card className='card-container'>
+
+                    <DataTable
+                      columns={columns()}
+                      data={this.state.tableData.recentProducts}
+                      defaultSortField='productName'
+                      wrap
+                      theme='dark'
+                      pagination
+                      selectableRows
+                      pointerOnHover
+                      highlightOnHover
+                      clearSelectedRows={this.state.toggleCleared}
+                      actions={[actions(this.handleOpenModal), activities(this.handleOpenActivitiesModal)]}
+                      contextActions={contextActions(this.handleDeleteRecentProducts)}
+                      onSelectedRowsChange={this.handleSelectedRowClick}
+                      conditionalRowStyles={conditionalRowStyles}
+                    />
+                  </Card>
+
+                </Card>
+
+
+              </div>
+              <AddDiaryEntryModal
+                show={this.state.open}
+                onHide={this.handleCloseModal}
+              />
+              <AddActivityDiaryModal
+                show={this.state.activityOpen}
+                onHide={this.handleCloseActivityModal}
+              />
+            </div>
+          </div>
+          <div className='footer'/>
+        </div>
       </div>
     )
   }

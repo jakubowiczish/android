@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/Button'
 import './Browser.css'
 import { searchActivities } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
+import Card from '@material-ui/core/Card'
 
 class SearchActivityComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
       searchTerm: '',
-      activities: [
-      ],
+      activities: [],
       selectedActivities: [],
       loading: false,
       totalRows: 0,
@@ -106,48 +106,43 @@ class SearchActivityComponent extends Component {
 
   render () {
     return (
-      <div className='container'>
-        <div className='browser-container parent_div_1'>
-          <div className='browser-content child_div_2'>
-            <div className='search-container'>
-              <h1 className='start-title'>Search for activities</h1>
-              <InputGroup className='search-term'>
-                <FormControl
-                  id='search-term'
-                  onChange={this.handleSearchTermChange}
-                  placeholder='Activity name'
-                  aria-label='Activity name'
-                />
-                <InputGroup.Append>
-                  <Button
-                    id='search-button'
-                    variant='dark'
-                    onClick={this.handleSearchButtonClick}
-                  >
-                    Search
-                  </Button>
-                </InputGroup.Append>
-              </InputGroup>
-              <DataTable
-                data={this.state.activities}
-                columns={this.getColumnsForSearchComponent()}
-                onSelectedRowsChange={this.handleSelectChange}
-                selectableRows
-                progressPending={this.state.loading}
-                pagination
-                paginationServer
-                paginationTotalRows={this.state.totalRows}
-                paginationRowsPerPageOptions={[10]}
-                onChangeRowsPerPage={this.handlePerRowsChange}
-                onChangePage={this.handlePageChange}
-                selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
-                selectableRowsNoSelectAll
-                selectableRowsHighlight
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Card className='search_component_container'>
+        <h1 className='search_for_activities_title'>Search for activities</h1>
+        <InputGroup className='search-term'>
+          <FormControl
+            id='search-term'
+            onChange={this.handleSearchTermChange}
+            placeholder='Activity name'
+            aria-label='Activity name'
+          />
+          <InputGroup.Append>
+            <Button
+              id='search-button'
+              variant='dark'
+              onClick={this.handleSearchButtonClick}
+            >
+              Search
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <DataTable
+          data={this.state.activities}
+          columns={this.getColumnsForSearchComponent()}
+          onSelectedRowsChange={this.handleSelectChange}
+          selectableRows
+          progressPending={this.state.loading}
+          pagination
+          theme='dark'
+          paginationServer
+          paginationTotalRows={this.state.totalRows}
+          paginationRowsPerPageOptions={[10]}
+          onChangeRowsPerPage={this.handlePerRowsChange}
+          onChangePage={this.handlePageChange}
+          selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
+          selectableRowsNoSelectAll
+          selectableRowsHighlight
+        />
+      </Card>
     )
   }
 }

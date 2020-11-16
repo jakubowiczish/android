@@ -1,11 +1,76 @@
+.form_field {
+    height: 35px;
+}
+
+.add_diary_entry_container {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    align-content: center;
+    margin: 10px;
+    border: 2px solid #856404;
+    padding: 10px;
+    background-color: #a40606;
+    background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
+}
+
+.modal-header {
+    align-content: center;
+    color: #FFFFFF;
+    background-color: #424242;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.modal-footer {
+    background-color: #424242;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.chosen_products_title {
+    word-wrap: break-word;
+    width: 100px;
+    font-size: 2rem;
+    letter-spacing: 6px;
+    text-align: justify-all;
+    padding-top: 80px;
+    background: -webkit-linear-gradient(#eee, #1c28ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
 .diary-container {
+    display: flex;
+    width: 40%;
+    flex-direction: row;
+    justify-content: center;
     text-align: center;
-    width: 50%;
+    background-image: url(../img/background/background_diary_1.jpg);
+    /*width: 50%;*/
+}
+
+.stater{
+    display: inline-block;
+}
+.food-stat {
+
+    margin: 5px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    text-align: center;
+    background-color: #3e3e3e;
+    color: white;
 }
 
 .summary-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 50px;
-    width: 50%;
     text-align: center;
     align-self: center;
     position: relative;
@@ -15,7 +80,7 @@
     background: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
-    width: 500px;
+    /*width: 100%;*/
     display: inline-block;
     margin-top: 30px;
     vertical-align: middle;
@@ -26,23 +91,86 @@
     margin-right: 10px;
 }
 
-
-.datepicker-container {
-    align-self: center;
-    align-content: center;
-}
-
 .child_div_1 {
     width: 1200px;
     height: 900px;
 }
 
-.parent_div_2{
+.parent_div_2 {
     float: right;
 }
 
-.card-container {
-    margin-left: 5%;
+.bottom_diary_background {
+    background-image: url(../img/background/bottom_diary_background.jpg);
+}
+
+.top_diary_background {
+    background-image: url(../img/background/top_diary_background.jpg);
+}
+
+.outer {
+    width: 100%;
+    padding-top: 10rem;
+    height: 90rem;
+}
+
+.main_diary_card {
+    min-height: 500px;
+    min-width: 300px;
+    display: inline-block;
+    align-self: center;
+    align-items: center;
+    align-content: center;
     width: 80%;
-    border: 2px solid #000000;
+    display: table;
+    margin: 0 auto;
+}
+
+.datepicker_card_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.datepicker-container {
+    margin: 5px;
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    text-align: center;
+    background-color: #3e3e3e;
+    color: white;
+}
+
+.card-container {
+    flex-direction: row;
+    align-content: center;
+}
+
+.diary_data_table {
+    display: flex;
+    align-self: center;
+}
+
+.react-datepicker {
+    font-size: 1.3rem !important;
+}
+
+.react-datepicker__current-month {
+    font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+    padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+    top: 13px !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+    margin: 0.5rem !important;
 }

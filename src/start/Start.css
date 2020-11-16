@@ -82,7 +82,7 @@ h1 + p {
     --bX: 70%;
     --bY: 70%;
     filter: contrast(1.4);
-    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
+    background: linear-gradient(hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, .1)),
     url("https://images.unsplash.com/photo-1545693315-85b6be26a3d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
     background-size: 60rem auto;
     background-position: var(--bX) var(--bY);

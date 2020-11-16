@@ -1,0 +1,15 @@
+.search_modal_body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-image: url(../img/background/products_modal_background.jpg);
+}
+
+.activity_modal_body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-image: url(../img/background/activities_modal_background.jpg);
+}

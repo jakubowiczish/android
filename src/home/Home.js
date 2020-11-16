@@ -41,7 +41,8 @@ class Home extends Component {
                   {this.props.authenticated
                     ? <CaloriesStatusContainer
                       caloriesConsumed={this.state.caloriesConsumed}
-                      dailyCaloricDemand={this.state.dailyCaloricDemand}/> : ''}
+                      dailyCaloricDemand={this.state.dailyCaloricDemand}
+                      /> : ''}
                 </div>
               </div>
             </section>

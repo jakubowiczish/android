@@ -140,7 +140,7 @@ class App extends Component {
               currentUser={this.state.currentUser}
               component={OAuth2RedirectHandler}
             />
-            <Route component={NotFound} />
+            <Route component={NotFound}/>
           </Switch>
         </div>
         <Alert
