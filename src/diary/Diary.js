@@ -16,6 +16,7 @@ import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 import { Card } from 'antd'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
+import FoodStatCardsList from './FoodStatCardsList'
 
 const actions = memoize(addHandler => (
   <IconButton color='primary' onClick={addHandler}>
@@ -238,6 +239,11 @@ class Diary extends React.Component {
       difference: data.summaryList[1].difference
     }
     this.setState({ tableData: data })
+
+  }
+
+  updateFoodStatList = (state) => {
+    state.setState({ summaryList: this.state.tableData.summaryList })
   }
 
   handleGetUserActivityByDate = date => {
@@ -310,7 +316,7 @@ class Diary extends React.Component {
         <div className='content'>
           <div className='parallax bottom_diary_background'>
             <div>
-              <div className={"outer"}>
+              <div className={'outer'}>
                 <Card className='main_diary_card'>
 
                   <Card className='datepicker_card_container'>
@@ -343,7 +349,17 @@ class Diary extends React.Component {
                       conditionalRowStyles={conditionalRowStyles}
                     />
                   </Card>
+
+                  <FoodStatCardsList
+                    updateFoodStatList={this.updateFoodStatList}
+                    summaryList={this.state.tableData.summaryList}
+                    caloriesActivities={this.state.caloriesActivities}
+                  />
                 </Card>
+
+                {/*<Card className='summary-container'>*/}
+
+                {/*</Card>*/}
               </div>
               <AddDiaryEntryModal
                 show={this.state.open}
