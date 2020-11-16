@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Achievement.css'
 import { Progress } from 'reactstrap'
+
 class AchievementItem extends Component {
   render () {
     const color = this.props.progress === this.props.completeCondition ? 'success' : ''
@@ -15,14 +16,16 @@ class AchievementItem extends Component {
           <div className='achievement-props'>
             <div className='container'>
               <div className='row'>
-                <img className='achievement-photo' height='100px' width='100px' id='ItemPreview' src={'data:image/png;base64,' + this.props.photo} />
+                <img className='achievement-photo' height='100px' width='100px' id='ItemPreview'
+                     src={this.props.imageUrl}
+                />
               </div>
               <div className='achievement-details'>
                 <b>Description: {this.props.description}</b>
                 {this.props.completedDate ? <b>Completed: {this.props.completedDate.replace('T', ' ')}</b> : ''}
               </div>
               <div className='text-center'>{this.props.progress} of {this.props.completeCondition}</div>
-              <Progress color={`${color}`} animated value={progressMade} max={this.props.completeCondition} />
+              <Progress color={`${color}`} animated value={progressMade} max={this.props.completeCondition}/>
             </div>
           </div>
         </div>

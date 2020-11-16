@@ -318,11 +318,12 @@ class Diary extends React.Component {
             <div>
               <div className={'outer'}>
                 <Card className='main_diary_card'>
+
                   <FoodStatCardsList
-                    updateFoodStatList={this.updateFoodStatList}
                     summaryList={this.state.tableData.summaryList}
                     caloriesActivities={this.state.caloriesActivities}
                   />
+
                   <Card className='datepicker_card_container'>
                     <DatePicker className="datepicker-container"
                                 dateFormat='yyyy-MM-dd'
@@ -356,9 +357,7 @@ class Diary extends React.Component {
 
                 </Card>
 
-                {/*<Card className='summary-container'>*/}
 
-                {/*</Card>*/}
               </div>
               <AddDiaryEntryModal
                 show={this.state.open}
