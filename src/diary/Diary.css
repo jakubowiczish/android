@@ -46,6 +46,18 @@
     /*width: 50%;*/
 }
 
+
+.food-stat{
+    display: inline-block;
+    width: 100px;
+    margin: 5px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;text-align: center;
+    background-color: #3e3e3e;
+    color: white;
+}
 .summary-container {
     display: flex;
     width: 100%;
