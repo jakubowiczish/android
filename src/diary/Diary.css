@@ -49,9 +49,11 @@
     /*width: 50%;*/
 }
 
-
-.food-stat {
+.stater{
     display: inline-block;
+}
+.food-stat {
+
     margin: 5px;
     padding: 10px 16px;
     font-size: 18px;
