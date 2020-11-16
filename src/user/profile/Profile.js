@@ -39,54 +39,63 @@ class Profile extends Component {
 
   render () {
     return (
-      <div className='profile-container'>
-        <div className='profile-content'>
-          <div className='profile-info'>
-            <div className='profile-avatar'>
-              {
-                this.state.user.imageUrl ? (
-                  <img src={this.state.user.imageUrl} alt={this.state.user.name} />
-                ) : (
-                  <div className='text-avatar'>
-                    <span>{this.state.user.name && this.state.user.name[0]}</span>
+      <div>
+        <div>
+          <div id='page1' className='parallax home_top_background'>
+            <section className='profile__intro'>
+              <div className='profile__title__div'>
+                <div className='intro__align'>
+                  <div className='profile-info'>
+                    <div className='profile-avatar'>
+                      {
+                        this.state.user.imageUrl ? (
+                          <img src={this.state.user.imageUrl} alt={this.state.user.name} />
+                        ) : (
+                          <div className='text-avatar'>
+                            <span>{this.state.user.name && this.state.user.name[0]}</span>
+                          </div>
+                        )
+                      }
+                    </div>
                   </div>
-                )
-              }
-            </div>
-            <div className='profile-header-container'>
-              <div className='profile-name'>{this.state.user.name}</div>
-              <div className='profile-email'>{this.state.user.email}</div>
-            </div>
+                  <div className='profile-header-container'>
+                    <div className='profile-name'>{this.state.user.name}</div>
+                    <div className='profile-email'>{this.state.user.email}</div>
+                  </div>
+                </div>
+                <Container id='userProfileDataContainer'>
+                  <hr className='splitter-line' />
+                  <UserData weight={this.state.weight} user={this.state.user} changeWeight={this.changeWeight} />
+                  <hr className='splitter-line' />
+                  <div className='user-data-header'>
+                    <b>User plan </b>
+                    <Link to='startForm'>
+                      <Image src={configurationIcon} width={24} height={24} title='Edit your plan' />
+                    </Link>
+                  </div>
+                  <div className='user-data'>
+                    <b>Weight goal: </b>{this.state.user.userPlan.goal}
+                  </div>
+                  <div className='user-data'>
+                    <b>Activity level: </b>{this.state.user.userPlan.activityLevel}
+                  </div>
+                  <div className='user-data'>
+                    <b>Calories per day: </b>{this.state.user.userPlan.calories + 'kcal'}
+                  </div>
+                  <div className='user-data'>
+                    <b>Carbohydrates per day: </b>{this.state.user.userPlan.carbohydrates + 'g'}
+                  </div>
+                  <div className='user-data'>
+                    <b>Proteins per day: </b>{this.state.user.userPlan.proteins + 'g'}
+                  </div>
+                  <div className='user-data'>
+                    <b>Fat per day: </b>{this.state.user.userPlan.fat + 'g'}
+                  </div>
+                </Container>
+              </div>
+            </section>
           </div>
-          <Container id='userProfileDataContainer'>
-            <hr className='splitter-line' />
-            <UserData weight={this.state.weight} user={this.state.user} changeWeight={this.changeWeight} />
-            <hr className='splitter-line' />
-            <div className='user-data-header'>
-              <b>User plan </b>
-              <Link to='startForm'>
-                <Image src={configurationIcon} width={24} height={24} title='Edit your plan' />
-              </Link>
-            </div>
-            <div className='user-data'>
-              <b>Weight goal: </b>{this.state.user.userPlan.goal}
-            </div>
-            <div className='user-data'>
-              <b>Activity level: </b>{this.state.user.userPlan.activityLevel}
-            </div>
-            <div className='user-data'>
-              <b>Calories per day: </b>{this.state.user.userPlan.calories + 'kcal'}
-            </div>
-            <div className='user-data'>
-              <b>Carbohydrates per day: </b>{this.state.user.userPlan.carbohydrates + 'g'}
-            </div>
-            <div className='user-data'>
-              <b>Proteins per day: </b>{this.state.user.userPlan.proteins + 'g'}
-            </div>
-            <div className='user-data'>
-              <b>Fat per day: </b>{this.state.user.userPlan.fat + 'g'}
-            </div>
-          </Container>
+          <div className='footer' />
         </div>
       </div>
     )
