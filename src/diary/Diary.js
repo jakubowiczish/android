@@ -310,7 +310,7 @@ class Diary extends React.Component {
         <div className='content'>
           <div className='parallax bottom_diary_background'>
             <div>
-              <div>
+              <div className={"outer"}>
                 <Card className='main_diary_card'>
 
                   <Card className='datepicker_card_container'>
