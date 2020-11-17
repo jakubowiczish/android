@@ -73,7 +73,6 @@ export function searchProducts (searchTerm, pageIndex, perPage) {
 }
 
 export function updateWeight (updateWeightRequest) {
-  console.log(updateWeightRequest)
   return request({
     url: API_BASE_URL + '/user/weight',
     body: JSON.stringify(updateWeightRequest),

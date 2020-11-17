@@ -49,8 +49,8 @@ class LoginSignupContainer extends React.Component {
     event.preventDefault()
 
     const loginRequest = {
-      'email': this.state.loginEmail,
-      'password': this.state.loginPassword
+      email: this.state.loginEmail,
+      password: this.state.loginPassword
     }
 
     login(loginRequest)
@@ -69,9 +69,9 @@ class LoginSignupContainer extends React.Component {
     event.preventDefault()
 
     const signUpRequest = {
-      'name': this.state.signupName,
-      'email': this.state.signupEmail,
-      'password': this.state.signupPassword
+      name: this.state.signupName,
+      email: this.state.signupEmail,
+      password: this.state.signupPassword
     }
 
     signup(signUpRequest)
@@ -86,88 +86,93 @@ class LoginSignupContainer extends React.Component {
 
   render () {
     return (
-      <div className="center-login-signup-form">
-        <div className="login-signup-container" id="login_signup_container_id">
-          <div className="form-container sign-up-container">
-            <form className='login-signup-form' action="#" onSubmit={this.handleSignupSubmit}>
+      <div className='center-login-signup-form'>
+        <div className='login-signup-container' id='login_signup_container_id'>
+          <div className='form-container sign-up-container'>
+            <form className='login-signup-form' action='#' onSubmit={this.handleSignupSubmit}>
               <h1>Create Account</h1>
-              <div className="social-container">
-                <a href={FACEBOOK_AUTH_URL} className="social login-signup-icon-a fab facebook-icon"/>
-                <a href={GOOGLE_AUTH_URL} className="social login-signup-icon-a fab google-icon"/>
-                <a href={GITHUB_AUTH_URL} className="social login-signup-icon-a fab github-icon"/>
+              <div className='social-container'>
+                <a href={FACEBOOK_AUTH_URL} className='social login-signup-icon-a fab facebook-icon' />
+                <a href={GOOGLE_AUTH_URL} className='social login-signup-icon-a fab google-icon' />
+                <a href={GITHUB_AUTH_URL} className='social login-signup-icon-a fab github-icon' />
               </div>
               <span>or use your email for registration</span>
-              <input className="login-signup-text-input"
-                     type="text"
-                     placeholder="Name"
-                     name="signupName"
-                     value={this.state.signupName}
-                     onChange={this.handleInputChange} required
+              <input
+                className='login-signup-text-input'
+                type='text'
+                placeholder='Name'
+                name='signupName'
+                value={this.state.signupName}
+                onChange={this.handleInputChange} required
               />
-              <input className="login-signup-text-input"
-                     type="email"
-                     placeholder="Email"
-                     name="signupEmail"
-                     value={this.state.signupEmail}
-                     onChange={this.handleInputChange} required
+              <input
+                className='login-signup-text-input'
+                type='email'
+                placeholder='Email'
+                name='signupEmail'
+                value={this.state.signupEmail}
+                onChange={this.handleInputChange} required
               />
-              <input className="login-signup-text-input"
-                     type="password"
-                     placeholder="Password"
-                     name="signupPassword"
-                     value={this.state.signupPassword}
-                     onChange={this.handleInputChange} required
+              <input
+                className='login-signup-text-input'
+                type='password'
+                placeholder='Password'
+                name='signupPassword'
+                value={this.state.signupPassword}
+                onChange={this.handleInputChange} required
               />
-              <button className="login-signup-button">
+              <button className='login-signup-button'>
                 Sign Up
               </button>
             </form>
           </div>
-          <div className="form-container sign-in-container">
-            <form className='login-signup-form' action="#" onSubmit={this.handleLoginSubmit}>
+          <div className='form-container sign-in-container'>
+            <form className='login-signup-form' action='#' onSubmit={this.handleLoginSubmit}>
               <h1>Sign in</h1>
-              <div className="social-container">
-                <a href={FACEBOOK_AUTH_URL} className="social login-signup-icon-a fab facebook-icon"/>
-                <a href={GOOGLE_AUTH_URL} className="social login-signup-icon-a fab google-icon"/>
-                <a href={GITHUB_AUTH_URL} className="social login-signup-icon-a fab github-icon"/>
+              <div className='social-container'>
+                <a href={FACEBOOK_AUTH_URL} className='social login-signup-icon-a fab facebook-icon' />
+                <a href={GOOGLE_AUTH_URL} className='social login-signup-icon-a fab google-icon' />
+                <a href={GITHUB_AUTH_URL} className='social login-signup-icon-a fab github-icon' />
               </div>
               <span>or use your account</span>
-              <input className="login-signup-text-input"
-                     type="email"
-                     placeholder="Email"
-                     name="loginEmail"
-                     value={this.state.loginEmail}
-                     onChange={this.handleInputChange} required
+              <input
+                className='login-signup-text-input'
+                type='email'
+                placeholder='Email'
+                name='loginEmail'
+                value={this.state.loginEmail}
+                onChange={this.handleInputChange} required
               />
-              <input className="login-signup-text-input"
-                     type="password"
-                     placeholder="Password"
-                     name="loginPassword"
-                     value={this.state.loginPassword}
-                     onChange={this.handleInputChange} required
+              <input
+                className='login-signup-text-input'
+                type='password'
+                placeholder='Password'
+                name='loginPassword'
+                value={this.state.loginPassword}
+                onChange={this.handleInputChange} required
               />
-              <button className="login-signup-button">
+              <button className='login-signup-button'>
                 Sign In
               </button>
             </form>
           </div>
-          <div className="overlay-container">
-            <div className="overlay">
-              <div className="overlay-panel overlay-left">
+          <div className='overlay-container'>
+            <div className='overlay'>
+              <div className='overlay-panel overlay-left'>
                 <h1>Welcome Back!</h1>
                 <p className='message-panel-left-right'>
                   To keep connected with us please login with your personal info
                 </p>
-                <button className="ghost login-signup-button" id="signIn">
+                <button className='ghost login-signup-button' id='signIn'>
                   Sign In
                 </button>
               </div>
-              <div className="overlay-panel overlay-right">
+              <div className='overlay-panel overlay-right'>
                 <h1>Hello, Friend!</h1>
                 <p className='message-panel-left-right'>
                   Please enter your personal details and start your journey
                 </p>
-                <button className="ghost login-signup-button" id="signUp">
+                <button className='ghost login-signup-button' id='signUp'>
                   Sign Up
                 </button>
               </div>

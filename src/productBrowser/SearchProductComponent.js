@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/Button'
 import './Browser.css'
 import { searchProducts } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
+import Card from '@material-ui/core/Card'
 
-class SearchComponent extends Component {
+class SearchProductComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
       searchTerm: '',
-      products: [
-      ],
+      products: [],
       selectedProducts: [],
       loading: false,
       totalRows: 0,
@@ -112,50 +112,46 @@ class SearchComponent extends Component {
 
   render () {
     return (
-      <div className='container'>
-        <div className='browser-container parent_div_1'>
-          <div className='browser-content child_div_2'>
-            <div className='search-container'>
-              <h1 className='start-title'>Search for products</h1>
-              <InputGroup className='search-term'>
-                <FormControl
-                  id='search-term'
-                  onChange={this.handleSearchTermChange}
-                  placeholder='Product name'
-                  aria-label='Product name'
-                />
-                <InputGroup.Append>
-                  <Button
-                    id='search-button'
-                    variant='dark'
-                    onClick={this.handleSearchButtonClick}
-                  >
-                    Search
-                  </Button>
-                </InputGroup.Append>
-              </InputGroup>
-              <DataTable
-                data={this.state.products}
-                columns={this.getColumnsForSearchComponent()}
-                onSelectedRowsChange={this.handleSelectChange}
-                selectableRows
-                progressPending={this.state.loading}
-                pagination
-                paginationServer
-                paginationTotalRows={this.state.totalRows}
-                paginationRowsPerPageOptions={[10]}
-                onChangeRowsPerPage={this.handlePerRowsChange}
-                onChangePage={this.handlePageChange}
-                selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
-                selectableRowsNoSelectAll
-                selectableRowsHighlight
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Card className='search_component_container'>
+        <h1 className='search_for_products_title'>Search for products</h1>
+        <InputGroup className='search-term'>
+          <FormControl
+            className=''
+            id='search-term'
+            onChange={this.handleSearchTermChange}
+            placeholder='Product name'
+            aria-label='Product name'
+          />
+          <InputGroup.Append>
+            <Button
+              id='search-button'
+              variant='dark'
+              onClick={this.handleSearchButtonClick}
+            >
+              Search
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <DataTable
+          data={this.state.products}
+          columns={this.getColumnsForSearchComponent()}
+          onSelectedRowsChange={this.handleSelectChange}
+          selectableRows
+          progressPending={this.state.loading}
+          pagination
+          theme='dark'
+          paginationServer
+          paginationTotalRows={this.state.totalRows}
+          paginationRowsPerPageOptions={[10]}
+          onChangeRowsPerPage={this.handlePerRowsChange}
+          onChangePage={this.handlePageChange}
+          selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+          selectableRowsNoSelectAll
+          selectableRowsHighlight
+        />
+      </Card>
     )
   }
 }
 
-export default SearchComponent
+export default SearchProductComponent
