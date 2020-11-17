@@ -41,7 +41,7 @@ class Profile extends Component {
     return (
       <div>
         <div>
-          <div id='page1' className='parallax home_top_background'>
+          <div id='page1' className='parallax profile_top_background'>
             <section className='profile__intro'>
               <div className='profile__title__div'>
                 <div className='intro__align'>

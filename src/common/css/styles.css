@@ -30,11 +30,17 @@ body, html {
 .top_background {
   background-image: url(../../img/background/background-final.jpg);
 }
+
 .top_update_background{
   background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d9c99669696215.5b8a22fe3316f.jpg);
 }
+
 .home_top_background {
   background-image: url(../../img/background/home_background.jpg);
+}
+
+.profile_top_background {
+  background-image: url(../../img/background/profile_background.jpg);
 }
 
 .parallax.bottom_background {
