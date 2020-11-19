@@ -10,13 +10,13 @@ class AchievementItem extends Component {
       <div className='wrap wrap--3'>
         <div className={`achievement-card container4 container--4  ${color}`}>
           <div className='form-group field'>
-            <label className='label' htmlFor='slider'>{this.props.name}</label>
+            <label className='label lab' htmlFor='slider'>{this.props.name}</label>
           </div>
-          <p className='label2'>({this.props.points} points)</p>
+          <p className='label2 lab2'>({this.props.points} points)</p>
           <div className='achievement-props'>
             <div className='container'>
               <div className='row'>
-                <img className='achievement-photo' height='100px' width='100px' id='ItemPreview'
+                <img className='achievement-photo'  id='ItemPreview'
                      src={this.props.imageUrl}
                 />
               </div>

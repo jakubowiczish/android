@@ -37,7 +37,7 @@ class Home extends Component {
             <section className='home__intro'>
               <div className='home__title__div'>
                 <div className='intro__align'>
-                  <h1 className='intro__align__title animated__h1'>Master Diet</h1>
+                  <h1 className='intro__align__title animated__h1 home-font'>Master Diet</h1>
                   {this.props.authenticated
                     ? <CaloriesStatusContainer
                       caloriesConsumed={this.state.caloriesConsumed}

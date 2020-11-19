@@ -42,9 +42,9 @@ class Profile extends Component {
       <div>
         <div>
           <div id='page1' className='parallax profile_top_background'>
-            <section className='profile__intro'>
+            <section className='profile__intro '>
               <div className='profile__title__div'>
-                <div className='intro__align'>
+                <div className>
                   <div className='profile-info'>
                     <div className='profile-avatar'>
                       {

@@ -297,22 +297,6 @@ class Diary extends React.Component {
   render () {
     return (
       <div>
-        <div>
-          <div id='page1' className='parallax top_diary_background'>
-            <section className='intro'>
-              <div className='title__div'>
-                <div className='intro__align'>
-                  <h1 className='intro__align__title animated__h1'>Diary</h1>
-                  <h2 className='intro__align__sub-title animated'>Welcome to the diary!</h2>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className='footer'/>
-          <div className='tab'>
-            <h1 className='start-title'>Fill up starter form!</h1>
-          </div>
-        </div>
         <div className='content'>
           <div className='parallax bottom_diary_background'>
             <div>

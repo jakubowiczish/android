@@ -89,12 +89,19 @@ background-image: url(https://c1.staticflickr.com/1/699/32361674505_1e1a1d56bf_o
   padding: 0;
 }
 
+@media screen and (max-width:992px) {
+  .nav div.main_list ul li {
+    padding-right: 1rem !important;
+  }
+}
+
 .nav div.main_list ul li {
   width: auto;
   height: 65px;
   padding: 0;
   padding-right: 3rem;
 }
+
 
 .nav div.main_list ul li a {
   text-decoration: none;
@@ -379,7 +386,7 @@ background-image: url(https://c1.staticflickr.com/1/699/32361674505_1e1a1d56bf_o
 
 @media screen and (max-width:768px) {
   .intro__align__title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: lighter;
     color: #fff;
   }
@@ -395,13 +402,13 @@ background-image: url(https://c1.staticflickr.com/1/699/32361674505_1e1a1d56bf_o
 
 @media only screen and (max-width: 480px) {
   .intro__align__title {
-    font-size: 2.8rem;
+    font-size: 5vw;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .intro__align__sub-title {
-    font-size: 1.8rem;
+    font-size: 3vw;
   }
 }
 
@@ -445,6 +452,17 @@ background-image: url(https://c1.staticflickr.com/1/699/32361674505_1e1a1d56bf_o
 @media screen and (max-width: 1024px) {
   .animated {
     animation: animation_small 2s ease 1;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .home-font{
+    font-size: 10vw !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .home-h2-font{
+    font-size: 5vw !important;
   }
 }
 
@@ -496,5 +514,17 @@ h1 {
 div.tab {
   background-color: #111;
   height: 3px;
+}
+
+@media screen and (max-width: 1024px) {
+  .diary-font{
+    font-size: 10vw !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .diary-h2-font{
+    font-size: 6vw !important;
+  }
 }
 

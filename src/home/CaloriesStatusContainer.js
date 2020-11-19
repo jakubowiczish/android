@@ -40,7 +40,7 @@ class CaloriesStatusContainer extends Component {
   render () {
     return (
       <div className='calories-status-container'>
-        <h2 className='calories-status-header'>Calories consumed: {this.props.caloriesConsumed}/{this.props.dailyCaloricDemand} kcal</h2>
+        <h2 className='calories-status-header home-h2-font'>Calories consumed: {this.props.caloriesConsumed}/{this.props.dailyCaloricDemand} kcal</h2>
         <div className='progress-bar-container'>
           <ProgressBar className='calories-progress-bar'>
             <ProgressBar striped variant='success' label={this.getGreenPartProgressBarLabel()} now={this.calculateGreenPartProgressBarPercentage()} />
