@@ -26,6 +26,7 @@
     "memoize-one": "^5.1.1",
     "moment": "^2.26.0",
     "react": "^16.13.1",
+    "react-awesome-button": "^6.5.1",
     "react-bootstrap": "^1.0.1",
     "react-circular-progressbar": "^2.0.3",
     "react-data-table-component": "^6.9.7",
