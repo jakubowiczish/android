@@ -9,6 +9,15 @@
 }
 .box{
     align-content: center;
+
+}
+.parallax-height{
+    height: 100vh;
+}
+
+.box2{
+   width: 100vw;
+    height: 12vh;
 }
 svg{
     color:#f8f9fa!important;
@@ -33,4 +42,8 @@ svg{
     height:40%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.stat-contr{
+
 }

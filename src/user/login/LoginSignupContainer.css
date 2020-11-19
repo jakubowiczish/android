@@ -48,6 +48,25 @@ h2 {
     justify-content: center;
 }
 
+.mob-div{
+
+}
+
+.top-box{
+    margin-bottom: 5vw;
+}
+
+.padding-box{
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+    border: 2px solid #ffc419;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.hide{
+    display: none;
+}
 .message-panel-left-right {
     font-size: 14px;
     font-weight: 100;
