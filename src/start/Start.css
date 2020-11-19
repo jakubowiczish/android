@@ -351,6 +351,11 @@ h1 + p {
     text-align: center;
     padding-top: 80px;
 }
+@media screen and (max-width:600px) {
+    .start-title{
+        font-size: 7vw;
+    }
+}
 .goal-header{
 
     position: fixed;

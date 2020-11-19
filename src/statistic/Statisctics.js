@@ -41,11 +41,13 @@ export default class Statisctics extends React.PureComponent {
     return (
       <div>
         <div>
-          <div id="page1" className={`parallax top_background bottom_stats_background padding`}>
-            <section className="intro">
+          <div id="page1" className={`parallax parallax-height top_background bottom_stats_background padding`}>
+            <section className="intro stat-contr">
               <div className="title__div box">
+                <div className={"box2"}>
+                </div>
                 <div className={"box"}>
-                  <div>
+                  <div >
                   <h1 className="intro__align__title">Your weight diagram </h1>
                   </div>
                   <div className="card-chart">

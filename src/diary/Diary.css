@@ -50,11 +50,14 @@
 }
 
 .stater{
+    padding: 0 2vw;
     display: inline-block;
+    text-align: center;
+    align-content: center;
 }
 .food-stat {
-
-    margin: 5px;
+    width: min-content;
+    margin: 5px auto;
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.3333333;
@@ -64,6 +67,26 @@
     color: white;
 }
 
+.Calories{
+    padding: 0 0vw;
+    display: block;
+}
+
+.circle{
+    font-size: 10px;
+    width: 20vw !important;
+    height: 20vw !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+}
+
+.Caloriescircle {
+    font-size: 10px;
+    width: 50vw !important;
+    height: 50vw !important;
+    max-width: 280px !important;
+    max-height: 280px !important;
+}
 .summary-container {
     display: flex;
     width: 100%;

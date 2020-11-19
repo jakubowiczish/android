@@ -110,6 +110,8 @@
 }
 
 .achievement-photo{
+    height : 100px;
+    width : 100px;
     position: absolute;
     top: 4rem;
     right: 4rem;
@@ -125,4 +127,29 @@
     background-size: 60rem auto;
     background-position: var(--bX) var(--bY);
     box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
+}
+@media screen and (max-width: 500px) {
+    .container4 {
+        width: 48rem;
+        height: 34rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    .container4 {
+        width: 80vw;
+        height: 37vh;
+    }
+    .lab{
+        font-size: 7vw;
+    }
+    .lab2{
+        font-size: 4vw !important;
+    }
+    .achievement-photo {
+        height : 18vw;
+        width : 18vw;
+    }
+    .achievement-details {
+        font-size: 4vw;
+    }
 }
