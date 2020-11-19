@@ -16,29 +16,7 @@ import { Card } from 'antd'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
 import FoodStatCardsList from './FoodStatCardsList'
 import { Button } from '@material-ui/core'
-import AwesomeButtonProgress from 'react-awesome-button'
-
-const addProductsButton = memoize(addProductsHandler => (
-  <AwesomeButtonProgress
-    type="secondary"
-    size="medium"
-    action={(element, next) => addProductsHandler}
-  >
-    Primary
-  </AwesomeButtonProgress>
-))
-
-const deleteButton = memoize(deleteHandler => (
-  <Button color='secondary' onClick={deleteHandler}>
-    Delete
-  </Button>
-))
-
-const addActivitiesButton = memoize(addActivitiesHandler => (
-  <Button color='primary' onClick={addActivitiesHandler}>
-    Add activity
-  </Button>
-))
+import ReactiveButton from 'reactive-button'
 
 const conditionalRowStyles = [
   {
@@ -200,6 +178,33 @@ class Diary extends React.Component {
     }
   }
 
+  addProductsButton = addProductsHandler => (
+    <ReactiveButton
+      rounded
+      color="dark"
+      onClick={addProductsHandler}
+      idleText='Add product'
+    />
+  )
+
+  deleteButton = deleteHandler => (
+    <ReactiveButton
+      rounded
+      color="dark"
+      onClick={deleteHandler}
+      idleText='Delete product'
+    />
+  )
+
+  addActivitiesButton = addActivitiesHandler => (
+    <ReactiveButton
+      rounded
+      color="dark"
+      onClick={addActivitiesHandler}
+      idleText='Add activity'
+    />
+  )
+
   handleOpenModal = () => {
     this.setState({ open: true })
   }
@@ -332,8 +337,8 @@ class Diary extends React.Component {
                       pointerOnHover
                       highlightOnHover
                       clearSelectedRows={this.state.toggleCleared}
-                      actions={[addProductsButton(this.handleOpenModal), addActivitiesButton(this.handleOpenActivitiesModal)]}
-                      contextActions={deleteButton(this.handleDeleteRecentProducts)}
+                      actions={[this.addProductsButton(this.handleOpenModal), this.addActivitiesButton(this.handleOpenActivitiesModal)]}
+                      contextActions={this.deleteButton(this.handleDeleteRecentProducts)}
                       onSelectedRowsChange={this.handleSelectedRowClick}
                       conditionalRowStyles={conditionalRowStyles}
                     />
