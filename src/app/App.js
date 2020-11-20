@@ -90,7 +90,7 @@ class App extends Component {
               currentUser={this.state.currentUser}
               component={Profile}
             />
-            <PrivateRoute
+            <Route
               path='/productBrowser' authenticated={this.state.authenticated}
               currentUser={this.state.currentUser}
               component={ProductBrowser}
