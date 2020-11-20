@@ -106,14 +106,6 @@
     }
 }
 
-/*.products-datatable .rdt_TableHeader{*/
-/*    background-color: rgba(0, 0, 0, 0.2);*/
-/*}*/
-
-/*.products-datatable .rdt_TableHead{*/
-/*    background-color: rgba(0, 0, 0, 0.2);*/
-/*}*/
-
 .products-datatable .rdt_Table{
     background-color: rgba(0, 0, 0, 0.7);
 }

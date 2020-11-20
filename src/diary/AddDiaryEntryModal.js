@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import SearchProductComponent from '../productBrowser/SearchProductComponent'
 import AddDiaryEntryComponent from './AddDiaryEntryComponent'
 import './Diary.css'
+import RecentProductsComponent from '../productBrowser/RecentProductsComponent'
 
 class AddDiaryEntryModal extends Component {
   constructor (props) {
@@ -20,8 +21,8 @@ class AddDiaryEntryModal extends Component {
   render () {
     return (
       <Modal
+        dialogClassName='custom-dialog'
         {...this.props}
-        size='xl'
         aria-labelledby='contained-modal-title-vcenter'
         centered
         scrollable={true}
@@ -33,10 +34,11 @@ class AddDiaryEntryModal extends Component {
         </Modal.Header>
         <Modal.Body className='search_modal_body'>
           <SearchProductComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
+          <RecentProductsComponent onSelectedRecentProductsChangeHandler={this.handleSelectedProductsChange}/>
           <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <Button className="btn btn-primary close-button" onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     )

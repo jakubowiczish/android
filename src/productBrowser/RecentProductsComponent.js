@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import './Browser.css'
 import { getRecentProducts } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
+import Card from '@material-ui/core/Card'
 
 class RecentProductsComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      products: [
-      ],
+      products: [],
       selectedProducts: [],
       loading: false,
       totalRows: 0,
@@ -98,29 +98,27 @@ class RecentProductsComponent extends Component {
 
   render () {
     return (
-      <div className='container'>
-        <div className='recent-item-container parent_div_1'>
-          <div className='recent-item-content child_div_2'>
-            <h1 className='start-title'>Recently added products</h1>
-            <DataTable
-              data={this.state.products}
-              columns={this.getColumnsForRecentProductsComponent()}
-              onSelectedRowsChange={this.handleSelectChange}
-              selectableRows
-              progressPending={this.state.loading}
-              pagination
-              paginationServer
-              paginationTotalRows={this.state.totalRows}
-              paginationRowsPerPageOptions={[10]}
-              onChangeRowsPerPage={this.handlePerRowsChange}
-              onChangePage={this.handlePageChange}
-              selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
-              selectableRowsNoSelectAll
-              selectableRowsHighlight
-            />
-          </div>
-        </div>
-      </div>
+      <Card className='search_component_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+        <h1 className='search_for_products_title'>Your recent products</h1>
+        <DataTable
+          className='products-datatable'
+          data={this.state.products}
+          columns={this.getColumnsForRecentProductsComponent()}
+          onSelectedRowsChange={this.handleSelectChange}
+          selectableRows
+          progressPending={this.state.loading}
+          pagination
+          theme='dark'
+          paginationServer
+          paginationTotalRows={this.state.totalRows}
+          paginationRowsPerPageOptions={[10]}
+          onChangeRowsPerPage={this.handlePerRowsChange}
+          onChangePage={this.handlePageChange}
+          selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+          selectableRowsNoSelectAll
+          selectableRowsHighlight
+        />
+      </Card>
     )
   }
 }
