@@ -26,21 +26,25 @@ class Login extends Component {
     return currentUser.userPlan != null
   }
 
+  isAuthenticatedAndExists (props) {
+    return props.authenticated && props.currentUser !== undefined
+  }
+
   render () {
-    const isProperForRedirection = this.props.authenticated
-      && this.props.currentUser !== undefined
+    const shouldBeRedirectedToApp = this.isAuthenticatedAndExists(this.props)
       && this.hasUserPlan(this.props.currentUser)
 
-    if (isProperForRedirection) {
+    const shouldBeRedirectedToStartForm = this.isAuthenticatedAndExists(this.props)
+      && !this.hasUserPlan(this.props.currentUser)
+
+    if (shouldBeRedirectedToApp) {
       return <Redirect
         to={{
           pathname: '/',
           state: { from: this.props.location }
         }}
       />
-    } else if (this.props.authenticated
-      && this.props.currentUser !== undefined
-      && !this.hasUserPlan(this.props.currentUser)) {
+    } else if (shouldBeRedirectedToStartForm) {
       return <Redirect
         to={{
           pathname: '/startForm',
