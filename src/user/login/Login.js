@@ -22,11 +22,28 @@ class Login extends Component {
     }
   }
 
+  hasUserPlan (currentUser) {
+    return currentUser.userPlan != null
+  }
+
   render () {
-    if (this.props.authenticated) {
+    const isProperForRedirection = this.props.authenticated
+      && this.props.currentUser !== undefined
+      && this.hasUserPlan(this.props.currentUser)
+
+    if (isProperForRedirection) {
       return <Redirect
         to={{
           pathname: '/',
+          state: { from: this.props.location }
+        }}
+      />
+    } else if (this.props.authenticated
+      && this.props.currentUser !== undefined
+      && !this.hasUserPlan(this.props.currentUser)) {
+      return <Redirect
+        to={{
+          pathname: '/startForm',
           state: { from: this.props.location }
         }}
       />
@@ -45,12 +62,12 @@ class Login extends Component {
               </div>
             </section>
           </div>
-          <div className='footer' />
+          <div className='footer'/>
         </div>
         <div className='content'>
           <div className='parallax bottom_login_background'>
             <LoginSignupContainer {...this.props} />
-            <div className='footer' />
+            <div className='footer'/>
           </div>
         </div>
       </div>
