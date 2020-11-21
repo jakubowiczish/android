@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import './Browser.css'
 import { getRecentActivities } from '../util/APIUtils'
 import DataTable from 'react-data-table-component'
+import Card from '@material-ui/core/Card'
 
 class RecentActivitiesComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      activities: [
-      ],
+      activities: [],
       selectedActivities: [],
       loading: false,
       totalRows: 0,
@@ -75,9 +75,9 @@ class RecentActivitiesComponent extends Component {
       },
       {
         name: 'Calories',
-        selector: row => row.calories + ' kcal',
+        selector: row => row.burnedCalories + ' kcal',
         sortable: true,
-        sortFunction: (rowA, rowB) => rowA.calories - rowB.calories
+        sortFunction: (rowA, rowB) => rowA.burnedCalories - rowB.burnedCalories
       }]
   }
 
@@ -92,29 +92,27 @@ class RecentActivitiesComponent extends Component {
 
   render () {
     return (
-      <div className='container'>
-        <div className='recent-item-container parent_div_1'>
-          <div className='recent-item-content child_div_2'>
-            <h1 className='start-title'>Recently added activities</h1>
-            <DataTable
-              data={this.state.activities}
-              columns={this.getColumnsForRecentActivitiesComponent()}
-              onSelectedRowsChange={this.handleSelectChange}
-              selectableRows
-              progressPending={this.state.loading}
-              pagination
-              paginationServer
-              paginationTotalRows={this.state.totalRows}
-              paginationRowsPerPageOptions={[10]}
-              onChangeRowsPerPage={this.handlePerRowsChange}
-              onChangePage={this.handlePageChange}
-              selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
-              selectableRowsNoSelectAll
-              selectableRowsHighlight
-            />
-          </div>
-        </div>
-      </div>
+      <Card className='search_component_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+        <h1 className='search_for_activities_title'>Recently added activities</h1>
+        <DataTable
+          className='items-datatable'
+          data={this.state.activities}
+          columns={this.getColumnsForRecentActivitiesComponent()}
+          onSelectedRowsChange={this.handleSelectChange}
+          selectableRows
+          progressPending={this.state.loading}
+          pagination
+          theme='dark'
+          paginationServer
+          paginationTotalRows={this.state.totalRows}
+          paginationRowsPerPageOptions={[10]}
+          onChangeRowsPerPage={this.handlePerRowsChange}
+          onChangePage={this.handlePageChange}
+          selectableRowDisabled={row => this.props.isAnyRowSelected() && this.isRowUnselected(row)}
+          selectableRowsNoSelectAll
+          selectableRowsHighlight
+        />
+      </Card>
     )
   }
 }

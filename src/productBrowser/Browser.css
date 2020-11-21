@@ -8,8 +8,6 @@
 
 .search_for_products_title {
     font-size: 3rem;
-    /*letter-spacing: 6px;*/
-    /*text-align: center;*/
     padding-top: 80px;
     background-color: white;
     -webkit-background-clip: text;
@@ -18,10 +16,8 @@
 
 .search_for_activities_title {
     font-size: 3rem;
-    letter-spacing: 6px;
-    text-align: center;
     padding-top: 80px;
-    background: -webkit-linear-gradient(#00a2d3, #0b2e13);
+    background-color: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -106,40 +102,40 @@
     }
 }
 
-.products-datatable .rdt_Table{
+.items-datatable .rdt_Table{
     background-color: rgba(0, 0, 0, 0.7);
 }
-.products-datatable .rdt_TableRow{
+.items-datatable .rdt_TableRow{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableCol{
+.items-datatable .rdt_TableCol{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableCol_Sortable{
+.items-datatable .rdt_TableCol_Sortable{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableCell{
+.items-datatable .rdt_TableCell{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableHeader{
+.items-datatable .rdt_TableHeader{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableFooter{
+.items-datatable .rdt_TableFooter{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableHead{
+.items-datatable .rdt_TableHead{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableHeadRow{
+.items-datatable .rdt_TableHeadRow{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_TableBody{
+.items-datatable .rdt_TableBody{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_ExpanderRow{
+.items-datatable .rdt_ExpanderRow{
     background-color: rgba(0, 0, 0, 0.0);
 }
-.products-datatable .rdt_Pagination{
+.items-datatable .rdt_Pagination{
     background-color: rgba(0, 0, 0, 0.7);
 }
 

@@ -195,14 +195,14 @@
     max-height: none!important;
 }
 
-.add-product-button {
+.add-item-button {
     background-color: #466f42;
     border-color: #466f42;
     margin-top: 1em;
     font-size: 1.5em;
 }
 
-.add-product-button:hover, .add-product-button:focus, .add-product-button:active, .add-product-button.active {
+.add-item-button:hover, .add-item-button:focus, .add-item-button:active, .add-item-button.active {
     background-color: #30552d;
     border-color: #30552d;
 }

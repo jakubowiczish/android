@@ -61,7 +61,6 @@ class AddDiaryEntryComponent extends React.Component {
 
     return (
       <Card className='add_diary_entry_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-        {/*<h1 className='start-title'>{this.getChosenProductName()}</h1>*/}
         <Formik
           enableReinitialize={true}
           initialValues={{
@@ -180,7 +179,7 @@ class AddDiaryEntryComponent extends React.Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary btn-block add-product-button"
+                className="btn btn-primary btn-block add-item-button"
                 disabled={isSubmitting && this.isProductChosen()}
               >
                 {isSubmitting ? 'Please wait...' : 'Add diary entry'}

@@ -133,7 +133,7 @@ class SearchProductComponent extends Component {
           </InputGroup.Append>
         </InputGroup>
         <DataTable
-          className='products-datatable'
+          className='items-datatable'
           data={this.state.products}
           columns={this.getColumnsForSearchComponent()}
           onSelectedRowsChange={this.handleSelectChange}
@@ -146,7 +146,7 @@ class SearchProductComponent extends Component {
           paginationRowsPerPageOptions={[10]}
           onChangeRowsPerPage={this.handlePerRowsChange}
           onChangePage={this.handlePageChange}
-          selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+          selectableRowDisabled={row => this.props.isAnyRowSelected() && this.isRowUnselected(row)}
           selectableRowsNoSelectAll
           selectableRowsHighlight
         />

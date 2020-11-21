@@ -101,7 +101,7 @@ class RecentProductsComponent extends Component {
       <Card className='search_component_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <h1 className='search_for_products_title'>Your recent products</h1>
         <DataTable
-          className='products-datatable'
+          className='items-datatable'
           data={this.state.products}
           columns={this.getColumnsForRecentProductsComponent()}
           onSelectedRowsChange={this.handleSelectChange}
@@ -114,7 +114,7 @@ class RecentProductsComponent extends Component {
           paginationRowsPerPageOptions={[10]}
           onChangeRowsPerPage={this.handlePerRowsChange}
           onChangePage={this.handlePageChange}
-          selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+          selectableRowDisabled={row => this.props.isAnyRowSelected() && this.isRowUnselected(row)}
           selectableRowsNoSelectAll
           selectableRowsHighlight
         />

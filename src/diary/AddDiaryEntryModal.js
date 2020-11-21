@@ -18,6 +18,10 @@ class AddDiaryEntryModal extends Component {
     this.setState({ selectedRows: selectedRows })
   }
 
+  isAnyRowSelected = () => {
+    return this.state.selectedRows.length > 0
+  }
+
   render () {
     return (
       <Modal
@@ -33,8 +37,12 @@ class AddDiaryEntryModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className='search_modal_body'>
-          <SearchProductComponent onSelectedProductsChangeHandler={this.handleSelectedProductsChange}/>
-          <RecentProductsComponent onSelectedRecentProductsChangeHandler={this.handleSelectedProductsChange}/>
+          <SearchProductComponent
+            onSelectedProductsChangeHandler={this.handleSelectedProductsChange}
+            isAnyRowSelected={this.isAnyRowSelected}/>
+          <RecentProductsComponent
+            onSelectedRecentProductsChangeHandler={this.handleSelectedProductsChange}
+            isAnyRowSelected={this.isAnyRowSelected}/>
           <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
         </Modal.Body>
         <Modal.Footer>
