@@ -15,7 +15,6 @@ import Alert from 'react-s-alert'
 import { Card } from 'antd'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
 import FoodStatCardsList from './FoodStatCardsList'
-import { Button } from '@material-ui/core'
 import ReactiveButton from 'reactive-button'
 
 const conditionalRowStyles = [
@@ -190,7 +189,7 @@ class Diary extends React.Component {
   deleteButton = deleteHandler => (
     <ReactiveButton
       rounded
-      color="dark"
+      color="green"
       onClick={deleteHandler}
       idleText='Delete product'
     />
@@ -199,7 +198,7 @@ class Diary extends React.Component {
   addActivitiesButton = addActivitiesHandler => (
     <ReactiveButton
       rounded
-      color="dark"
+      color="violet"
       onClick={addActivitiesHandler}
       idleText='Add activity'
     />
@@ -245,10 +244,6 @@ class Diary extends React.Component {
     }
     this.setState({ tableData: data })
 
-  }
-
-  updateFoodStatList = (state) => {
-    state.setState({ summaryList: this.state.tableData.summaryList })
   }
 
   handleGetUserActivityByDate = date => {
