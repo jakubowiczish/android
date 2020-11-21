@@ -306,6 +306,7 @@ class Diary extends React.Component {
                   <FoodStatCardsList
                     summaryList={this.state.tableData.summaryList}
                     caloriesActivities={this.state.caloriesActivities}
+                    userPlan={this.props.currentUser.userPlan}
                   />
 
                   <Card className='datepicker_card_container'>
