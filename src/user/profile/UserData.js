@@ -76,7 +76,6 @@ class UserData extends Component {
 
         <Modal
           show={this.state.showModal} onHide={() => this.setState({ showModal: false })}
-          size='lg'
           aria-labelledby='contained-modal-title-vcenter'
           dialogClassName='modal-90w'
           centered
