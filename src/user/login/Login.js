@@ -22,11 +22,32 @@ class Login extends Component {
     }
   }
 
+  hasUserPlan (currentUser) {
+    return currentUser.userPlan != null
+  }
+
+  isAuthenticatedAndExists (props) {
+    return props.authenticated && props.currentUser !== undefined
+  }
+
   render () {
-    if (this.props.authenticated) {
+    const shouldBeRedirectedToApp = this.isAuthenticatedAndExists(this.props)
+      && this.hasUserPlan(this.props.currentUser)
+
+    const shouldBeRedirectedToStartForm = this.isAuthenticatedAndExists(this.props)
+      && !this.hasUserPlan(this.props.currentUser)
+
+    if (shouldBeRedirectedToApp) {
       return <Redirect
         to={{
           pathname: '/',
+          state: { from: this.props.location }
+        }}
+      />
+    } else if (shouldBeRedirectedToStartForm) {
+      return <Redirect
+        to={{
+          pathname: '/startForm',
           state: { from: this.props.location }
         }}
       />
@@ -45,12 +66,12 @@ class Login extends Component {
               </div>
             </section>
           </div>
-          <div className='footer' />
+          <div className='footer'/>
         </div>
         <div className='content'>
           <div className='parallax bottom_login_background'>
             <LoginSignupContainer {...this.props} />
-            <div className='footer' />
+            <div className='footer'/>
           </div>
         </div>
       </div>
