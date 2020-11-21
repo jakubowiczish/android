@@ -40,9 +40,7 @@ class FoodStatCard extends React.Component {
             // pathTransition: 'none',
 
             // Colors
-            pathColor: `rgba(${this.props.progress / 4},
-              ${this.props.progress / 3},
-              ${this.props.progress / 2}, 100)`,
+            pathColor: `rgba(${this.props.progress / 5}, 20, 20)`,
             textColor: '#ffffff',
             trailColor: '#25cc76',
             backgroundColor: '#3e98c7'
