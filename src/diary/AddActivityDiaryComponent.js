@@ -54,8 +54,7 @@ class AddActivityDiaryComponent extends React.Component {
     const { activityTime, amount, time, timeUnit, activityId } = this.state
 
     return (
-      <Card className='add_diary_entry_container'>
-        {/*<h1 className='start-title'>{this.getChosenActivityName()}</h1>*/}
+      <Card className='add_diary_entry_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <Formik
           enableReinitialize={true}
           initialValues={{
@@ -74,7 +73,7 @@ class AddActivityDiaryComponent extends React.Component {
           {({ touched, errors, isSubmitting }) => (
             <Form>
               <div className="form-group field">
-                <label htmlFor="activityTime">Meal time</label>
+                <label className='form-label' htmlFor="activityTime">Activity time</label>
                 <DateTimePicker name="activityTime"
                                 className="form-control form_field"
                                 value={this.state.activityTime}
@@ -82,7 +81,7 @@ class AddActivityDiaryComponent extends React.Component {
                 />
               </div>
               <div className="form-group field">
-                <label htmlFor="timeUnit">Time unit</label>
+                <label className='form-label' htmlFor="timeUnit">Time unit</label>
                 <Field as="select"
                        name="portionUnit"
                        value={this.state.timeUnit}
@@ -100,7 +99,7 @@ class AddActivityDiaryComponent extends React.Component {
                 />
               </div>
               <div className="form-group field">
-                <label htmlFor="time">Time</label>
+                <label className='form-label' htmlFor="time">Time</label>
                 <Field type="text"
                        name="time"
                        value={this.state.time}
@@ -117,7 +116,7 @@ class AddActivityDiaryComponent extends React.Component {
                 />
               </div>
               <div className="form-group field">
-                <label htmlFor="amount">Amount</label>
+                <label className='form-label' htmlFor="amount">Amount</label>
                 <Field type="text"
                        name="amount"
                        value={this.state.amount}
@@ -142,7 +141,7 @@ class AddActivityDiaryComponent extends React.Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary btn-block"
+                className="btn btn-primary btn-block add-item-button"
                 disabled={isSubmitting && this.isActivityChosen()}
               >
                 {isSubmitting ? 'Please wait...' : 'Add activity entry'}

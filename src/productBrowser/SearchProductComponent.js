@@ -112,7 +112,7 @@ class SearchProductComponent extends Component {
 
   render () {
     return (
-      <Card className='search_component_container'>
+      <Card className='search_component_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <h1 className='search_for_products_title'>Search for products</h1>
         <InputGroup className='search-term'>
           <FormControl
@@ -133,6 +133,7 @@ class SearchProductComponent extends Component {
           </InputGroup.Append>
         </InputGroup>
         <DataTable
+          className='items-datatable'
           data={this.state.products}
           columns={this.getColumnsForSearchComponent()}
           onSelectedRowsChange={this.handleSelectChange}
@@ -145,7 +146,7 @@ class SearchProductComponent extends Component {
           paginationRowsPerPageOptions={[10]}
           onChangeRowsPerPage={this.handlePerRowsChange}
           onChangePage={this.handlePageChange}
-          selectableRowDisabled={row => this.state.selectedProducts.length > 0 && this.isRowUnselected(row)}
+          selectableRowDisabled={row => this.props.isAnyRowSelected() && this.isRowUnselected(row)}
           selectableRowsNoSelectAll
           selectableRowsHighlight
         />

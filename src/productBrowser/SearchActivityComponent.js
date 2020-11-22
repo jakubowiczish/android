@@ -106,7 +106,7 @@ class SearchActivityComponent extends Component {
 
   render () {
     return (
-      <Card className='search_component_container'>
+      <Card className='search_component_container' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <h1 className='search_for_activities_title'>Search for activities</h1>
         <InputGroup className='search-term'>
           <FormControl
@@ -126,6 +126,7 @@ class SearchActivityComponent extends Component {
           </InputGroup.Append>
         </InputGroup>
         <DataTable
+          className='items-datatable'
           data={this.state.activities}
           columns={this.getColumnsForSearchComponent()}
           onSelectedRowsChange={this.handleSelectChange}
@@ -138,7 +139,7 @@ class SearchActivityComponent extends Component {
           paginationRowsPerPageOptions={[10]}
           onChangeRowsPerPage={this.handlePerRowsChange}
           onChangePage={this.handlePageChange}
-          selectableRowDisabled={row => this.state.selectedActivities.length > 0 && this.isRowUnselected(row)}
+          selectableRowDisabled={row => this.props.isAnyRowSelected() && this.isRowUnselected(row)}
           selectableRowsNoSelectAll
           selectableRowsHighlight
         />
