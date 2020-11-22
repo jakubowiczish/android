@@ -540,6 +540,9 @@ h1 + p {
     border-color: #aaa;
 }
 
+.white-color{
+    color: white;
+}
 .fat-label-bot {
     position: fixed;
     bottom: 50px;

@@ -8,11 +8,11 @@ import $ from 'jquery'
 
 class Start extends Component {
   componentDidMount () {
-    $('.logo').click(function(){
-      $('li').removeClass('hide')
-    });
     if (this.props.currentUser.userPlan == undefined ) {
       $('li').addClass('hide')
+      $('.logo').click(function(e) {
+        e.preventDefault();
+      });
     }
     }
 

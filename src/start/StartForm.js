@@ -129,6 +129,7 @@ class StartForm extends Component {
         Alert.error('Something went wrong with saving your user plan')
       })
       .finally(() => {
+        $('.logo').prop('disabled', false);
         $('li').removeClass('hide')
         setSubmitting(false)
       })

@@ -24,7 +24,7 @@ class AchievementItem extends Component {
                 <b>Description: {this.props.description}</b>
                 {this.props.completedDate ? <b>Completed: {this.props.completedDate.replace('T', ' ')}</b> : ''}
               </div>
-              <div className='text-center'>{this.props.progress} of {this.props.completeCondition}</div>
+              <div className='text-center white-color'>{this.props.progress} of {this.props.completeCondition}</div>
               <Progress color={`${color}`} animated value={progressMade} max={this.props.completeCondition}/>
             </div>
           </div>
