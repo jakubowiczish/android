@@ -7,21 +7,6 @@ import './DiaryModals.css'
 import RecentActivitiesComponent from '../productBrowser/RecentActivitiesComponent'
 
 class AddActivityDiaryModal extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      selectedRows: []
-    }
-  }
-
-  handleSelectedActivityChange = (selectedRows) => {
-    this.setState({ selectedRows: selectedRows })
-  }
-
-  isAnyRowSelected = () => {
-    return this.state.selectedRows.length > 0
-  }
-
   render () {
     return (
       <Modal
@@ -29,7 +14,7 @@ class AddActivityDiaryModal extends Component {
         {...this.props}
         aria-labelledby='contained-modal-title-vcenter'
         centered
-        scrollable={true}
+        scrollable
       >
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
@@ -37,16 +22,18 @@ class AddActivityDiaryModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className='activity_modal_body'>
-            <SearchActivityComponent
-              onSelectedActivitiesChangeHandler={this.handleSelectedActivityChange}
-              isAnyRowSelected={this.isAnyRowSelected}/>
-            <RecentActivitiesComponent
-              onSelectedRecentActivitiesChangeHandler={this.handleSelectedActivityChange}
-              isAnyRowSelected={this.isAnyRowSelected}/>
-            <AddActivityDiaryComponent selectedRow={this.state.selectedRows[0]}/>
+          <SearchActivityComponent
+            onSelectedActivitiesChangeHandler={this.props.onSelectedActivityChange}
+            isAnyRowSelected={this.props.isAnyRowSelected}
+          />
+          <RecentActivitiesComponent
+            onSelectedRecentActivitiesChangeHandler={this.props.onSelectedActivityChange}
+            isAnyRowSelected={this.props.isAnyRowSelected}
+          />
+          <AddActivityDiaryComponent selectedRow={this.props.getSelectedRow()} />
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-primary close-button" onClick={this.props.onHide}>Close</Button>
+          <Button className='btn btn-primary close-button' onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     )
