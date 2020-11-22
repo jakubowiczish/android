@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import AddActivityDiaryComponent from './AddActivityDiaryComponent'
 import SearchActivityComponent from '../productBrowser/SearchActivityComponent'
 import './DiaryModals.css'
+import RecentActivitiesComponent from '../productBrowser/RecentActivitiesComponent'
 
 class AddActivityDiaryModal extends Component {
   constructor (props) {
@@ -17,11 +18,15 @@ class AddActivityDiaryModal extends Component {
     this.setState({ selectedRows: selectedRows })
   }
 
+  isAnyRowSelected = () => {
+    return this.state.selectedRows.length > 0
+  }
+
   render () {
     return (
       <Modal
+        dialogClassName='custom-dialog'
         {...this.props}
-        size='xl'
         aria-labelledby='contained-modal-title-vcenter'
         centered
         scrollable={true}
@@ -32,11 +37,16 @@ class AddActivityDiaryModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className='activity_modal_body'>
-            <SearchActivityComponent onSelectedActivitiesChangeHandler={this.handleSelectedActivityChange}/>
+            <SearchActivityComponent
+              onSelectedActivitiesChangeHandler={this.handleSelectedActivityChange}
+              isAnyRowSelected={this.isAnyRowSelected}/>
+            <RecentActivitiesComponent
+              onSelectedRecentActivitiesChangeHandler={this.handleSelectedActivityChange}
+              isAnyRowSelected={this.isAnyRowSelected}/>
             <AddActivityDiaryComponent selectedRow={this.state.selectedRows[0]}/>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <Button className="btn btn-primary close-button" onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     )
