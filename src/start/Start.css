@@ -231,22 +231,12 @@ h1 + p {
     color: #ece2e2;
 }
 .Fats {
-    position: fixed;
-    bottom: 50px;
-    right: 30px;
-    font-size: 2rem;
-    font-weight: lighter;
-    color: #fff;
+
 
 }
 
 .Carbs {
-    position: fixed;
-    bottom: 50px;
-    left: 30px;
-    font-size: 2rem;
-    font-weight: lighter;
-    color: #fff;
+
 }
 
 .slider {
