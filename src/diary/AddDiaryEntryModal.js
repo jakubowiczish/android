@@ -7,21 +7,6 @@ import './Diary.css'
 import RecentProductsComponent from '../productBrowser/RecentProductsComponent'
 
 class AddDiaryEntryModal extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      selectedRows: []
-    }
-  }
-
-  handleSelectedProductsChange = (selectedRows) => {
-    this.setState({ selectedRows: selectedRows })
-  }
-
-  isAnyRowSelected = () => {
-    return this.state.selectedRows.length > 0
-  }
-
   render () {
     return (
       <Modal
@@ -29,7 +14,7 @@ class AddDiaryEntryModal extends Component {
         {...this.props}
         aria-labelledby='contained-modal-title-vcenter'
         centered
-        scrollable={true}
+        scrollable
       >
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
@@ -38,15 +23,17 @@ class AddDiaryEntryModal extends Component {
         </Modal.Header>
         <Modal.Body className='search_modal_body'>
           <SearchProductComponent
-            onSelectedProductsChangeHandler={this.handleSelectedProductsChange}
-            isAnyRowSelected={this.isAnyRowSelected}/>
+            onSelectedProductsChangeHandler={this.props.onSelectedProductChange}
+            isAnyRowSelected={this.props.isAnyRowSelected}
+          />
           <RecentProductsComponent
-            onSelectedRecentProductsChangeHandler={this.handleSelectedProductsChange}
-            isAnyRowSelected={this.isAnyRowSelected}/>
-          <AddDiaryEntryComponent selectedRow={this.state.selectedRows[0]}/>
+            onSelectedRecentProductsChangeHandler={this.props.onSelectedProductChange}
+            isAnyRowSelected={this.props.isAnyRowSelected}
+          />
+          <AddDiaryEntryComponent selectedRow={this.props.getSelectedRow()} />
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-primary close-button" onClick={this.props.onHide}>Close</Button>
+          <Button className='btn btn-primary close-button' onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     )

@@ -135,7 +135,9 @@ class Diary extends React.Component {
       open: false,
       toggleCleared: false,
       activityOpen: false,
-      caloriesActivities: 0
+      caloriesActivities: 0,
+      selectedProductRows: [],
+      selectedActivityRows: []
     }
 
     this.handleSelectedRowClick = this.handleSelectedRowClick.bind(this)
@@ -151,6 +153,30 @@ class Diary extends React.Component {
     this.handleDeleteRecentProducts = this.handleDeleteRecentProducts.bind(this)
 
     this.refresh()
+  }
+
+  handleSelectedProductsChange = (selectedProductRows) => {
+    this.setState({ selectedProductRows: selectedProductRows })
+  }
+
+  isAnyProductRowSelected = () => {
+    return this.state.selectedProductRows.length > 0
+  }
+
+  getSelectedProductRow = () => {
+    return this.state.selectedProductRows[0];
+  }
+
+  handleSelectedActivityChange = (selectedActivityRows) => {
+    this.setState({ selectedActivityRows: selectedActivityRows })
+  }
+
+  isAnyActivityRowSelected = () => {
+    return this.state.selectedActivityRows.length > 0
+  }
+
+  getSelectedActivityRow = () => {
+    return this.state.selectedActivityRows[0];
   }
 
   handleSelectedRowClick = state => {
@@ -214,12 +240,18 @@ class Diary extends React.Component {
 
   handleCloseModal = () => {
     this.refresh()
-    this.setState({ open: false })
+    this.setState({
+      open: false,
+      selectedProductRows: []
+    })
   }
 
   handleCloseActivityModal = () => {
     this.handleGetUserActivityByDate(this.state.date)
-    this.setState({ activityOpen: false })
+    this.setState({
+      activityOpen: false ,
+      selectedActivityRows: []
+    })
   }
 
   handleGetRecentProductsByDate = date => {
@@ -347,10 +379,16 @@ class Diary extends React.Component {
               <AddDiaryEntryModal
                 show={this.state.open}
                 onHide={this.handleCloseModal}
+                onSelectedProductChange={this.handleSelectedProductsChange}
+                isAnyRowSelected={this.isAnyProductRowSelected}
+                getSelectedRow={this.getSelectedProductRow}
               />
               <AddActivityDiaryModal
                 show={this.state.activityOpen}
                 onHide={this.handleCloseActivityModal}
+                onSelectedActivityChange={this.handleSelectedActivityChange}
+                isAnyRowSelected={this.isAnyActivityRowSelected}
+                getSelectedRow={this.getSelectedActivityRow}
               />
             </div>
           </div>
