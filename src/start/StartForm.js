@@ -129,6 +129,8 @@ class StartForm extends Component {
         Alert.error('Something went wrong with saving your user plan')
       })
       .finally(() => {
+        $('.logo').prop('disabled', false);
+        $('li').removeClass('hide')
         setSubmitting(false)
       })
   }
@@ -353,10 +355,10 @@ class StartForm extends Component {
                     <RubberSlider width={140} value={this.state.slider} onChange={
                       this.handleSlider}/>
                   </div>
-                  <div className={'Carbs'}>
+                  <div className={'fat-label-bot'}>
                     Carbs
                   </div>
-                  <div className={'Fats'}>
+                  <div className={'carbs-label-bot'}>
                     Fats
                   </div>
                 </div>

@@ -18,6 +18,11 @@ h1 + p {
     align-items: center;
 }
 
+@media screen and (max-width: 600px) {
+    .update {
+        font-size: 5vw !important;
+    }
+}
 .wrap {
     margin: 2rem;
 }
@@ -533,4 +538,28 @@ h1 + p {
 
 .select-css:disabled:hover, .select-css[aria-disabled=true] .field-css{
     border-color: #aaa;
+}
+
+.white-color{
+    color: white;
+}
+.fat-label-bot {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+
+
+}
+
+.carbs-label-bot {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+
 }
