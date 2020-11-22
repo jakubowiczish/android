@@ -4,8 +4,19 @@ import './Start.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import '@shwilliam/react-rubber-slider/dist/styles.css'
 import StartForm from './StartForm'
+import $ from 'jquery'
 
 class Start extends Component {
+  componentDidMount () {
+    $('.logo').click(function(){
+      $('li').removeClass('hide')
+    });
+    if (this.props.currentUser.userPlan == undefined ) {
+      $('li').addClass('hide')
+    }
+    }
+
+
   constructor (props) {
     super(props)
     this.state = {
@@ -43,7 +54,7 @@ class Start extends Component {
 
     let formGreeting = this.props.currentUser.userPlan == undefined ?
       (<h1 className="start-title">Fill up starter form!</h1>
-      ): (  <h1 className="start-title">Fill form to update your plan!</h1>
+      ): (  <h1 className="start-title update">Fill form to update plan!</h1>
       );
     let backgroundForm = this.props.currentUser.userPlan == undefined ? "bottom_background": "bottom_background_update"
 

@@ -122,15 +122,7 @@
 }
 
 .main_diary_card {
-    min-height: 500px;
-    min-width: 300px;
-    display: inline-block;
-    align-self: center;
-    align-items: center;
-    align-content: center;
-    width: 80%;
-    display: table;
-    margin: 0 auto;
+
 }
 
 .datepicker_card_container {
@@ -153,6 +145,7 @@
 }
 
 .card-container {
+    background-color: #424242;
     flex-direction: row;
     align-content: center;
 }
