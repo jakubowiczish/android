@@ -13,14 +13,21 @@ class FoodStatCard extends React.Component {
 
   render () {
     console.log(this.props)
+
     return (
-      <div className={`stater  ${this.props.description}`} >
+      <div className={`stater  ${this.props.description}`}>
         <div className={`food-stat`}>
           {this.props.description}
         </div>
+
         <CircularProgressbar
-          className={`circle ${this.props.description + 'circle'}`}  value={this.props.sum} text={this.props.sum} styles={buildStyles({
-          // Rotation of path and trail, in number of turns (0-1)
+          className={`circle ${this.props.description + 'circle'}`}
+          value={this.props.progress}
+          maxValue={100}
+          text={this.props.sum}
+
+          styles={buildStyles({
+            // Rotation of path and trail, in number of turns (0-1)
             rotation: 0.25,
 
             // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
@@ -33,7 +40,7 @@ class FoodStatCard extends React.Component {
             // pathTransition: 'none',
 
             // Colors
-            pathColor: `rgba(62, 152, 199, ${this.props.sum / 100})`,
+            pathColor: `rgba(${this.props.progress / 5}, 20, 20)`,
             textColor: '#ffffff',
             trailColor: '#25cc76',
             backgroundColor: '#3e98c7'

@@ -10,31 +10,12 @@ import {
 } from '../util/APIUtils'
 import AddDiaryEntryModal from './AddDiaryEntryModal'
 import './Diary.css'
-import { Add, Delete } from '@material-ui/icons'
-import IconButton from '@material-ui/core/IconButton'
 import memoize from 'memoize-one'
 import Alert from 'react-s-alert'
 import { Card } from 'antd'
 import AddActivityDiaryModal from './AddActivityDiaryModal'
 import FoodStatCardsList from './FoodStatCardsList'
-
-const actions = memoize(addHandler => (
-  <IconButton color='primary' onClick={addHandler}>
-    <Add/>
-  </IconButton>
-))
-
-const contextActions = memoize(deleteHandler => (
-  <IconButton color='secondary' onClick={deleteHandler}>
-    <Delete/>
-  </IconButton>
-))
-
-const activities = memoize(addHandler => (
-  <IconButton color='primary' onClick={addHandler}>
-    <Add/>
-  </IconButton>
-))
+import ReactiveButton from 'reactive-button'
 
 const conditionalRowStyles = [
   {
@@ -172,10 +153,6 @@ class Diary extends React.Component {
     this.refresh()
   }
 
-  // componentDidMount () {
-  //   this.refresh()
-  // }
-
   handleSelectedRowClick = state => {
     this.setState({ selectedRows: state.selectedRows })
   }
@@ -199,6 +176,33 @@ class Diary extends React.Component {
       mealTime: activity.activityTime
     }
   }
+
+  addProductsButton = addProductsHandler => (
+    <ReactiveButton
+      rounded
+      color="dark"
+      onClick={addProductsHandler}
+      idleText='Add product'
+    />
+  )
+
+  deleteButton = deleteHandler => (
+    <ReactiveButton
+      rounded
+      color="green"
+      onClick={deleteHandler}
+      idleText='Delete product'
+    />
+  )
+
+  addActivitiesButton = addActivitiesHandler => (
+    <ReactiveButton
+      rounded
+      color="violet"
+      onClick={addActivitiesHandler}
+      idleText='Add activity'
+    />
+  )
 
   handleOpenModal = () => {
     this.setState({ open: true })
@@ -240,10 +244,6 @@ class Diary extends React.Component {
     }
     this.setState({ tableData: data })
 
-  }
-
-  updateFoodStatList = (state) => {
-    state.setState({ summaryList: this.state.tableData.summaryList })
   }
 
   handleGetUserActivityByDate = date => {
@@ -306,6 +306,7 @@ class Diary extends React.Component {
                   <FoodStatCardsList
                     summaryList={this.state.tableData.summaryList}
                     caloriesActivities={this.state.caloriesActivities}
+                    userPlan={this.props.currentUser.userPlan}
                   />
 
                   <Card className='datepicker_card_container'>
@@ -332,8 +333,8 @@ class Diary extends React.Component {
                       pointerOnHover
                       highlightOnHover
                       clearSelectedRows={this.state.toggleCleared}
-                      actions={[actions(this.handleOpenModal), activities(this.handleOpenActivitiesModal)]}
-                      contextActions={contextActions(this.handleDeleteRecentProducts)}
+                      actions={[this.addProductsButton(this.handleOpenModal), this.addActivitiesButton(this.handleOpenActivitiesModal)]}
+                      contextActions={this.deleteButton(this.handleDeleteRecentProducts)}
                       onSelectedRowsChange={this.handleSelectedRowClick}
                       conditionalRowStyles={conditionalRowStyles}
                     />

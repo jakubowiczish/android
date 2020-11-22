@@ -12,8 +12,9 @@ class FoodStatCardsList extends React.Component {
           {this.props.summaryList && this.props.summaryList.map(stat =>
             <FoodStatCard
               description={stat.description}
-              difference={stat.difference}
               sum={stat.sum}
+              progress={stat.progress}
+              userPlan={this.props.userPlan}
             />)}
         </List>
       </div>
