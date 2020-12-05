@@ -12,6 +12,12 @@ class AppHeader extends Component {
       $('#mainListDiv').toggleClass('show_list')
       $('#mainListDiv').fadeIn()
     })
+    $('.navliker').click(function () {
+      $('.navTrigger').toggleClass('active')
+      $('#mainNav').toggleClass('mobileNav')
+      $('#mainListDiv').toggleClass('show_list')
+      $('#mainListDiv').fadeIn()
+    })
     $(window).scroll(function () {
       if ($(document).scrollTop() > 50) {
         $('.nav').addClass('affix')
@@ -31,10 +37,10 @@ class AppHeader extends Component {
           <div id='mainListDiv' className='main_list'>
             {this.props.authenticated ? (!window.location.href.includes('startForm') ? (
               <ul className='navlinks'>
-                <li><NavLink to='/diary'>Diary</NavLink></li>
-                <li><NavLink to='/profile'>Profile</NavLink></li>
-                <li><NavLink to='/achievements'>Achievements</NavLink></li>
-                <li><NavLink to='/statistics'>Statistics</NavLink></li>
+                <li><NavLink className='navliker' to='/diary'>Diary</NavLink></li>
+                <li><NavLink className='navliker' to='/profile'>Profile</NavLink></li>
+                <li><NavLink className='navliker' to='/achievements'>Achievements</NavLink></li>
+                <li><NavLink className='navliker' to='/statistics'>Statistics</NavLink></li>
                 <li>
                   <a onClick={this.props.onLogout}>Logout</a>
                 </li>
@@ -45,7 +51,7 @@ class AppHeader extends Component {
             ) : (
               <ul className='navlinks'>
                 <li>
-                  <NavLink to='/login'>Login/SignUp</NavLink>
+                  <NavLink className='navliker' to='/login'>Login/SignUp</NavLink>
                 </li>
               </ul>
             )}
