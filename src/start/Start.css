@@ -47,7 +47,7 @@ h1 + p {
     --rY: 0;
     --bX: 50%;
     --bY: 80%;
-    filter: contrast(1.4);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://libreshot.com/wp-content/uploads/2018/02/diet-concept.jpg");
     background-size: 60rem auto;
@@ -60,7 +60,7 @@ h1 + p {
     --rY: 0;
     --bX: 30%;
     --bY: 70%;
-    filter: contrast(1.4);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://p1.pxfuel.com/preview/404/93/175/racism-pawn-scales-chess.jpg");
     background-size: 60rem auto;
@@ -73,7 +73,7 @@ h1 + p {
     --rY: 0;
     --bX: 70%;
     --bY: 70%;
-    filter: contrast(0.8);
+    filter: contrast(0.7);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://media.istockphoto.com/photos/birthday-cake-decorated-with-colorful-sprinkles-and-ten-candles-picture-id1136810581?k=6&m=1136810581&s=612x612&w=0&h=KJsbjGoy1eR4Zmh5isHg3SmFU5trNMfLJwKPhjE5wII=");
     background-size: 60rem auto;
@@ -86,7 +86,7 @@ h1 + p {
     --rY: 0;
     --bX: 70%;
     --bY: 70%;
-    filter: contrast(1.4);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, .1)),
     url("https://images.unsplash.com/photo-1545693315-85b6be26a3d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
     background-size: 60rem auto;
@@ -99,7 +99,7 @@ h1 + p {
     --rY: 0;
     --bX: 40%;
     --bY: 70%;
-    filter: contrast(1);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://p0.pikist.com/photos/82/519/person-silhouette-sunset-rock-boulder-peak-success-dom-silence.jpg");
     background-size: 60rem auto;
@@ -112,7 +112,7 @@ h1 + p {
     --rY: 0;
     --bX: 40%;
     --bY: 70%;
-    filter: contrast(1);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://p1.pxfuel.com/preview/734/50/355/table-cover-plaid-red.jpg");
     background-size: 60rem auto;
@@ -125,7 +125,7 @@ h1 + p {
     --rY: 0;
     --bX: 60%;
     --bY: 70%;
-    filter: contrast(1.4);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://i2.pickpik.com/photos/821/986/504/golf-golf-ball-grass-green-preview.jpg");
     background-size: 60rem auto;
@@ -138,7 +138,7 @@ h1 + p {
     --rY: 0;
     --bX: 60%;
     --bY: 53%;
-    filter: contrast(1.4);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://www.sixstarpro.com/wp-content/uploads/background-gym-tablet.jpg");
     background-size: 66rem auto;
@@ -150,7 +150,7 @@ h1 + p {
     --rY: 0;
     --bX: 0%;
     --bY: 50%;
-    filter: contrast(1.4);
+    filter: contrast(0.8);
     background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)),
     url("https://img.etimg.com/thumb/msid-75176755,width-640,resizemode-4,imgsize-612672/effect-of-coronavirus-on-food.jpg");
     background-size: 60rem auto;
@@ -370,8 +370,7 @@ h1 + p {
 
 }
 .shade{
-    background-color: #000000;
-    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .active-header{
 
